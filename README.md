@@ -14,11 +14,7 @@ Our project will be processing based and will emulate a digital art software. Th
 
 
 ### Document Log:
-###### 5/17:
-Sophia Gao: Drafted the project description. Updated README with confirmed finalized information.
-
-Anna Fang:
-###### 5/18:
-Sophia Gao: Drafted the project description. Updated README with confirmed finalized information.
+###### 5/20:
+Sophia Gao:
 
 Anna Fang:
