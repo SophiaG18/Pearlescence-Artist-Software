@@ -1,4 +1,4 @@
-# Pearlescence-s-Artist-Software
+# Pearlescence-Artist-Software
 
 Group Name: Pearlescence
 
