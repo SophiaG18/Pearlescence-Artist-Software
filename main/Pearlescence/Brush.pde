@@ -1,2 +1,5 @@
 void Pen(){
 }
+
+void Eraser(){
+}
