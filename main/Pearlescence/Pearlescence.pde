@@ -14,4 +14,8 @@ void setup(){
 }
 
 void draw(){
+  fill(200);
+  rect(0, 0, 1200, 100);
+  fill(255);
+  rect(0, 100, 1200, 800);
 } 
