@@ -14,77 +14,63 @@ void setup(){
 }
 
 void draw(){
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e0c2d5542e293297ea4d4c3912c84f0349db8cab
+//toolbox section
   fill(200);
-  rect(0, 0, 1200, 100);
+  rect(0, 0, 1198, 100);
+//drawing section
   fill(255);
-  rect(0, 100, 1200, 800);
-<<<<<<< HEAD
+  rect(0, 100, 1198, 799);
 } 
 
 void keyPressed(){
+  switch (key){
   // RGB VALS
-    if(key == 'r'){
-      if(R != 255){
+    case 'r':
+      if(R < 255){
         R+= 5; // value subject to change 
       }
       else{
         R = 0; // cycle back to default 
       } 
-    } 
-    if(key == 'g'){
-      if(G != 255){
+    case 'g':
+      if(G < 255){
         G += 5; 
       }
       else{
         G = 0; 
       } 
-    }
-    if(key == 'b'){
-      if(B != 255){
+    case 'b':
+      if(B <255){
         B += 5; 
       }
       else{
         B = 0; 
-      } 
-    } 
-    // SIZE : defaults at 4 
-    if(key == UP){
-      if(Size != 4){
-        Size += 1; // does not cycle 
-      } 
-    } 
-    if(key == DOWN){
+      }  
+    // SIZE 
+    case UP:
+      Size ++;
+    case DOWN:
       if(Size != 1){
-        Size -= 1;
-      }
-    } 
+        Size --;
+      } 
     // brushMODE
-    if(key == '1'){
+    case '1':
       if(brushMode != 1){
-        brushMode -= 1; // does not cycle
+        brushMode --; // does not cycle
       } 
-    } 
-    if(key == '2'){
-      if(brushMode != 3){
-        brushMode += 1;
+    case '2':
+      if(brushMode != 2){ 
+        //2 will be increased as more Brush methods are coded
+        brushMode ++;
       } 
-    } 
     // SAVE AS DRAWING.PNG
-    if(key == ENTER){
+    case ENTER:
       PImage screenshot; // could change this into an instance variable 
       screenshot = get(); // if no parameters are specified, the entire image is returned. -> have to establish the interface in order to set coordinates
       screenshot.save("drawing.png"); // saves the screen capture to the machine 
-    } 
-    // ?? - have to clarify this with Sophia && design interface first 
-    if(key == DELETE){
-      rect(0, 100, 1200, 800);
-    } 
-=======
->>>>>>> main
-=======
->>>>>>> e0c2d5542e293297ea4d4c3912c84f0349db8cab
+    // Clear drawing area
+    case DELETE:
+      fill(255);
+      rect(0, 100, 1198, 799);
+  }
 } 
