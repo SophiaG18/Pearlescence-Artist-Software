@@ -25,6 +25,10 @@ void draw(){
   text("Blue value: " + B + " (Press g to cycle up value)",910,15);
   text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,30);
   text("Drawing Tool: " + tools[brushMode], 10,45); 
+//color square to be clicked on
+  square(10, 60, 20); //fill(0);
+  fill(255);
+  square(40, 60, 20);
 } 
 
 void mousePressed(){
