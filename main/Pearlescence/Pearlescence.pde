@@ -97,7 +97,9 @@ void keyPressed(){
     // SAVE AS DRAWING.PNG
     case ENTER:
       PImage screenshot; // could change this into an instance variable 
-      screenshot = get(); // if no parameters are specified, the entire image is returned. -> have to establish the interface in order to set coordinates
+      screenshot = get(0,100, 1500, 800); 
+      // if no parameters are specified, the entire image is returned. -> have to establish the interface in order to set coordinates
+      // with 4 parameters, get saves rect of pixels: x cor, y cor, width of rect, height of rect
       screenshot.save("drawing.png"); // saves the screen capture to the machine 
       break;
     // Clear drawing area
