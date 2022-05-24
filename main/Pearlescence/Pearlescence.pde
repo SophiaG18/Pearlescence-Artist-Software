@@ -4,6 +4,10 @@ int B = 0;
 int Size = 4;
 int brushMode = 0;
 String[] tools = {"Pen", "Eraser"};
+PImage Prev;
+PImage Next;
+Boolean Filter = false;
+int Index = 0;
 
 void setup(){
   size(1500, 900);
@@ -247,11 +251,11 @@ void keyPressed(){
         brushMode --;
       } 
       else{
-        brushMode = 1; //# will be increased as more Brush methods are coded
+        brushMode = 2; //# will be increased as more Brush methods are coded
       }
       break;
     case '2':
-      if(brushMode < 1){ 
+      if(brushMode < 3){ 
         //# will be increased as more Brush methods are coded
         brushMode ++;
       } 
