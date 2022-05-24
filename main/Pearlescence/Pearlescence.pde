@@ -26,9 +26,25 @@ void draw(){
   text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,30);
   text("Drawing Tool: " + tools[brushMode], 10,45); 
 //color square to be clicked on
-  square(10, 60, 20); //fill(0);
-  fill(255);
+  square(10, 60, 20); //fill(0) black
+  fill(255); //white
   square(40, 60, 20);
+  fill(125); //gray
+  square(70, 60, 20);
+  fill(#ed1c24); //red
+  square(100, 60, 20);
+  fill(#9c5a3c); //brown
+  square(130, 60, 20);
+  fill(#ff7e00); //orange
+  square(160, 60, 20);
+  fill(#fff200); //yellow
+  square(190, 60, 20);
+  fill(#22b14c); //green
+  square(220, 60, 20);
+  fill(#4d6df3); //blue
+  square(250, 60, 20);
+  fill(#6f3198); //purple
+  square(280, 60, 20);
 } 
 
 void mousePressed(){
