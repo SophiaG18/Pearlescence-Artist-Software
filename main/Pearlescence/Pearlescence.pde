@@ -3,7 +3,7 @@ int G = 0;
 int B = 0;
 int Size = 4;
 int brushMode = 0;
-String[] tools = {"Pen", "Eraser"};
+String[] tools = {"Pen", "Eraser", "Bucket"};
 PImage Prev;
 PImage Next;
 Boolean Filter = false;
@@ -74,6 +74,8 @@ void draw(){
 } 
 
 void mousePressed(){
+  PImage before = get(0,100, 1500, 800);
+  Prev = before;
   switch (brushMode){
     case 0:
       Pen();
@@ -82,6 +84,10 @@ void mousePressed(){
       Eraser();
       break;
   }
+  /*
+  PImage after = get(0,100, 1500, 800);
+  Next = after;
+  */
 }
 
 void mouseClicked(){
