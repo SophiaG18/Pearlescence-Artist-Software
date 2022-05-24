@@ -1,16 +1,12 @@
-int R;
-int G;
-int B;
-int Size;
-int brushMode;
+int R = 0;
+int G = 0;
+int B = 0;
+int Size = 4;
+int brushMode = 0;
+String[] tools = {Pen, Eraser};
 
 void setup(){
   size(1200, 900);
-  R = 0;
-  G = 0;
-  B = 0;
-  Size = 4;
-  brushMode = 1;
   //drawing section
   noStroke();
   fill(255);
@@ -18,7 +14,6 @@ void setup(){
 }
 
 void draw(){
-  
 //toolbox section
   fill(200);
   rect(0, 0, 1200, 100);
@@ -29,6 +24,7 @@ void draw(){
   text("Green value: " + G + " (Press g to cycle up value)",10,36);
   text("Blue value: " + B + " (Press g to cycle up value)",10,54);
   text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,72);
+//Brush text
 
 } 
 
