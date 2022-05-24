@@ -26,6 +26,7 @@ void draw(){
   text("Red value: " + R + " (Press r to cycle up value)",10,18);
   text("Green value: " + G + " (Press g to cycle up value)",10,36);
   text("Blue value: " + B + " (Press g to cycle up value)",10,54);
+  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,72);
 } 
 
 void keyPressed(){
@@ -56,12 +57,14 @@ void keyPressed(){
       }  
       break;
     // SIZE 
-    case UP:
-      Size ++;
-      break;
-    case DOWN:
-      if(Size != 1){
-        Size --;
+    case CODED:
+      if (keyCode == UP){
+        Size++;
+      }
+      if (keyCode == DOWN){
+        if(Size != 1){
+          Size--;
+        }
       } 
       break;
     // brushMODE
@@ -83,7 +86,7 @@ void keyPressed(){
       screenshot.save("drawing.png"); // saves the screen capture to the machine 
       break;
     // Clear drawing area
-    case DELETE:
+    case BACKSPACE:
       fill(255);
       rect(0, 100, 1198, 799);
       break;
