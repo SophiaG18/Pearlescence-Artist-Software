@@ -17,6 +17,7 @@ void setup(){
 }
 
 void draw(){
+  noStroke();
 //toolbox section
   fill(200);
   rect(0, 0, 1198, 100);
