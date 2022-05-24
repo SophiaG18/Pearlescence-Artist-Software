@@ -3,15 +3,19 @@
     if((mouseX > 0 && mouseX <= 1200) && (mouseY > 100 && mouseY <= 900)){
       noStroke();
       fill(penColor); 
+      int xCoord1 = mouseX; 
+      int yCoord1 = mouseY; 
       circle(mouseX, mouseY, Size); // change this to LINE
     } 
   }
   
   void Eraser(){
-    color eraserOutput = #FFFFFF; 
+    //color eraserOutput = #FFFFFF; 
     if((mouseX > 0 && mouseX <= 1200) && (mouseY > 100 && mouseY <= 900)){
       noStroke();
-      fill(225); 
+      fill(255);
+      int xCoord1 = mouseX; 
+      int yCoord1 = mouseY; 
       circle(mouseX, mouseY, Size); // change this to LINE
     } 
   }
