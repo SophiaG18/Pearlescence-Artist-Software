@@ -70,8 +70,11 @@ void keyPressed(){
     } 
     // SAVE AS DRAWING.PNG
     if(key == ENTER){
+      PImage screenshot; // could change this into an instance variable 
+      screenshot = get(); // if no parameters are specified, the entire image is returned. -> have to establish the interface in order to set coordinates
+      screenshot.save("Drawing.png"); // saves the screen capture to the machine 
     } 
-    // ?? 
+    // ?? - have to clarify this with Sophia && design interface first 
     if(key == DELETE){
     } 
 } 
