@@ -12,15 +12,16 @@ void setup(){
   Size = 4;
   brushMode = 1;
   //drawing section
+  noStroke();
   fill(255);
-  rect(0, 100, 1198, 799);
+  rect(0, 100, 1200, 800);
 }
 
 void draw(){
-  noStroke();
+  
 //toolbox section
   fill(200);
-  rect(0, 0, 1198, 100);
+  rect(0, 0, 1200, 100);
 //text
   fill(0);
   textSize(18);
