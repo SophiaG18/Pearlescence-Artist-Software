@@ -3,28 +3,29 @@ int G = 0;
 int B = 0;
 int Size = 4;
 int brushMode = 0;
-String[] tools = {Pen, Eraser};
+String[] tools = {"Pen", "Eraser"};
 
 void setup(){
-  size(1200, 900);
+  size(1500, 900);
   //drawing section
   noStroke();
   fill(255);
-  rect(0, 100, 1200, 800);
+  rect(0, 100, 1500, 800);
 }
 
 void draw(){
 //toolbox section
   fill(200);
-  rect(0, 0, 1200, 100);
+  rect(0, 0, 1500, 100);
 //text
   fill(0);
-  textSize(18);
-  text("Red value: " + R + " (Press r to cycle up value)",10,18);
-  text("Green value: " + G + " (Press g to cycle up value)",10,36);
-  text("Blue value: " + B + " (Press g to cycle up value)",10,54);
-  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,72);
-//Brush text
+  textSize(15);
+  text("Red value: " + R + " (Press r to cycle up value)",10,15);
+  text("Green value: " + G + " (Press g to cycle up value)",460,15);
+  text("Blue value: " + B + " (Press g to cycle up value)",910,15);
+  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,30);
+  text("Drawing Tool: " + tools[brushMode], 10,45); 
+
 
 } 
 
