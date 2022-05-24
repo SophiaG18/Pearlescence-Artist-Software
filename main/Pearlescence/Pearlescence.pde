@@ -46,16 +46,27 @@ void keyPressed(){
         B = 0; 
       } 
     } 
-    // SIZE
+    // SIZE : defaults at 4 
     if(key == UP){
-      
+      if(Size != 4){
+        Size += 1; // does not cycle 
+      } 
     } 
     if(key == DOWN){
+      if(Size != 1){
+        Size -= 1;
+      }
     } 
     // brushMODE
     if(key == '1'){
+      if(brushMode != 1){
+        brushMode -= 1; // does not cycle
+      } 
     } 
     if(key == '2'){
+      if(brushMode != 3){
+        brushMode += 1;
+      } 
     } 
     // SAVE AS DRAWING.PNG
     if(key == ENTER){
