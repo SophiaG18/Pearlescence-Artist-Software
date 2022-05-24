@@ -14,15 +14,12 @@ void setup(){
 }
 
 void draw(){
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e0c2d5542e293297ea4d4c3912c84f0349db8cab
+//toolbox section
   fill(200);
-  rect(0, 0, 1200, 100);
+  rect(0, 0, 1198, 100);
+//drawing section
   fill(255);
-  rect(0, 100, 1200, 800);
-<<<<<<< HEAD
+  rect(0, 100, 1198, 799);
 } 
 
 void keyPressed(){
@@ -83,8 +80,4 @@ void keyPressed(){
     if(key == DELETE){
       rect(0, 100, 1200, 800);
     } 
-=======
->>>>>>> main
-=======
->>>>>>> e0c2d5542e293297ea4d4c3912c84f0349db8cab
 } 
