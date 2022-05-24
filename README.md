@@ -19,3 +19,4 @@ Sophia Gao:
 Created the processing folder with tabs. Experimenting with git commit/branch/merge/push.
 
 Anna Fang:
+Finished writing keypressed method in main file and both pen() and eraser() in Brush tab. Accidentally forgot to use —no-ff, but will make sure to use it in the future.
