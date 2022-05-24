@@ -27,6 +27,7 @@ void draw(){
   text("Green value: " + G + " (Press g to cycle up value)",10,36);
   text("Blue value: " + B + " (Press g to cycle up value)",10,54);
   text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,72);
+//Brush
 } 
 
 void keyPressed(){
