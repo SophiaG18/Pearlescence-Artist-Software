@@ -15,36 +15,58 @@ void setup(){
 
 void draw(){
 //toolbox section
+  noStroke();
   fill(200);
   rect(0, 0, 1500, 100);
 //text
   fill(0);
   textSize(15);
   text("Red value: " + R + " (Press r to cycle up value)",10,15);
-  text("Green value: " + G + " (Press g to cycle up value)",460,15);
-  text("Blue value: " + B + " (Press g to cycle up value)",910,15);
-  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,30);
-  text("Drawing Tool: " + tools[brushMode], 10,45); 
+  text("Green value: " + G + " (Press g to cycle up value)",10,30);
+  text("Blue value: " + B + " (Press g to cycle up value)",10,45);
+  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,60);
+  text("Drawing Tool: " + tools[brushMode], 10,75); 
 //color square to be clicked on
-  square(10, 60, 20); //fill(0) black
+  stroke(0);
+  square(323, 5, 18); //fill(0) black
   fill(255); //white
-  square(40, 60, 20);
-  fill(125); //gray
-  square(70, 60, 20);
-  fill(#ed1c24); //red
-  square(100, 60, 20);
-  fill(#9c5a3c); //brown
-  square(130, 60, 20);
-  fill(#ff7e00); //orange
-  square(160, 60, 20);
-  fill(#fff200); //yellow
-  square(190, 60, 20);
-  fill(#22b14c); //green
-  square(220, 60, 20);
-  fill(#4d6df3); //blue
-  square(250, 60, 20);
-  fill(#6f3198); //purple
-  square(280, 60, 20);
+  square(323, 28, 18);
+  fill(#7F7F7F); //gray 127
+  square(346, 5, 18);
+  fill(#C3C3C3); //light gray 195
+  square(346, 28, 18);
+  fill(#880015); //dark red 136 0 21
+  square(369, 5, 18);
+  fill(#B97A57); //brown 185 122 87
+  square(369, 28, 18);
+  fill(#ED1C24); //red 237 28 36
+  square(392, 5, 18);
+  fill(#FFAEC9); //rose 255 174 201
+  square(392, 28, 18);
+  fill(#FF7F27); //orange 255 127 39
+  square(415, 5, 18);
+  fill(#FFC90E); //gold 255 201 14
+  square(415, 28, 18);
+  fill(#FFF200); //yellow 255 242 0
+  square(438, 5, 18);
+  fill(#EFE4B0); //light yellow 239 228 176
+  square(438, 28, 18);
+  fill(#22B14C); //green 34 177 76
+  square(461, 5, 18);
+  fill(#B5E61D); //lime 181 230 29
+  square(461, 28, 18);
+  fill(#00A2E8); //turquoise 0 162 232
+  square(484, 5, 18);
+  fill(#99D9EA); //light turquoise 153 217 234
+  square(484, 28, 18);
+  fill(#3F48CC); //indigo 63 72 204
+  square(507, 5, 18);
+  fill(#7092BE); //blue-gray 112 146 190
+  square(507, 28, 18);
+  fill(#A349A4); //purple 163 73 164
+  square(530, 5, 18);
+  fill(#C8BFE7); //lavender 200 191 231
+  square(530, 28, 18);
 } 
 
 void mousePressed(){
@@ -124,8 +146,9 @@ void keyPressed(){
       break;
     // Clear drawing area
     case BACKSPACE:
+      noStroke();
       fill(255);
-      rect(0, 100, 1198, 799);
+      rect(0, 100, 1500, 800);
       break;
   }
 } 
