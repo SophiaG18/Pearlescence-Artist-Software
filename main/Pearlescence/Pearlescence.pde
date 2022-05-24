@@ -30,6 +30,7 @@ void draw(){
   text("B value: " + B + " (Press g to cycle up value)",10,45);
   text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,60);
   text("Drawing Tool: " + tools[brushMode], 10,75); 
+  text("Filter: " + Filter + " (Press f to turn on/off)", 10,90); 
 //color square to be clicked on
   stroke(0);
   square(323, 5, 18); //fill(0) black
@@ -282,6 +283,9 @@ void keyPressed(){
       noStroke();
       fill(255);
       rect(0, 100, 1500, 800);
+      break;
+    case 'f':
+      Filter = !(Filter);
       break;
   }
 } 
