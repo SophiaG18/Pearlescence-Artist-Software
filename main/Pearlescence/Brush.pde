@@ -3,7 +3,7 @@
     if((mouseX > 0 && mouseX <= 1200) && (mouseY > 100 && mouseY <= 900)){
       noStroke();
       fill(penColor); 
-      circle(mouseX, mouseY, Size); 
+      circle(mouseX, mouseY, Size); // change this to LINE
     } 
   }
   
@@ -12,6 +12,6 @@
     if((mouseX > 0 && mouseX <= 1200) && (mouseY > 100 && mouseY <= 900)){
       noStroke();
       fill(225); 
-      circle(mouseX, mouseY, Size); 
+      circle(mouseX, mouseY, Size); // change this to LINE
     } 
   }
