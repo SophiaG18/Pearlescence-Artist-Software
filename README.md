@@ -16,7 +16,7 @@ Our project will be processing based and will emulate a digital art software. Th
 ### Document Log:
 ##### 5/23:
 Sophia Gao:
-Created the processing folder with tabs. Experimenting with git commit/branch/merge/push.
+Created the processing folder with tabs then streamlined Anna's code. Draw method now includes text for all variables except brushMode, which had unexpected complications in calling respective Brush method.
 
 Anna Fang:
 Finished writing keypressed method in main file and both pen() and eraser() in Brush tab. Accidentally forgot to use —no-ff, but will make sure to use it in the future.
