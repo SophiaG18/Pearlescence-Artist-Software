@@ -13,3 +13,6 @@ void Eraser(){
     circle(mouseX, mouseY, Size); 
   } 
 }
+
+void Eraser(){
+}

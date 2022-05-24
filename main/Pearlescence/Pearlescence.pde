@@ -15,10 +15,14 @@ void setup(){
 
 void draw(){
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e0c2d5542e293297ea4d4c3912c84f0349db8cab
   fill(200);
   rect(0, 0, 1200, 100);
   fill(255);
   rect(0, 100, 1200, 800);
+<<<<<<< HEAD
 } 
 
 void keyPressed(){
@@ -81,4 +85,6 @@ void keyPressed(){
     } 
 =======
 >>>>>>> main
+=======
+>>>>>>> e0c2d5542e293297ea4d4c3912c84f0349db8cab
 } 

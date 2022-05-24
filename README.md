@@ -14,7 +14,8 @@ Our project will be processing based and will emulate a digital art software. Th
 
 
 ### Document Log:
-###### 5/20:
+##### 5/23:
 Sophia Gao:
+Created the processing folder with tabs. Experimenting with git commit/branch/merge/push.
 
 Anna Fang:
