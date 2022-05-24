@@ -11,15 +11,15 @@ void setup(){
   B = 0;
   Size = 4;
   brushMode = 1;
+  //drawing section
+  fill(255);
+  rect(0, 100, 1198, 799);
 }
 
 void draw(){
 //toolbox section
   fill(200);
   rect(0, 0, 1198, 100);
-//drawing section
-  fill(255);
-  rect(0, 100, 1198, 799);
 //text
   fill(0);
   textSize(18);
@@ -27,8 +27,12 @@ void draw(){
   text("Green value: " + G + " (Press g to cycle up value)",10,36);
   text("Blue value: " + B + " (Press g to cycle up value)",10,54);
   text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,72);
-//Brush
+
 } 
+
+void mouseDragged(){
+  Pen();
+}
 
 void keyPressed(){
   switch (key){
