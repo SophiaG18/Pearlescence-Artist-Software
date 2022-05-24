@@ -14,6 +14,7 @@ void setup(){
 }
 
 void draw(){
+<<<<<<< HEAD
   fill(200);
   rect(0, 0, 1200, 100);
   fill(255);
@@ -78,4 +79,6 @@ void keyPressed(){
     if(key == DELETE){
       rect(0, 100, 1200, 800);
     } 
+=======
+>>>>>>> main
 } 
