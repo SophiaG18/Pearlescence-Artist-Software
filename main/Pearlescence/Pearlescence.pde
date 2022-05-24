@@ -25,12 +25,17 @@ void draw(){
   text("Blue value: " + B + " (Press g to cycle up value)",910,15);
   text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,30);
   text("Drawing Tool: " + tools[brushMode], 10,45); 
-
-
 } 
 
-void mouseDragged(){
-  Pen();
+void mousePressed(){
+  switch (brushMode){
+    case 0:
+      Pen();
+      break;
+    case 1:
+      Eraser();
+      break;
+  }
 }
 
 void keyPressed(){
@@ -73,15 +78,21 @@ void keyPressed(){
       break;
     // brushMODE
     case '1':
-      if(brushMode != 1){
-        brushMode --; // does not cycle
+      if(brushMode > 0){
+        brushMode --;
       } 
+      else{
+        brushMode = 1; //# will be increased as more Brush methods are coded
+      }
       break;
     case '2':
-      if(brushMode != 2){ 
-        //2 will be increased as more Brush methods are coded
+      if(brushMode < 1){ 
+        //# will be increased as more Brush methods are coded
         brushMode ++;
       } 
+      else{
+        brushMode = 0;
+      }
       break;
     // SAVE AS DRAWING.PNG
     case ENTER:
