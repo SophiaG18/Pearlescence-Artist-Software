@@ -4,12 +4,11 @@ int B = 0;
 int Size = 4;
 int brushMode = 0;
 String[] tools = {"Pen", "Eraser"};
-color fillColor; // -> combines RGB values
 
 void setup(){
   size(1500, 900);
   //drawing section
-  noStroke();
+  // noStroke(); -> this is preventing ALL STROKES, but creates an unintended 
   fill(255);
   rect(0, 100, 1500, 800);
 }
@@ -26,18 +25,19 @@ void draw(){
   text("Blue value: " + B + " (Press g to cycle up value)",910,15);
   text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,30);
   text("Drawing Tool: " + tools[brushMode], 10,45); 
-  // moving "mousepressed" into draw in order to change coordinates 
-  if(mousePressed == true){ 
+  // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
+  if(mousePressed == true){  
     switch (brushMode){
-    case 0:
-      Pen();
-      break;
-    case 1:
-      Eraser();
-      break;
+      case 0:
+        Pen();
+        break;
+      case 1:
+        Eraser();
+        break;
+      } 
     }
   }
-} 
+ 
 
 void keyPressed(){
   switch (key){
