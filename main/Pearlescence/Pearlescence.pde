@@ -8,6 +8,7 @@ PImage Prev;
 PImage Next;
 Boolean Filter = false;
 int Index = 0;
+String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right Sobel","Top Sobel", "Emboss"};
 
 void setup(){
   size(1500, 900);
@@ -26,53 +27,60 @@ void draw(){
 //text
   fill(0);
   textSize(15);
-  text("R value: " + R + " (Press r to cycle up value)",10,15);
-  text("G value: " + G + " (Press g to cycle up value)",10,30);
-  text("B value: " + B + " (Press g to cycle up value)",10,45);
-  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,60);
-  text("Drawing Tool: " + tools[brushMode], 10,75); 
-  text("Filter: " + Filter + " (Press f to turn on/off)", 10,90); 
+  text("R value: " + R + " (Press r to cycle up value)",1205,25);
+  text("G value: " + G + " (Press g to cycle up value)",1205,40);
+  text("B value: " + B + " (Press g to cycle up value)",1205,55);
+  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",40,25);
+  text("Drawing Tool: " + tools[brushMode], 40,40); 
+  text("Filter: " + Filter + " (Press f to turn on/off)", 40,55); 
 //color square to be clicked on
   stroke(0);
-  square(323, 5, 18); //fill(0) black
+  square(950, 15, 18); //fill(0) black
   fill(255); //white
-  square(323, 28, 18);
+  square(950, 38, 18);
   fill(#7F7F7F); //gray 127
-  square(346, 5, 18);
+  square(973, 15, 18);
   fill(#C3C3C3); //light gray 195
-  square(346, 28, 18);
+  square(973, 38, 18);
   fill(#880015); //dark red 136 0 21
-  square(369, 5, 18);
+  square(996, 15, 18);
   fill(#B97A57); //brown 185 122 87
-  square(369, 28, 18);
+  square(996, 38, 18);
   fill(#ED1C24); //red 237 28 36
-  square(392, 5, 18);
+  square(1019, 15, 18);
   fill(#FFAEC9); //rose 255 174 201
-  square(392, 28, 18);
+  square(1019, 38, 18);
   fill(#FF7F27); //orange 255 127 39
-  square(415, 5, 18);
+  square(1042, 15, 18);
   fill(#FFC90E); //gold 255 201 14
-  square(415, 28, 18);
+  square(1042, 38, 18);
   fill(#FFF200); //yellow 255 242 0
-  square(438, 5, 18);
+  square(1065, 15, 18);
   fill(#EFE4B0); //light yellow 239 228 176
-  square(438, 28, 18);
+  square(1065, 38, 18);
   fill(#22B14C); //green 34 177 76
-  square(461, 5, 18);
+  square(1088, 15, 18);
   fill(#B5E61D); //lime 181 230 29
-  square(461, 28, 18);
+  square(1088, 38, 18);
   fill(#00A2E8); //turquoise 0 162 232
-  square(484, 5, 18);
+  square(1111, 15, 18);
   fill(#99D9EA); //light turquoise 153 217 234
-  square(484, 28, 18);
+  square(1111, 38, 18);
   fill(#3F48CC); //indigo 63 72 204
-  square(507, 5, 18);
+  square(1134, 15, 18);
   fill(#7092BE); //blue-gray 112 146 190
-  square(507, 28, 18);
+  square(1134, 38, 18);
   fill(#A349A4); //purple 163 73 164
-  square(530, 5, 18);
+  square(1157, 15, 18);
   fill(#C8BFE7); //lavender 200 191 231
-  square(530, 28, 18);
+  square(1157, 38, 18);
+  // written instructions for keypress commands 
+  fill(0);
+  textSize(15);
+  text("Filter mode: " + Names[Index], 40, 70); // either keep or combine with filter text 
+  text("Press DELETE to clear the screen", 650, 25);
+  text("Press ENTER to take a screenshot", 650, 40);
+  text("Click on a color to select it", 964, 75);
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if(mousePressed == true){  
     switch (brushMode){
@@ -82,128 +90,132 @@ void draw(){
       case 1:
         Eraser();
         break;
+      case 2: 
+        Bucket(); 
+        break; 
       }
+      // current screen saved as PImage next 
     }
   }
   
   
 void mouseClicked(){
   //black
-  if (mouseX >= 323 && mouseX <= 341 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 950 && mouseX <= 968 && mouseY >= 15 && mouseY <= 33){
     R = 0;
     G = 0;
     B = 0;
   }
   //white
-  if (mouseX >= 323 && mouseX <= 341 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 950 && mouseX <= 968 && mouseY >= 38 && mouseY <= 53){
     R = 255;
     G = 255;
     B = 255;
   }
   //gray 127
-  if (mouseX >= 346 && mouseX <= 374 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 973 && mouseX <= 991 && mouseY >= 15 && mouseY <= 33){
     R = 127;
     G = 127;
     B = 127;
   }
   //light gray 195
-  if (mouseX >= 346 && mouseX <= 376 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 973 && mouseX <= 991 && mouseY >= 38 && mouseY <= 53){
     R = 195;
     G = 195;
     B = 195;
   }
   //dark red 136 0 21
-  if (mouseX >= 369 && mouseX <= 387 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 996 && mouseX <= 1014 && mouseY >= 15 && mouseY <= 33){
     R = 136;
     G = 0;
     B = 21;
   }
   //brown 185 122 87
-  if (mouseX >= 369 && mouseX <= 387 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 996 && mouseX <= 1014 && mouseY >= 38 && mouseY <= 53){
     R = 185;
     G = 122;
     B = 87;
   }
   //red 237 28 36
-  if (mouseX >= 392 && mouseX <= 410 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 1019 && mouseX <= 1037 && mouseY >= 15 && mouseY <= 33){
     R = 237;
     G = 28;
     B = 36;
   }
   //rose 255 174 201
-  if (mouseX >= 392 && mouseX <= 410 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 1019 && mouseX <= 1037 && mouseY >= 38 && mouseY <= 53){
     R = 255;
     G = 174;
     B = 201;
   }
   //orange 255 127 39
-  if (mouseX >= 415 && mouseX <= 433 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 1042 && mouseX <= 1060 && mouseY >= 15 && mouseY <= 33){
     R = 255;
     G = 127;
     B = 39;
   }
   //gold 255 201 14
-  if (mouseX >= 415 && mouseX <= 433 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 1042 && mouseX <= 1060 && mouseY >= 38 && mouseY <= 53){
     R = 255;
     G = 201;
     B = 14;
   }
   //yellow 255 242 0
-  if (mouseX >= 438 && mouseX <= 456 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 1065 && mouseX <= 1083 && mouseY >= 15 && mouseY <= 33){
     R = 255;
     G = 242;
     B = 0;
   }
   //light yellow 239 228 176
-  if (mouseX >= 438 && mouseX <= 456 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 1065 && mouseX <= 1083 && mouseY >= 38 && mouseY <= 53){
     R = 239;
     G = 228;
     B = 176;
   }
   //green 34 177 76
-  if (mouseX >= 461 && mouseX <= 479 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 1088 && mouseX <= 1106 && mouseY >= 15 && mouseY <= 33){
     R = 34;
     G = 177;
     B = 76;
   }
   //lime 181 230 29
-  if (mouseX >= 461 && mouseX <= 479 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 1088 && mouseX <= 1106 && mouseY >= 38 && mouseY <= 53){
     R = 181;
     G = 230;
     B = 29;
   }
   //turquoise 0 162 232
-  if (mouseX >= 484 && mouseX <= 502 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 1111 && mouseX <= 1129 && mouseY >= 15 && mouseY <= 33){
     R = 0;
     G = 162;
     B = 232;
   }
   //light turquoise 153 217 234
-  if (mouseX >= 484 && mouseX <= 502 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 1111 && mouseX <= 1129 && mouseY >= 38 && mouseY <= 53){
     R = 153;
     G = 217;
     B = 234;
   }
   //indigo 63 72 204
-  if (mouseX >= 507 && mouseX <= 525 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 1134 && mouseX <= 1152 && mouseY >= 15 && mouseY <= 33){
     R = 63;
     G = 72;
     B = 204;
   }
   //blue-gray 112 146 190
-  if (mouseX >= 507 && mouseX <= 525 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 1134 && mouseX <= 1152 && mouseY >= 38 && mouseY <= 53){
     R = 112;
     G = 146;
     B = 190;
   }
   //purple 163 73 164
-  if (mouseX >= 530 && mouseX <= 548 && mouseY >= 5 && mouseY <= 23){
+  if (mouseX >= 1157 && mouseX <= 1175 && mouseY >= 15 && mouseY <= 33){
     R = 163;
     G = 73;
     B = 164;
   }
   //lavender 200 191 231
-  if (mouseX >= 530 && mouseX <= 548 && mouseY >= 28 && mouseY <= 46){
+  if (mouseX >= 1157 && mouseX <= 1175 && mouseY >= 38 && mouseY <= 53){
     R = 200;
     G = 191;
     B = 231;
@@ -258,7 +270,7 @@ void keyPressed(){
       }
       break;
     case '2':
-      if(brushMode < 3){ 
+      if(brushMode < 2){ 
         //# will be increased as more Brush methods are coded
         brushMode ++;
       } 
