@@ -258,7 +258,7 @@ void keyPressed(){
       }
       break;
     case '2':
-      if(brushMode < 3){ 
+      if(brushMode < 2){ 
         //# will be increased as more Brush methods are coded
         brushMode ++;
       } 
