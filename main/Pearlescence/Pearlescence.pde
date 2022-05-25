@@ -16,6 +16,8 @@ void setup(){
   // noStroke(); -> this is preventing ALL STROKES, but creates an unintended line to be drawn 
   fill(255);
   rect(0, 100, 1500, 800);
+  Prev = get(0,100, 1500, 800);
+  Next = get(0,100, 1500, 800);
 }
 
 void draw(){
@@ -82,7 +84,8 @@ void draw(){
   text("Press ENTER to take a screenshot", 650, 40);
   text("Click on a color to select it", 964, 75);
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
-  if(mousePressed == true){  
+  if(mousePressed == true){ 
+    Prev = Next;
     switch (brushMode){
       case 0:
         Pen();
@@ -94,7 +97,7 @@ void draw(){
         Bucket(); 
         break; 
       }
-      // current screen saved as PImage next 
+      Next = get(0,100, 1500, 800);
     }
   }
   
