@@ -30,9 +30,9 @@ void draw(){
   text("R value: " + R + " (Press r to cycle up value)",1205,25);
   text("G value: " + G + " (Press g to cycle up value)",1205,40);
   text("B value: " + B + " (Press g to cycle up value)",1205,55);
-  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",40,25);
-  text("Drawing Tool: " + tools[brushMode], 40,40); 
-  text("Filter: " + Filter + " (Press f to turn on/off)", 40,55); 
+  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",30,25);
+  text("Drawing Tool: " + tools[brushMode], 30,40); 
+  text("Filter: " + Filter + " (Press f to turn on/off)", 30,55); 
 //color square to be clicked on
   stroke(0);
   square(950, 15, 18); //fill(0) black
@@ -77,7 +77,7 @@ void draw(){
   // written instructions for keypress commands 
   fill(0);
   textSize(15);
-  text("Filter mode: " + Names[Index], 40, 70); // either keep or combine with filter text 
+  text("Filter mode: " + Names[Index], 30, 70); // either keep or combine with filter text 
   text("Press DELETE to clear the screen", 650, 25);
   text("Press ENTER to take a screenshot", 650, 40);
   text("Click on a color to select it", 964, 75);
