@@ -1,17 +1,16 @@
  void Pen(){
     color penColor = color(R, G, B);
-    if((mouseX > 0 && mouseX <= 1200) && (mouseY > 100 && mouseY <= 900)){
-      noStroke();
+    if((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)){
+      //noStroke(); -> this causes issues 
       fill(penColor); 
-      circle(mouseX, mouseY, Size); 
+      line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
     } 
   }
   
-  void Eraser(){
-    color eraserOutput = #FFFFFF; 
-    if((mouseX > 0 && mouseX <= 1200) && (mouseY > 100 && mouseY <= 900)){
-      noStroke();
-      fill(225); 
-      circle(mouseX, mouseY, Size); 
+    void Eraser(){
+    if((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)){
+      //noStroke(); -> this causes issues
+      fill(255);
+      line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
     } 
   }
