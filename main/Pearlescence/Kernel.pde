@@ -13,7 +13,7 @@ float[][][]kernels = {
 /**If part of the kernel is off of the image, duplicate edge values 
 *Calculate the convolution of r/g/b separately, and return that color\
 *if the calculation for any of the r,g,b values is outside the range
-*     0-255, then clamp it to that range (< 0 becomes 0, >255 becomes 255)
+*0-255, then clamp it to that range (< 0 becomes 0, >255 becomes 255)
 */
 color calcNewColor(int x, int y) {
   int r = 0;
@@ -22,7 +22,7 @@ color calcNewColor(int x, int y) {
   for (int w = -1; w <= 1; w++){ //x
     for (int h = -1; h <= 1; h++){ //y
       int corx = x + w;
-      int cory = y + h
+      int cory = y + h;
       if (corx < 0){
         corx = 0;
       }
@@ -37,8 +37,8 @@ color calcNewColor(int x, int y) {
       }
       color og = Next.get(corx, cory);
       r += (red(og) * kernels[Index][w+1][h+1]);
-      g += (green(og) * kernel[Index][w+1][h+1]);
-      b += (blue(og) * kernel[Index][w+1][h+1]);
+      g += (green(og) * kernels[Index][w+1][h+1]);
+      b += (blue(og) * kernels[Index][w+1][h+1]);
     }
   }
   if (r < 0) r = 0;
