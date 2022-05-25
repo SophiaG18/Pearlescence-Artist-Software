@@ -3,33 +3,28 @@ int G = 0;
 int B = 0;
 int Size = 4;
 int brushMode = 0;
-<<<<<<< HEAD
 String[] tools = {"Pen", "Eraser", "Bucket"};
 PImage Prev;
 PImage Next;
 Boolean Filter = false;
 int Index = 0;
-=======
-String[] tools = {"Pen", "Eraser"};
->>>>>>> Anna1.1
 
 void setup(){
   size(1500, 900);
   //drawing section
-  // noStroke(); -> this is preventing ALL STROKES, but creates an unintended 
+  // noStroke(); -> this is preventing ALL STROKES, but creates an unintended line to be drawn 
   fill(255);
   rect(0, 100, 1500, 800);
 }
 
 void draw(){
 //toolbox section
-  noStroke();
+ // noStroke(); -> runs into issues
   fill(200);
   rect(0, 0, 1500, 100);
 //text
   fill(0);
   textSize(15);
-<<<<<<< HEAD
   text("R value: " + R + " (Press r to cycle up value)",10,15);
   text("G value: " + G + " (Press g to cycle up value)",10,30);
   text("B value: " + B + " (Press g to cycle up value)",10,45);
@@ -77,25 +72,20 @@ void draw(){
   square(530, 5, 18);
   fill(#C8BFE7); //lavender 200 191 231
   square(530, 28, 18);
-} 
-
-void mousePressed(){
-  PImage before = get(0,100, 1500, 800);
-  Prev = before;
-  switch (brushMode){
-    case 0:
-      Pen();
-      break;
-    case 1:
-      Eraser();
-      break;
+  // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
+  if(mousePressed == true){  
+    switch (brushMode){
+      case 0:
+        Pen();
+        break;
+      case 1:
+        Eraser();
+        break;
+      }
+    }
   }
-  /*
-  PImage after = get(0,100, 1500, 800);
-  Next = after;
-  */
-}
-
+  
+  
 void mouseClicked(){
   //black
   if (mouseX >= 323 && mouseX <= 341 && mouseY >= 5 && mouseY <= 23){
@@ -218,26 +208,6 @@ void mouseClicked(){
     B = 231;
   }
 }
-=======
-  text("Red value: " + R + " (Press r to cycle up value)",10,15);
-  text("Green value: " + G + " (Press g to cycle up value)",460,15);
-  text("Blue value: " + B + " (Press g to cycle up value)",910,15);
-  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,30);
-  text("Drawing Tool: " + tools[brushMode], 10,45); 
-  // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
-  if(mousePressed == true){  
-    switch (brushMode){
-      case 0:
-        Pen();
-        break;
-      case 1:
-        Eraser();
-        break;
-      } 
-    }
-  }
- 
->>>>>>> Anna1.1
 
 void keyPressed(){
   switch (key){
@@ -283,19 +253,11 @@ void keyPressed(){
         brushMode --;
       } 
       else{
-<<<<<<< HEAD
         brushMode = 2; //# will be increased as more Brush methods are coded
       }
       break;
     case '2':
       if(brushMode < 3){ 
-=======
-        brushMode = 1; //# will be increased as more Brush methods are coded
-      }
-      break;
-    case '2':
-      if(brushMode < 1){ 
->>>>>>> Anna1.1
         //# will be increased as more Brush methods are coded
         brushMode ++;
       } 
