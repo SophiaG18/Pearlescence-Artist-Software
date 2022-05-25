@@ -22,7 +22,7 @@ Anna Fang:
 Finished writing keypressed method in main file and both pen() and eraser() according to outlined requirements in Brush tab. Accidentally forgot to use —no-ff, but will make sure to use it in the future.
 
 ##### 5/24:
-Sophia Gao: 
+Sophia Gao: Finished Pearlescence phase 1. Currently in phase 2 of Pearlescence with the RGB section finished.
 
 Anna Fang: 
-Updated Pearlescence by moving mousePressed into the draw method and implemented pmouseX/pmouseY in order to shift from using mouse coords. to make a trail of circles to a series of lines. Also fixed up coordinates in Pen() and Eraser(). 
+Updated Pearlescence by moving mousePressed into the draw method and implemented pmouseX/pmouseY in order to shift from using mouse coords. to make a trail of circles to a series of lines. Also fixed up coordinates in Pen() and Eraser().
