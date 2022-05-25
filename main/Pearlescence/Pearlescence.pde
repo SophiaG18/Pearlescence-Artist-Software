@@ -27,60 +27,60 @@ void draw(){
 //text
   fill(0);
   textSize(15);
-  text("R value: " + R + " (Press r to cycle up value)",10,15);
-  text("G value: " + G + " (Press g to cycle up value)",10,30);
-  text("B value: " + B + " (Press g to cycle up value)",10,45);
-  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",10,60);
-  text("Drawing Tool: " + tools[brushMode], 10,75); 
-  text("Filter: " + Filter + " (Press f to turn on/off)", 10,90); 
+  text("R value: " + R + " (Press r to cycle up value)",1205,25);
+  text("G value: " + G + " (Press g to cycle up value)",1205,40);
+  text("B value: " + B + " (Press g to cycle up value)",1205,55);
+  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",40,25);
+  text("Drawing Tool: " + tools[brushMode], 40,40); 
+  text("Filter: " + Filter + " (Press f to turn on/off)", 40,55); 
 //color square to be clicked on
   stroke(0);
-  square(1000, 15, 18); //fill(0) black
+  square(950, 15, 18); //fill(0) black
   fill(255); //white
-  square(1000, 38, 18);
+  square(950, 38, 18);
   fill(#7F7F7F); //gray 127
-  square(346, 5, 18);
+  square(973, 15, 18);
   fill(#C3C3C3); //light gray 195
-  square(346, 28, 18);
+  square(973, 38, 18);
   fill(#880015); //dark red 136 0 21
-  square(369, 5, 18);
+  square(996, 15, 18);
   fill(#B97A57); //brown 185 122 87
-  square(369, 28, 18);
+  square(996, 38, 18);
   fill(#ED1C24); //red 237 28 36
-  square(392, 5, 18);
+  square(1019, 15, 18);
   fill(#FFAEC9); //rose 255 174 201
-  square(392, 28, 18);
+  square(1019, 38, 18);
   fill(#FF7F27); //orange 255 127 39
-  square(415, 5, 18);
+  square(1042, 15, 18);
   fill(#FFC90E); //gold 255 201 14
-  square(415, 28, 18);
+  square(1042, 38, 18);
   fill(#FFF200); //yellow 255 242 0
-  square(438, 5, 18);
+  square(1065, 15, 18);
   fill(#EFE4B0); //light yellow 239 228 176
-  square(438, 28, 18);
+  square(1065, 38, 18);
   fill(#22B14C); //green 34 177 76
-  square(461, 5, 18);
+  square(1088, 15, 18);
   fill(#B5E61D); //lime 181 230 29
-  square(461, 28, 18);
+  square(1088, 38, 18);
   fill(#00A2E8); //turquoise 0 162 232
-  square(484, 5, 18);
+  square(1111, 15, 18);
   fill(#99D9EA); //light turquoise 153 217 234
-  square(484, 28, 18);
+  square(1111, 38, 18);
   fill(#3F48CC); //indigo 63 72 204
-  square(507, 5, 18);
+  square(1134, 15, 18);
   fill(#7092BE); //blue-gray 112 146 190
-  square(507, 28, 18);
+  square(1134, 38, 18);
   fill(#A349A4); //purple 163 73 164
-  square(530, 5, 18);
+  square(1157, 15, 18);
   fill(#C8BFE7); //lavender 200 191 231
-  square(530, 28, 18);
+  square(1157, 38, 18);
   // written instructions for keypress commands 
   fill(0);
   textSize(15);
-  text("Filter mode: " + Names[Index], 650, 15); // either keep or combine with filter text 
-  text("Press DELETE to clear the screen", 650, 45);
-  text("Press ENTER to take a screenshot", 650, 60);
-  text("Click on a color to select it", 650, 75);
+  text("Filter mode: " + Names[Index], 40, 70); // either keep or combine with filter text 
+  text("Press DELETE to clear the screen", 650, 25);
+  text("Press ENTER to take a screenshot", 650, 40);
+  text("Click on a color to select it", 964, 75);
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if(mousePressed == true){  
     switch (brushMode){
