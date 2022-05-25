@@ -20,6 +20,7 @@ void setup(){
 void draw(){
 //toolbox section
  // noStroke(); -> runs into issues
+  strokeWeight(1);
   fill(200);
   rect(0, 0, 1500, 100);
 //text
