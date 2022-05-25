@@ -14,5 +14,13 @@
       stroke(255);
       strokeWeight(Size);
       line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
+    }
+   }
+    
+    void Bucket(){
+      
     } 
-  }
+    
+    void Bucket2(){
+    } 
+  

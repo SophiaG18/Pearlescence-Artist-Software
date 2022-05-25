@@ -8,7 +8,7 @@ PImage Prev;
 PImage Next;
 Boolean Filter = false;
 int Index = 0;
-
+String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right Sobel","Top Sobel", "Emboss"};
 void setup(){
   size(1500, 900);
   //drawing section
