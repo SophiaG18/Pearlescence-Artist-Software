@@ -9,6 +9,7 @@ PImage Next;
 Boolean Filter = false;
 int Index = 0;
 String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right Sobel","Top Sobel", "Emboss"};
+
 void setup(){
   size(1500, 900);
   //drawing section
@@ -34,9 +35,9 @@ void draw(){
   text("Filter: " + Filter + " (Press f to turn on/off)", 10,90); 
 //color square to be clicked on
   stroke(0);
-  square(323, 5, 18); //fill(0) black
+  square(1000, 15, 18); //fill(0) black
   fill(255); //white
-  square(323, 28, 18);
+  square(1000, 38, 18);
   fill(#7F7F7F); //gray 127
   square(346, 5, 18);
   fill(#C3C3C3); //light gray 195
@@ -73,6 +74,13 @@ void draw(){
   square(530, 5, 18);
   fill(#C8BFE7); //lavender 200 191 231
   square(530, 28, 18);
+  // written instructions for keypress commands 
+  fill(0);
+  textSize(15);
+  text("Filter mode: " + Names[Index], 650, 15); // either keep or combine with filter text 
+  text("Press DELETE to clear the screen", 650, 45);
+  text("Press ENTER to take a screenshot", 650, 60);
+  text("Click on a color to select it", 650, 75);
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if(mousePressed == true){  
     switch (brushMode){
@@ -82,7 +90,11 @@ void draw(){
       case 1:
         Eraser();
         break;
+      case 2: 
+        Bucket(); 
+        break; 
       }
+      // current screen saved as PImage next 
     }
   }
   
