@@ -19,4 +19,10 @@ Sophia Gao:
 Created the processing folder with tabs then streamlined Anna's code. Draw method now includes text for all variables except brushMode, which had unexpected complications in calling respective Brush method.
 
 Anna Fang:
-Finished writing keypressed method in main file and both pen() and eraser() in Brush tab. Accidentally forgot to use —no-ff, but will make sure to use it in the future.
+Finished writing keypressed method in main file and both pen() and eraser() according to outlined requirements in Brush tab. Accidentally forgot to use —no-ff, but will make sure to use it in the future.
+
+##### 5/24:
+Sophia Gao: 
+
+Anna Fang: 
+Updated Pearlescence by moving mousePressed into the draw method and implemented pmouseX/pmouseY in order to shift from using mouse coords. to make a trail of circles to a series of lines. Also fixed up coordinates in Pen() and Eraser(). 
