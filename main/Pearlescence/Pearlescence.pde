@@ -341,8 +341,19 @@ void keyPressed(){
         Weight = false; 
       } 
     case '3': 
+      if(Transparency > 0){
+        Transparency--; 
+      } 
     case '4': 
+      if(Transparency > 0 && Transparency < 100){
+        Transparency ++;
+      } 
     case'L': 
-    
+      if(Layer == false){
+        Layer = true; 
+      } 
+      else{
+        Layer = false;
+      } 
   }
 } 
