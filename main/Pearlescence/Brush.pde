@@ -27,54 +27,39 @@ void Bucket() {
 } 
 
 void Bucket2(int X, int Y, color OG, color spill) {
-  /*
   int xcor;
   boolean spanup;
   boolean spandown;
-  
+
   ArrayList<Integer> spread = new ArrayList<Integer>();
   spread.add(X);
   spread.add(Y);
   while (spread.size() > 1) {
     xcor = spread.remove(spread.size() - 2);
-    while (xcor >= 0 && (get(xcor, ycor) == OG)){
+    int ycor = spread.remove(spread.size() - 1);
+    while (xcor >= 0 && (get(xcor, ycor) == OG)) {
       xcor--;
     }
     xcor ++;
-    spanup = true;
-    spandown = true;
-    while (xcor < width && (get(xcor, ycor) == OG)){
+    spanup = false;
+    spandown = false;
+    while (xcor < width && (get(xcor, ycor) == OG)) {
       set(xcor, ycor, spill);
-      */
-   ArrayList<Integer> spread = new ArrayList<Integer>();
-  spread.add(X);
-  spread.add(Y);
-  while (spread.size() > 1) {
-    int xcor = spread.remove(spread.size() - 2);
-    int ycor = spread.remove(spread.size() - 1);
-    if ((xcor >= 0 && xcor < 1500) && (ycor > 100 && ycor < 900) && (get(xcor, ycor) == OG)) {
-      set(xcor, ycor, spill);
+      if (!spanup && ycor > 100 && (get(xcor, ycor - 1) == OG)) {
+        spread.add(xcor);
+        spread.add(ycor-1);
+        spanup = true;
+      } else if (spanup && ycor > 100 && (get(xcor, ycor - 1) != OG)) {
+        spanup = false;
+      }
+      if (!spandown && ycor < height && (get(xcor, ycor +1) == OG)) {
+        spread.add(xcor);
+        spread.add(ycor+1);
+        spandown = true;
+      } else if (spandown && ycor < height && (get(xcor, ycor +1) == OG)) {
+        spandown = false;
+      }
+      xcor++;
     }
-    //up
-    if ((xcor >= 0 && xcor < 1500) && (ycor - 1 > 100 && ycor - 1 < 900) && (get(xcor, ycor -1) == OG)) {
-      spread.add(xcor);
-      spread.add(ycor-1);
-    } 
-    //left
-    if ((xcor - 1 >= 0 && xcor - 1 < 1500) && (ycor > 100 && ycor < 900) && (get(xcor-1, ycor) == OG)) {
-      spread.add(xcor-1);
-      spread.add(ycor);
-    }
-    //right
-    if ((xcor + 1 >= 0 && xcor + 1 < 1500) && (ycor > 100 && ycor < 900) && (get(xcor+1, ycor) == OG)) {
-      spread.add(xcor+1);
-      spread.add(ycor);
-    } 
-    //down
-    if ((xcor >= 0 && xcor < 1500) && (ycor + 1 > 100 && ycor + 1 < 900) && (get(xcor, ycor +1) == OG)) {
-      spread.add(xcor);
-      spread.add(ycor+1);
-    } 
   }
-  
 }
