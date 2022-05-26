@@ -10,7 +10,8 @@ Boolean Filter = false;
 int Index = 0;
 String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right Sobel","Top Sobel", "Emboss"};
 int Transparency;
-boolean Layer; 
+boolean Layer = false; 
+boolean Weight = false; 
 
 void setup(){
   size(1500, 900);
@@ -332,5 +333,16 @@ void keyPressed(){
         Index ++;
       }
       break;
+    case 'w': 
+      if(Weight == false){
+        Weight = true; 
+      } 
+      else{
+        Weight = false; 
+      } 
+    case '3': 
+    case '4': 
+    case'L': 
+    
   }
 } 
