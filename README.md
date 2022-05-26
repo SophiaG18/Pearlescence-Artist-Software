@@ -24,5 +24,16 @@ Finished writing keypressed method in main file and both pen() and eraser() acco
 ##### 5/24:
 Sophia Gao: Finished Pearlescence phase 1. Currently in phase 2 of Pearlescence with the RGB section finished.
 
-Anna Fang: 
+Anna Fang:
 Updated Pearlescence by moving mousePressed into the draw method and implemented pmouseX/pmouseY in order to shift from using mouse coords. to make a trail of circles to a series of lines. Also fixed up coordinates in Pen() and Eraser().
+
+##### 5/25:
+Sophia Gao: Coded a modified version of imageProcessing lab as Kernel tab. Continued Pearlescence phase 2.
+
+Anna Fang:
+
+
+##### 5/26:
+Sophia Gao: Coded a non-recursive Bucket2 that is decently fast.
+
+Anna Fang:
