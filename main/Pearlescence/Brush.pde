@@ -21,7 +21,7 @@
       // implied that mousePressed is TRUE
       int xCoordinate = mouseX; 
       int yCoordinate = mouseY; 
-      Bucket2(PImage img, xCoordinate, yCoordinate); // save the current screen(?) 
+      //Bucket2(PImage img, xCoordinate, yCoordinate); // save the current screen(?) 
     } 
     
     void Bucket2(PImage img, int xCoord, int yCoord){
