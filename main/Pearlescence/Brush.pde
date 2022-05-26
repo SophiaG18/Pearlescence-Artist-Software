@@ -18,12 +18,16 @@
    }
     
     void Bucket(){
-      // implied that mousePressed is TRUE 
-      Bucket2(mouseX, mouseY); 
+      // implied that mousePressed is TRUE
+      int xCoordinate = mouseX; 
+      int yCoordinate = mouseY; 
+      //Bucket2(PImage img, xCoordinate, yCoordinate); // save the current screen(?) 
     } 
     
-    void Bucket2( int xCoord, int yCoord){
-      color bucketFill = color(R,G,B); 
+    void Bucket2(PImage img, int xCoord, int yCoord){
+      // finding and setting color to fill with 
+      color match = img.get(xCoord, yCoord); 
+      color bucketFill = color(red(match), green(match), blue(match)); 
       for(int i = 0; i < 1500; i++){
         for(int j = 100; j < 900; j++){
           int x = i; 
