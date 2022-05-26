@@ -9,6 +9,8 @@ PImage Next;
 Boolean Filter = false;
 int Index = 0;
 String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right Sobel","Top Sobel", "Emboss"};
+int Transparency;
+boolean Layer; 
 
 void setup(){
   size(1500, 900);
@@ -80,7 +82,10 @@ void draw(){
   text("Filter mode: " + Names[Index], 30, 70); // either keep or combine with filter text 
   text("Press DELETE to clear the screen", 650, 25);
   text("Press ENTER to take a screenshot", 650, 40);
+  text("Press LEFT to undo a stroke", 650, 55); 
+  text("Press RIGHT to redo a stroke", 650, 70); 
   text("Click on a color to select it", 964, 75);
+  
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if(mousePressed == true){ 
     Prev = Next;
