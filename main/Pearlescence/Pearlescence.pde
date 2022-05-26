@@ -13,14 +13,14 @@ String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right
 void setup(){
   size(1500, 900);
   //drawing section
-  // noStroke(); -> this is preventing ALL STROKES, but creates an unintended line to be drawn 
   fill(255);
   rect(0, 100, 1500, 800);
+  Prev = get(0,100, 1500, 800);
+  Next = get(0,100, 1500, 800);
 }
 
 void draw(){
 //toolbox section
- // noStroke(); -> runs into issues
   strokeWeight(1);
   fill(200);
   rect(0, 0, 1500, 100);
@@ -32,7 +32,7 @@ void draw(){
   text("B value: " + B + " (Press g to cycle up value)",1205,55);
   text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",30,25);
   text("Drawing Tool: " + tools[brushMode], 30,40); 
-  text("Filter: " + Filter + " (Press f to turn on/off)", 30,55); 
+  text("Filter: " + Filter + " (Press f to turn on/off; turning on will apply filter)", 30,55); 
 //color square to be clicked on
   stroke(0);
   square(950, 15, 18); //fill(0) black
@@ -82,7 +82,8 @@ void draw(){
   text("Press ENTER to take a screenshot", 650, 40);
   text("Click on a color to select it", 964, 75);
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
-  if(mousePressed == true){  
+  if(mousePressed == true){ 
+    Prev = Next;
     switch (brushMode){
       case 0:
         Pen();
@@ -94,8 +95,8 @@ void draw(){
         Bucket(); 
         break; 
       }
-      // current screen saved as PImage next 
-    }
+      Next = get(0,100, 1500, 800);
+    } 
   }
   
   
@@ -259,6 +260,12 @@ void keyPressed(){
           Size--;
         }
       } 
+      if (keyCode == LEFT){
+        image(Prev, 0, 100);
+      }
+      if (keyCode == RIGHT){
+        image(Next, 0, 100);
+      }
       break;
     // brushMODE
     case '1':
@@ -292,8 +299,30 @@ void keyPressed(){
       fill(255);
       rect(0, 100, 1500, 800);
       break;
+    //Kernel stuff
     case 'f':
       Filter = !(Filter);
+      if (Filter){
+        Prev = Next;
+        Next = apply();
+        image(Next, 0, 100);
+      }
+      break;
+    case '5':
+      if (Index == 0){
+        Index = 7;
+      }
+      else{
+        Index --;
+      }
+      break;
+    case '6': 
+      if (Index == 7){
+        Index = 0;
+      }
+      else{
+        Index ++;
+      }
       break;
   }
 } 
