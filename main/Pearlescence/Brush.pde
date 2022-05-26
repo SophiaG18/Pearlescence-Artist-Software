@@ -19,10 +19,11 @@
     
     void Bucket(){
       // implied that mousePressed is TRUE 
-      Bucket2(mouseX, mouseY); 
+      color og = get(mouseX, mouseY);
+      Bucket2(mouseX, mouseY, og); 
     } 
     
-    void Bucket2( int xCoord, int yCoord){
+    void Bucket2( int X, int Y, color OG){
       color bucketFill = color(R,G,B); 
       for(int i = 0; i < 1500; i++){
         for(int j = 100; j < 900; j++){
