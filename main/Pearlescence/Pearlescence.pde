@@ -26,16 +26,16 @@ void draw(){
 //toolbox section
   strokeWeight(1);
   fill(200);
-  rect(0, 0, 1500, 150);
+  rect(0, 0, 1500, 155);
 //text
   fill(0);
   textSize(15);
   text("R value: " + R + " (Press r to cycle up value)",1205,25);
   text("G value: " + G + " (Press g to cycle up value)",1205,40);
   text("B value: " + B + " (Press g to cycle up value)",1205,55);
-  text("Size value: " + Size,30,25);
-  text("Drawing Tool: " + tools[brushMode], 30,40); 
-  text("Filter: " + Filter, 30,55); 
+  text("Size value: " + Size,600,25);
+  text("Drawing Tool: " + tools[brushMode], 600,40); 
+  text("Filter: " + Filter, 600,55); 
 //color square to be clicked on
   stroke(0);
   square(950, 15, 18); //fill(0) black
