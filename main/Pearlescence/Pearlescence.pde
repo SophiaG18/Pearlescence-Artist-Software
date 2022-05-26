@@ -94,11 +94,14 @@ void draw(){
       case 2: 
         Bucket(); 
         break; 
-      }
-      Next = get(0,100, 1500, 800);
-    } 
+    }
+      
+   } 
   }
-  
+
+void mouseReleased(){
+  Next = get(0,100, 1500, 800);
+}
   
 void mouseClicked(){
   //black
