@@ -36,4 +36,4 @@ Anna Fang:
 ##### 5/26:
 Sophia Gao: Coded a non-recursive Bucket2 that is decently fast.
 
-Anna Fang:
+Anna Fang: Added all variables and coded cases for calling them. Researched how to apply PGraphics and attempted to implent some code using it. 
