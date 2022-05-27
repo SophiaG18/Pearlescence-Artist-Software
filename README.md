@@ -30,7 +30,7 @@ Updated Pearlescence by moving mousePressed into the draw method and implemented
 ##### 5/25:
 Sophia Gao: Coded a modified version of imageProcessing lab as Kernel tab. Continued Pearlescence phase 2.
 
-Anna Fang:
+Anna Fang: Reformatted interface (moved around text controls and color selector) and fixed pixel coordinates for code; Made a new UML for changes to prototype.
 
 
 ##### 5/26:
