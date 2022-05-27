@@ -30,10 +30,10 @@ Updated Pearlescence by moving mousePressed into the draw method and implemented
 ##### 5/25:
 Sophia Gao: Coded a modified version of imageProcessing lab as Kernel tab. Continued Pearlescence phase 2.
 
-Anna Fang: Reformatted interface (moved around text controls and color selector) and fixed pixel coordinates for code; Made a new UML for changes to prototype.
+Anna Fang: Reformatted interface (moved around text controls and color selector) and fixed pixel coordinates& aesthetics for user instructions; Made a new UML for changes to prototype.
 
 
 ##### 5/26:
 Sophia Gao: Coded a non-recursive Bucket2 that is decently fast.
 
-Anna Fang: Added all variables and coded cases for calling them. Researched how to apply PGraphics and attempted to implent some code using it. 
+Anna Fang: Added all variables and coded cases for calling them. Researched how to apply PGraphics and attempted to implent some code using it. Currently added in code creating the layer and edited brush methods to draw on the layer. 
