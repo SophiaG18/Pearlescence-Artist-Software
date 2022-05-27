@@ -12,6 +12,7 @@ String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right
 int Transparency;
 boolean Layer = false; 
 boolean Weight = false; 
+PGraphics newLayer; 
 
 void setup(){
   size(1500, 900);
@@ -20,6 +21,10 @@ void setup(){
   rect(0, 100, 1500, 800);
   Prev = get(0,100, 1500, 800);
   Next = get(0,100, 1500, 800);
+  // LAYER section 
+  if(Layer == true){
+    newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited) 
+  } 
 }
 
 void draw(){
@@ -95,6 +100,14 @@ void draw(){
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
   text("Press DOWN to decrement size", 30,145); 
+  // Layers code
+  if(Layer == true){
+    newLayer.beginDraw(); 
+    newLayer.background(100); 
+    if(Layer == false){
+      newLayer.endDraw(); 
+    }
+  }
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if(mousePressed == true){ 
     Prev = Next;
