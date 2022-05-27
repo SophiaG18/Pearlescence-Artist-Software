@@ -12,7 +12,7 @@ String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right
 int Transparency;
 boolean Layer = false; 
 boolean Weight = false; 
-PGraphics newLayer; 
+PGraphics pg; // right, now testing only one later - will update to multiple layers when the code works...
 
 void setup(){
   size(1500, 900);
@@ -21,10 +21,8 @@ void setup(){
   rect(0, 100, 1500, 800);
   Prev = get(0,100, 1500, 800);
   Next = get(0,100, 1500, 800);
-  // LAYER section 
-  if(Layer == true){
-    newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited) 
-  } 
+  // LAYER section -> instantiate 
+  pg = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited) 
 }
 
 void draw(){
@@ -99,21 +97,19 @@ void draw(){
   text("Layer: " + Layer, 600, 130); 
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
-  text("Press DOWN to decrement size", 30,145); 
-  // Layers code
-  if(Layer == true){
-    //newLayer.beginDraw(); 
-    //newLayer.background(100); 
-    if(Layer == false){
-      //newLayer.endDraw(); 
-    }
-  }
+  text("Press DOWN to decrement size", 30,145);  
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if(mousePressed == true){ 
     Prev = Next;
     switch (brushMode){
-      case 0:
-        Pen();
+      case 0: 
+        if(Layer == false){
+            Pen(); 
+        } 
+        else{
+          Pen(); 
+          image(pg, 0,0); 
+        }
         break;
       case 1:
         Eraser();
@@ -368,7 +364,7 @@ void keyPressed(){
       if(Transparency > 0 && Transparency < 100){
         Transparency ++;
       } 
-    case'L': 
+    case 'l': 
       if(Layer == false){
         Layer = true; 
       } 
