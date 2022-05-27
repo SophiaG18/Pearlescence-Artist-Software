@@ -329,7 +329,8 @@ void keyPressed() {
       fill(255);
       rect(0, 100, 1500, 800);
       image(newLayer, 0, 0);
-    } else {
+    } 
+    else {
     } 
     break;
     //Kernel stuff
