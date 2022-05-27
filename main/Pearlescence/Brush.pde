@@ -1,10 +1,23 @@
 void Pen() {
-  color penColor = color(R, G, B);
-  if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
-    //noStroke(); -> this causes issues 
-    stroke(penColor); 
-    strokeWeight(Size);
-    line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+  if(Layer == false){
+    color penColor = color(R, G, B);
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+        //noStroke(); -> this causes issues 
+        stroke(penColor); 
+        strokeWeight(Size);
+        line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+      }
+    }
+  else{
+    pg.beginDraw(); 
+    color penColor = color(#FF0000);
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+        //noStroke(); -> this causes issues 
+        pg.stroke(penColor); 
+        pg.strokeWeight(2);
+        pg.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
+      }
+    pg.endDraw();
   }
 }
 
