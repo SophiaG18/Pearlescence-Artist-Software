@@ -9,33 +9,53 @@ void Pen() {
       }
     }
   else{
-    pg.beginDraw(); 
+    newLayer.beginDraw(); 
     color penColor = color(#FF0000);
       if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
         //noStroke(); -> this causes issues 
-        pg.stroke(penColor); 
-        pg.strokeWeight(2);
-        pg.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
+        newLayer.stroke(penColor); 
+        newLayer.strokeWeight(Size);
+        newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
       }
-    pg.endDraw();
+    newLayer.endDraw();
   }
 }
 
 void Eraser() {
-  if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
-    //noStroke(); -> this causes issues
-    stroke(255);
-    strokeWeight(Size);
-    line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+  if(Layer == false){
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+        //noStroke(); -> this causes issues 
+        stroke(#FFFFFF); 
+        strokeWeight(Size);
+        line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+      }
+    }
+  else{
+    newLayer.beginDraw(); 
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+        //noStroke(); -> this causes issues 
+        newLayer.stroke(#FFFFFF); 
+        newLayer.strokeWeight(Size);
+        newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
+      }
+    newLayer.endDraw();
   }
 }
 
 void Bucket() {
-  // implied that mousePressed is TRUE 
-  color og = get(mouseX, mouseY);
-  color spill = color(R, G, B); 
-  if (og != spill) {
-    Bucket2(mouseX, mouseY, og, spill);
+  if(Layer == false){
+    color og = get(mouseX, mouseY);
+    color spill = color(R, G, B); 
+    if (og != spill) {
+      Bucket2(mouseX, mouseY, og, spill);
+    }
+  }
+  else{
+    color og = newLayer.get(mouseX, mouseY); // references the layer 
+    color spill = color(R,G,B); 
+    if(og != spill){
+      Bucket2(mouseX, mouseY, og,spill); 
+    } 
   }
 } 
 
