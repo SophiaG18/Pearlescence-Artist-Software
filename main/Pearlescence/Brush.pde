@@ -43,11 +43,19 @@ void Eraser() {
 }
 
 void Bucket() {
-  // implied that mousePressed is TRUE 
-  color og = get(mouseX, mouseY);
-  color spill = color(R, G, B); 
-  if (og != spill) {
-    Bucket2(mouseX, mouseY, og, spill);
+  if(Layer == false){
+    color og = get(mouseX, mouseY);
+    color spill = color(R, G, B); 
+    if (og != spill) {
+      Bucket2(mouseX, mouseY, og, spill);
+    }
+  }
+  else{
+    color og = newLayer.get(mouseX, mouseY); // references the layer 
+    color spill = color(R,G,B); 
+    if(og != spill){
+      Bucket2(mouseX, mouseY, og,spill); 
+    } 
   }
 } 
 
