@@ -12,7 +12,7 @@ String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right
 int Transparency;
 boolean Layer = false; 
 boolean Weight = false; 
-PGraphics pg; // right, now testing only one later - will update to multiple layers when the code works...
+PGraphics newLayer; // right, now testing only one later - will update to multiple layers when the code works...
 
 void setup(){
   size(1500, 900);
@@ -22,7 +22,7 @@ void setup(){
   Prev = get(0,100, 1500, 800);
   Next = get(0,100, 1500, 800);
   // LAYER section -> instantiate 
-  pg = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited) 
+  newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited) 
 }
 
 void draw(){
@@ -108,14 +108,26 @@ void draw(){
         } 
         else{
           Pen(); 
-          image(pg, 0,0); 
+          image(newLayer, 0,0); 
         }
         break;
       case 1:
+      if(Layer == false){
         Eraser();
+       }
+       else{
+         Eraser(); 
+         image(newLayer, 0,0); 
+       }
         break;
       case 2: 
+      if(Layer == false){
         Bucket(); 
+      }
+      else{
+        Bucket(); 
+        image(newLayer, 0,0); 
+      }
         break; 
     }
    } 
