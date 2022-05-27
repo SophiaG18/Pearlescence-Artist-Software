@@ -10,7 +10,9 @@ Boolean Filter = false;
 int Index = 0;
 String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right Sobel","Top Sobel", "Emboss"};
 int Transparency;
-boolean Layer; 
+boolean Layer = false; 
+boolean Weight = false; 
+PGraphics newLayer; 
 
 void setup(){
   size(1500, 900);
@@ -19,22 +21,26 @@ void setup(){
   rect(0, 100, 1500, 800);
   Prev = get(0,100, 1500, 800);
   Next = get(0,100, 1500, 800);
+  // LAYER section 
+  if(Layer == true){
+    newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited) 
+  } 
 }
 
 void draw(){
 //toolbox section
   strokeWeight(1);
   fill(200);
-  rect(0, 0, 1500, 100);
+  rect(0, 0, 1500, 155);
 //text
   fill(0);
   textSize(15);
   text("R value: " + R + " (Press r to cycle up value)",1205,25);
   text("G value: " + G + " (Press g to cycle up value)",1205,40);
   text("B value: " + B + " (Press g to cycle up value)",1205,55);
-  text("Size value: " + Size + " (Press UP arrow to increment or DOWN arrow to decrement)",30,25);
-  text("Drawing Tool: " + tools[brushMode], 30,40); 
-  text("Filter: " + Filter + " (Press f to turn on/off; turning on will apply filter)", 30,55); 
+  text("Size value: " + Size,600,25);
+  text("Drawing Tool: " + tools[brushMode], 600,40); 
+  text("Filter: " + Filter, 600,55); 
 //color square to be clicked on
   stroke(0);
   square(950, 15, 18); //fill(0) black
@@ -79,13 +85,29 @@ void draw(){
   // written instructions for keypress commands 
   fill(0);
   textSize(15);
-  text("Filter mode: " + Names[Index], 30, 70); // either keep or combine with filter text 
-  text("Press DELETE to clear the screen", 650, 25);
-  text("Press ENTER to take a screenshot", 650, 40);
-  text("Press LEFT to undo a stroke", 650, 55); 
-  text("Press RIGHT to redo a stroke", 650, 70); 
+  text("Filter mode: " + Names[Index], 600, 70); // either keep or combine with filter text 
+  text("Press DELETE to clear the screen", 30, 25);
+  text("Press ENTER to take a screenshot", 30, 40);
+  text("Press LEFT to undo a stroke", 30, 55); 
+  text("Press RIGHT to redo a stroke", 30, 70); 
   text("Click on a color to select it", 964, 75);
-  
+  text("Press 3 to decrement Transparency",600, 85); 
+  text("Press 4 to increment Transparency", 600, 100);
+  text("Press w to turn brushWeight on and off", 30, 85); 
+  text("Press 1 to cycle through brushes", 30, 100); 
+  text("Weight: " + Weight, 600,115); 
+  text("Layer: " + Layer, 600, 130); 
+  text("Press f to turn filter on or off", 30, 115); 
+  text("Press UP to increment size", 30, 130); 
+  text("Press DOWN to decrement size", 30,145); 
+  // Layers code
+  if(Layer == true){
+    //newLayer.beginDraw(); 
+    //newLayer.background(100); 
+    if(Layer == false){
+      //newLayer.endDraw(); 
+    }
+  }
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if(mousePressed == true){ 
     Prev = Next;
@@ -100,7 +122,6 @@ void draw(){
         Bucket(); 
         break; 
     }
-      
    } 
   }
 
@@ -332,5 +353,27 @@ void keyPressed(){
         Index ++;
       }
       break;
+    case 'w': 
+      if(Weight == false){
+        Weight = true; 
+      } 
+      else{
+        Weight = false; 
+      } 
+    case '3': 
+      if(Transparency > 0){
+        Transparency--; 
+      } 
+    case '4': 
+      if(Transparency > 0 && Transparency < 100){
+        Transparency ++;
+      } 
+    case'L': 
+      if(Layer == false){
+        Layer = true; 
+      } 
+      else{
+        Layer = false;
+      } 
   }
 } 
