@@ -102,10 +102,10 @@ void draw(){
   text("Press DOWN to decrement size", 30,145); 
   // Layers code
   if(Layer == true){
-    newLayer.beginDraw(); 
-    newLayer.background(100); 
+    //newLayer.beginDraw(); 
+    //newLayer.background(100); 
     if(Layer == false){
-      newLayer.endDraw(); 
+      //newLayer.endDraw(); 
     }
   }
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
