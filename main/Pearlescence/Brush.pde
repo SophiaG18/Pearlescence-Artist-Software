@@ -1,13 +1,13 @@
 void Pen() {
   if (Layer == false) {
     color penColor = color(R, G, B);
-    stroke(penColor); 
+    stroke(penColor, Transparency); 
     strokeWeight(Size);
     line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
   } else {
     newLayer.beginDraw(); 
     color penColor = color(#FF0000);
-    newLayer.stroke(penColor); 
+    newLayer.stroke(penColor, Transparency); 
     newLayer.strokeWeight(Size);
     newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
     newLayer.endDraw();
@@ -16,12 +16,12 @@ void Pen() {
 
 void Eraser() {
   if (Layer == false) {
-    stroke(#FFFFFF); 
+    stroke(#FFFFFF, Transparency); 
     strokeWeight(Size);
     line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
   } else {
     newLayer.beginDraw(); 
-    newLayer.stroke(#FFFFFF); 
+    newLayer.stroke(#FFFFFF, Transparency); 
     newLayer.strokeWeight(Size);
     newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
     newLayer.endDraw();
@@ -96,7 +96,7 @@ void Circle() {
     if (Layer == false) {
       noFill();
       color penColor = color(R, G, B);
-      stroke(penColor); 
+      stroke(penColor, Transparency); 
       strokeWeight(Size);
       float dia = abs(dist(coor[0], coor[1], mouseX, mouseY));
       circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
@@ -104,7 +104,7 @@ void Circle() {
     } else {
       newLayer.beginDraw(); 
       color penColor = color(#FF0000);
-      newLayer.stroke(penColor); 
+      newLayer.stroke(penColor, Transparency); 
       newLayer.strokeWeight(Size);
       float dia = abs(dist(coor[0], coor[1], mouseX, mouseY));
       circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
@@ -122,7 +122,7 @@ void Rectangle() {
     if (Layer == false) {
       noFill();
       color penColor = color(R, G, B);
-      stroke(penColor); 
+      stroke(penColor, Transparency); 
       strokeWeight(Size);
       float w = coor[0] - mouseX;
       float l = coor[1] - mouseY;
@@ -131,7 +131,7 @@ void Rectangle() {
     } else {
       newLayer.beginDraw(); 
       color penColor = color(#FF0000);
-      newLayer.stroke(penColor); 
+      newLayer.stroke(penColor, Transparency); 
       newLayer.strokeWeight(Size);
       float w = coor[0] - mouseX;
       float l = coor[1] - mouseY;
