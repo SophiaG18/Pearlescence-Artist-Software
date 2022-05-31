@@ -3,43 +3,44 @@ int G = 0;
 int B = 0;
 int Size = 4;
 int brushMode = 0;
-String[] tools = {"Pen", "Eraser", "Bucket"};
+String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle"};
 PImage Prev;
 PImage Next;
 Boolean Filter = false;
 int Index = 0;
-String [] Names = {"Identity", "Blur", "Sharpen","Outline", "Left Sobel", "Right Sobel","Top Sobel", "Emboss"};
+String [] Names = {"Identity", "Blur", "Sharpen", "Outline", "Left Sobel", "Right Sobel", "Top Sobel", "Emboss"};
 int Transparency;
 boolean Layer = false; 
 boolean Weight = false; 
 PGraphics newLayer; // right, now testing only one later - will update to multiple layers when the code works...
+Integer[] coor;
 
-void setup(){
+void setup() {
   size(1500, 900);
   //drawing section
   fill(255);
   rect(0, 100, 1500, 800);
-  Prev = get(0,100, 1500, 800);
-  Next = get(0,100, 1500, 800);
+  Prev = get(0, 100, 1500, 800);
+  Next = get(0, 100, 1500, 800);
   // LAYER section -> instantiate 
-  newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited) 
+  newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited)
 }
 
-void draw(){
-//toolbox section
+void draw() {
+  //toolbox section
   strokeWeight(1);
   fill(200);
   rect(0, 0, 1500, 155);
-//text
+  //text
   fill(0);
   textSize(15);
-  text("R value: " + R + " (Press r to cycle up value)",1205,25);
-  text("G value: " + G + " (Press g to cycle up value)",1205,40);
-  text("B value: " + B + " (Press g to cycle up value)",1205,55);
-  text("Size value: " + Size,600,25);
-  text("Drawing Tool: " + tools[brushMode], 600,40); 
-  text("Filter: " + Filter, 600,55); 
-//color square to be clicked on
+  text("R value: " + R + " (Press r to cycle up value)", 1205, 25);
+  text("G value: " + G + " (Press g to cycle up value)", 1205, 40);
+  text("B value: " + B + " (Press g to cycle up value)", 1205, 55);
+  text("Size value: " + Size, 600, 25);
+  text("Drawing Tool: " + tools[brushMode], 600, 40); 
+  text("Filter: " + Filter, 600, 55); 
+  //color square to be clicked on
   stroke(0);
   square(950, 15, 18); //fill(0) black
   fill(255); //white
@@ -89,299 +90,317 @@ void draw(){
   text("Press LEFT to undo a stroke", 30, 55); 
   text("Press RIGHT to redo a stroke", 30, 70); 
   text("Click on a color to select it", 964, 75);
-  text("Press 3 to decrement Transparency",600, 85); 
+  text("Press 3 to decrement Transparency", 600, 85); 
   text("Press 4 to increment Transparency", 600, 100);
   text("Press w to turn brushWeight on and off", 30, 85); 
   text("Press 1 to cycle through brushes", 30, 100); 
-  text("Weight: " + Weight, 600,115); 
+  text("Weight: " + Weight, 600, 115); 
   text("Layer: " + Layer, 600, 130); 
+  //text("Coordinates: " + coor, 600, 145); debugging
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
-  text("Press DOWN to decrement size", 30,145);  
+  text("Press DOWN to decrement size", 30, 145);  
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
-  if(mousePressed == true){ 
+  if (mousePressed && (mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) { 
     Prev = Next;
-    switch (brushMode){
-      case 0: 
-        if(Layer == false){
-            Pen(); 
-        } 
-        else{
-          Pen(); 
-          image(newLayer, 0,0); 
-        }
-        break;
-      case 1:
-      if(Layer == false){
+    switch (brushMode) {
+    case 0: 
+      if (!Layer) {
+        Pen();
+      } else {
+        Pen(); 
+        image(newLayer, 0, 0);
+      }
+      break;
+    case 1:
+      if (!Layer) {
         Eraser();
-       }
-       else{
-         Eraser(); 
-         image(newLayer, 0,0); 
-       }
-        break;
-      case 2: 
-      if(Layer == false){
-        Bucket(); 
+      } else {
+        Eraser(); 
+        image(newLayer, 0, 0);
       }
-      else{
+      break;
+    case 2: 
+      if (!Layer) {
+        Bucket();
+      } else {
         Bucket(); 
-        image(newLayer, 0,0); 
+        image(newLayer, 0, 0);
       }
-        break; 
+      break;
     }
-   } 
   }
-
-void mouseReleased(){
-  Next = get(0,100, 1500, 800);
 }
-  
-void mouseClicked(){
+
+void mouseReleased() {
+  if (coor == null) {
+    Next = get(0, 100, 1500, 800);
+  }
+}
+
+void mouseClicked() {
+  if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) { 
+    Prev = Next;
+    switch (brushMode) {
+    case 3:
+      if (!Layer) {
+        Circle();
+      } else {
+        Circle();
+        image(newLayer, 0, 0);
+      }
+      break;
+    case 4:
+      if (!Layer) {
+        Rectangle();
+      } else {
+        Rectangle();
+        image(newLayer, 0, 0);
+      }
+      break;
+    }
+  }
   //black
-  if (mouseX >= 950 && mouseX <= 968 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 950 && mouseX <= 968 && mouseY >= 15 && mouseY <= 33) {
     R = 0;
     G = 0;
     B = 0;
   }
   //white
-  if (mouseX >= 950 && mouseX <= 968 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 950 && mouseX <= 968 && mouseY >= 38 && mouseY <= 53) {
     R = 255;
     G = 255;
     B = 255;
   }
   //gray 127
-  if (mouseX >= 973 && mouseX <= 991 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 973 && mouseX <= 991 && mouseY >= 15 && mouseY <= 33) {
     R = 127;
     G = 127;
     B = 127;
   }
   //light gray 195
-  if (mouseX >= 973 && mouseX <= 991 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 973 && mouseX <= 991 && mouseY >= 38 && mouseY <= 53) {
     R = 195;
     G = 195;
     B = 195;
   }
   //dark red 136 0 21
-  if (mouseX >= 996 && mouseX <= 1014 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 996 && mouseX <= 1014 && mouseY >= 15 && mouseY <= 33) {
     R = 136;
     G = 0;
     B = 21;
   }
   //brown 185 122 87
-  if (mouseX >= 996 && mouseX <= 1014 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 996 && mouseX <= 1014 && mouseY >= 38 && mouseY <= 53) {
     R = 185;
     G = 122;
     B = 87;
   }
   //red 237 28 36
-  if (mouseX >= 1019 && mouseX <= 1037 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 1019 && mouseX <= 1037 && mouseY >= 15 && mouseY <= 33) {
     R = 237;
     G = 28;
     B = 36;
   }
   //rose 255 174 201
-  if (mouseX >= 1019 && mouseX <= 1037 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 1019 && mouseX <= 1037 && mouseY >= 38 && mouseY <= 53) {
     R = 255;
     G = 174;
     B = 201;
   }
   //orange 255 127 39
-  if (mouseX >= 1042 && mouseX <= 1060 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 1042 && mouseX <= 1060 && mouseY >= 15 && mouseY <= 33) {
     R = 255;
     G = 127;
     B = 39;
   }
   //gold 255 201 14
-  if (mouseX >= 1042 && mouseX <= 1060 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 1042 && mouseX <= 1060 && mouseY >= 38 && mouseY <= 53) {
     R = 255;
     G = 201;
     B = 14;
   }
   //yellow 255 242 0
-  if (mouseX >= 1065 && mouseX <= 1083 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 1065 && mouseX <= 1083 && mouseY >= 15 && mouseY <= 33) {
     R = 255;
     G = 242;
     B = 0;
   }
   //light yellow 239 228 176
-  if (mouseX >= 1065 && mouseX <= 1083 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 1065 && mouseX <= 1083 && mouseY >= 38 && mouseY <= 53) {
     R = 239;
     G = 228;
     B = 176;
   }
   //green 34 177 76
-  if (mouseX >= 1088 && mouseX <= 1106 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 1088 && mouseX <= 1106 && mouseY >= 15 && mouseY <= 33) {
     R = 34;
     G = 177;
     B = 76;
   }
   //lime 181 230 29
-  if (mouseX >= 1088 && mouseX <= 1106 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 1088 && mouseX <= 1106 && mouseY >= 38 && mouseY <= 53) {
     R = 181;
     G = 230;
     B = 29;
   }
   //turquoise 0 162 232
-  if (mouseX >= 1111 && mouseX <= 1129 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 1111 && mouseX <= 1129 && mouseY >= 15 && mouseY <= 33) {
     R = 0;
     G = 162;
     B = 232;
   }
   //light turquoise 153 217 234
-  if (mouseX >= 1111 && mouseX <= 1129 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 1111 && mouseX <= 1129 && mouseY >= 38 && mouseY <= 53) {
     R = 153;
     G = 217;
     B = 234;
   }
   //indigo 63 72 204
-  if (mouseX >= 1134 && mouseX <= 1152 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 1134 && mouseX <= 1152 && mouseY >= 15 && mouseY <= 33) {
     R = 63;
     G = 72;
     B = 204;
   }
   //blue-gray 112 146 190
-  if (mouseX >= 1134 && mouseX <= 1152 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 1134 && mouseX <= 1152 && mouseY >= 38 && mouseY <= 53) {
     R = 112;
     G = 146;
     B = 190;
   }
   //purple 163 73 164
-  if (mouseX >= 1157 && mouseX <= 1175 && mouseY >= 15 && mouseY <= 33){
+  if (mouseX >= 1157 && mouseX <= 1175 && mouseY >= 15 && mouseY <= 33) {
     R = 163;
     G = 73;
     B = 164;
   }
   //lavender 200 191 231
-  if (mouseX >= 1157 && mouseX <= 1175 && mouseY >= 38 && mouseY <= 53){
+  if (mouseX >= 1157 && mouseX <= 1175 && mouseY >= 38 && mouseY <= 53) {
     R = 200;
     G = 191;
     B = 231;
   }
 }
 
-void keyPressed(){
-  switch (key){
-  // RGB VALS
-    case 'r':
-      if(R < 255){
-        R+= 5; // value subject to change 
-      }
-      else{
-        R = 0; // cycle back to default 
-      } 
-      break;
-    case 'g':
-      if(G < 255){
-        G += 5; 
-      }
-      else{
-        G = 0; 
-      } 
-      break;
-    case 'b':
-      if(B <255){
-        B += 5; 
-      }
-      else{
-        B = 0; 
-      }  
-      break;
+void keyPressed() {
+  switch (key) {
+    // RGB VALS
+  case 'r':
+    if (R < 255) {
+      R+= 5; // value subject to change
+    } else {
+      R = 0; // cycle back to default
+    } 
+    break;
+  case 'g':
+    if (G < 255) {
+      G += 5;
+    } else {
+      G = 0;
+    } 
+    break;
+  case 'b':
+    if (B <255) {
+      B += 5;
+    } else {
+      B = 0;
+    }  
+    break;
     // SIZE 
-    case CODED:
-      if (keyCode == UP){
-        Size++;
+  case CODED:
+    if (keyCode == UP) {
+      Size++;
+    }
+    if (keyCode == DOWN) {
+      if (Size != 1) {
+        Size--;
       }
-      if (keyCode == DOWN){
-        if(Size != 1){
-          Size--;
-        }
-      } 
-      if (keyCode == LEFT){
-        image(Prev, 0, 100);
-      }
-      if (keyCode == RIGHT){
-        image(Next, 0, 100);
-      }
-      break;
+    } 
+    if (keyCode == LEFT) {
+      image(Prev, 0, 100);
+    }
+    if (keyCode == RIGHT) {
+      image(Next, 0, 100);
+    }
+    break;
     // brushMODE
-    case '1':
-      if(brushMode > 0){
-        brushMode --;
-      } 
-      else{
-        brushMode = 2; //# will be increased as more Brush methods are coded
-      }
-      break;
-    case '2':
-      if(brushMode < 2){ 
-        //# will be increased as more Brush methods are coded
-        brushMode ++;
-      } 
-      else{
-        brushMode = 0;
-      }
-      break;
+  case '1':
+    if (brushMode > 0) {
+      brushMode --;
+    } else {
+      brushMode = 4; //# will be increased as more Brush methods are coded
+    }
+    break;
+  case '2':
+    if (brushMode < 4) { 
+      //# will be increased as more Brush methods are coded
+      brushMode ++;
+    } else {
+      brushMode = 0;
+    }
+    break;
     // SAVE AS DRAWING.PNG
-    case ENTER:
-      PImage screenshot; // could change this into an instance variable 
-      screenshot = get(0,100, 1500, 800); 
-      // if no parameters are specified, the entire image is returned. -> have to establish the interface in order to set coordinates
-      // with 4 parameters, get saves rect of pixels: x cor, y cor, width of rect, height of rect
-      screenshot.save("drawing.png"); // saves the screen capture to the machine 
-      break;
+  case ENTER:
+    PImage screenshot; // could change this into an instance variable 
+    screenshot = get(0, 100, 1500, 800); 
+    // if no parameters are specified, the entire image is returned. -> have to establish the interface in order to set coordinates
+    // with 4 parameters, get saves rect of pixels: x cor, y cor, width of rect, height of rect
+    screenshot.save("drawing.png"); // saves the screen capture to the machine 
+    break;
     // Clear drawing area
-    case BACKSPACE:
+  case BACKSPACE:
+    if (Layer == false) {
       noStroke();
       fill(255);
       rect(0, 100, 1500, 800);
-      break;
+      image(newLayer, 0, 0);
+    } else {
+      clearLayer(newLayer); // perhaps move this to draw?? 
+      image(newLayer, 0, 0);
+    } 
+    break;
     //Kernel stuff
-    case 'f':
-      Filter = !(Filter);
-      if (Filter){
-        Prev = Next;
-        Next = apply();
-        image(Next, 0, 100);
-      }
-      break;
-    case '5':
-      if (Index == 0){
-        Index = 7;
-      }
-      else{
-        Index --;
-      }
-      break;
-    case '6': 
-      if (Index == 7){
-        Index = 0;
-      }
-      else{
-        Index ++;
-      }
-      break;
-    case 'w': 
-      if(Weight == false){
-        Weight = true; 
-      } 
-      else{
-        Weight = false; 
-      } 
-    case '3': 
-      if(Transparency > 0){
-        Transparency--; 
-      } 
-    case '4': 
-      if(Transparency > 0 && Transparency < 100){
-        Transparency ++;
-      } 
-    case 'l': 
-      if(Layer == false){
-        Layer = true; 
-      } 
-      else{
-        Layer = false;
-      } 
+  case 'f':
+    Filter = !(Filter);
+    if (Filter) {
+      Prev = Next;
+      Next = apply();
+      image(Next, 0, 100);
+    }
+    break;
+  case '5':
+    if (Index == 0) {
+      Index = 7;
+    } else {
+      Index --;
+    }
+    break;
+  case '6': 
+    if (Index == 7) {
+      Index = 0;
+    } else {
+      Index ++;
+    }
+    break;
+  case 'w': 
+    if (Weight == false) {
+      Weight = true;
+    } else {
+      Weight = false;
+    } 
+  case '3': 
+    if (Transparency > 0) {
+      Transparency--;
+    } 
+  case '4': 
+    if (Transparency > 0 && Transparency < 100) {
+      Transparency ++;
+    } 
+  case 'l': 
+    if (Layer == false) {
+      Layer = true;
+    } else {
+      Layer = false;
+    }
   }
 } 
