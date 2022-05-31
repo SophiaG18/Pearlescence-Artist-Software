@@ -89,25 +89,55 @@ void Inkbrush() {
 }
 
 void Circle() {
-  Integer[] in = {mouseX, mouseY};
-  coor = in;
+  if (coor == null) { 
+    Integer[] in = {mouseX, mouseY};
+    coor = in;
+  } else {
+    if (Layer == false) {
+      noFill();
+      color penColor = color(R, G, B);
+      stroke(penColor); 
+      strokeWeight(Size);
+      float dia = abs(dist(coor[0], coor[1], mouseX, mouseY));
+      circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
+      coor = null;
+    } else {
+      newLayer.beginDraw(); 
+      color penColor = color(#FF0000);
+      newLayer.stroke(penColor); 
+      newLayer.strokeWeight(Size);
+      float dia = abs(dist(coor[0], coor[1], mouseX, mouseY));
+      circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
+      coor = null;
+      newLayer.endDraw();
+    }
+  }
 }
 
-void Circle2() {
-  if (Layer == false) {
-    noFill();
-    color penColor = color(R, G, B);
-    stroke(penColor); 
-    strokeWeight(Size);
-    float dia = abs(dist(coor[0], coor[1], mouseX, mouseY));
-    circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
+void Rectangle() {
+  if (coor == null) { 
+    Integer[] in = {mouseX, mouseY};
+    coor = in;
   } else {
-    newLayer.beginDraw(); 
-    color penColor = color(#FF0000);
-    newLayer.stroke(penColor); 
-    newLayer.strokeWeight(Size);
-    float dia = abs(dist(coor[0], coor[1], mouseX, mouseY));
-    circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
-    newLayer.endDraw();
+    if (Layer == false) {
+      noFill();
+      color penColor = color(R, G, B);
+      stroke(penColor); 
+      strokeWeight(Size);
+      float w = coor[0] - mouseX;
+      float l = coor[1] - mouseY;
+      rect(mouseX, mouseY, w, l);
+      coor = null;
+    } else {
+      newLayer.beginDraw(); 
+      color penColor = color(#FF0000);
+      newLayer.stroke(penColor); 
+      newLayer.strokeWeight(Size);
+      float w = coor[0] - mouseX;
+      float l = coor[1] - mouseY;
+      rect(mouseX, mouseY, w, l);
+      coor = null;
+      newLayer.endDraw();
+    }
   }
 }
