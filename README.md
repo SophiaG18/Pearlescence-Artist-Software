@@ -11,23 +11,23 @@ Our project will be processing based and will emulate a digital art software. Th
 
 ### Compile/Run Instructions:
 
-To begin drawing, press, hold, and drag your mouse. The characteristics of the line drawn can be changed using pressed keys and clicking on specific areas in the menu, all listed below. 
+To begin drawing, press, hold, and drag your mouse. The characteristics of the line drawn can be changed using pressed keys and clicking on specific areas in the menu, all listed below.
 
-##### Key Pressed and their impact on the line drawn 
+##### Key Pressed and their impact on the line drawn
 - r will cycle up R value (unless R = 255, in which case it will stop cycling up)
 - g will cycle up G value (unless G = 255, in which case it will stop cycling up)
 - b will cycle up B value (unless B = 255, in which case it will stop cycling up)
 - DELETE acts as a clear button; resets the bottom rectangle to default white by drawing a white rectangle above the drawing
 - UP will increment Size (of the brush) unless Size = [max size]
 - DOWN will decrement Size (of the brush) unless Size = 1
-- 1 will decrement brushMode (which type of drawing utensil used) or cycle back to the highest value if brushMode = 1 
+- 1 will decrement brushMode (which type of drawing utensil used) or cycle back to the highest value if brushMode = 1
 - 2 will increment brushMode or cycle back to lowest value if brushMode = [max mode]
 - LEFT acts as a undo button; displays the stored image of Prev
 - RIGHT acts as a redo button; displays the stored image of Next
 - ENTER acts as a save button; saves a png file of the screen
-- f will change Filter boolean 
+- f will change Filter boolean
   - If Filter is turned on, saves current drawing as Prev then calls for Kernel method Apply using the kernel respective to Index value (then saves new drawing as Next)
-- w will turn the Weight boolean on and off (pressure/velocity based weight or static line when drawing) 
+- w will turn the Weight boolean on and off (pressure/velocity based weight or static line when drawing)
 - 3 will decrement Transparency (of the stroke) or cycle back to highest value if Transparency = 0
 - 4 will increment Transparency (of the stroke) or cycle back to the lowest value if Transparency = 100
 - 5 will decrement (filter) Index or cycle back to highest value if Index = 0
@@ -35,7 +35,7 @@ To begin drawing, press, hold, and drag your mouse. The characteristics of the l
 - l will turn the Layer boolean on and off (allows the user to draw on the main canvas or on a separate layer)
 - BACKSPACE clears the screen by setting the background color to white, or calls clear() on the layer when LAYER is true.
 
-##### Mouse actions 
+##### Mouse actions
 - Clicking on the color palette will change R,G,B values to appropriate values and changes the color of the lines the user draws to the color selected.
 
 
@@ -65,6 +65,6 @@ Sophia Gao: Coded a non-recursive Bucket2 that is decently fast.
 Anna Fang: Added all variables and coded cases for calling them. Researched how to apply PGraphics and attempted to implent some code using it. Currently added in code creating the layer and edited brush methods to draw on the layer. 
 
 ##### 5/27-5/30:
-Sophia Gao: 
+Sophia Gao: Coded the ability for the user to make circles and rectangles in the drawing area. Created method headers for future brush methods to be coded.
 
-Anna Fang: Researched how to apply removal of PGraphic Layer (still not working) and changed around formatting for menu bar
+Anna Fang: Researched how to apply removal of PGraphic Layer (still not working) and changed around formatting for menu bar.
