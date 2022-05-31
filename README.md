@@ -37,3 +37,8 @@ Anna Fang: Reformatted interface (moved around text controls and color selector)
 Sophia Gao: Coded a non-recursive Bucket2 that is decently fast.
 
 Anna Fang: Added all variables and coded cases for calling them. Researched how to apply PGraphics and attempted to implent some code using it. Currently added in code creating the layer and edited brush methods to draw on the layer. 
+
+##### 5/27-5/30:
+Sophia Gao: 
+
+Anna Fang: Researched how to apply removal of PGraphic Layer (still not working) and changed around formatting for menu bar
