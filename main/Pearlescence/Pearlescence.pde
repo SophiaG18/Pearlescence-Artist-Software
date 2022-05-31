@@ -9,7 +9,7 @@ PImage Next;
 Boolean Filter = false;
 int Index = 0;
 String [] Names = {"Identity", "Blur", "Sharpen", "Outline", "Left Sobel", "Right Sobel", "Top Sobel", "Emboss"};
-int Transparency = 100;
+int Transparency = 255;
 boolean Layer = false; 
 boolean Weight = false; 
 PGraphics newLayer; // right, now testing only one later - will update to multiple layers when the code works...
@@ -395,12 +395,12 @@ void keyPressed() {
     break;
   case '3': 
     if (Transparency > 0) {
-      Transparency--;
+      Transparency -= 5;
     }
     break;
   case '4': 
-    if (Transparency < 100) {
-      Transparency ++;
+    if (Transparency < 255) {
+      Transparency += 5;
     } 
     break;
   case 'l': 
