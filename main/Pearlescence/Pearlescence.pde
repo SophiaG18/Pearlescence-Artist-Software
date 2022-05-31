@@ -3,7 +3,7 @@ int G = 0;
 int B = 0;
 int Size = 4;
 int brushMode = 0;
-String[] tools = {"Pen", "Eraser", "Bucket", "Circle"};
+String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle"};
 PImage Prev;
 PImage Next;
 Boolean Filter = false;
@@ -96,6 +96,7 @@ void draw() {
   text("Press 1 to cycle through brushes", 30, 100); 
   text("Weight: " + Weight, 600, 115); 
   text("Layer: " + Layer, 600, 130); 
+  text("Coordinates: " + coor, 600, 145);
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
   text("Press DOWN to decrement size", 30, 145);  
@@ -127,29 +128,38 @@ void draw() {
         image(newLayer, 0, 0);
       }
       break;
-    case 3:
-      if (coor == null && !Layer){
-        Circle();
-      }
-      else if (!Layer){
-        Circle2();
-      }
-      else if (coor == null){
-        Circle(); //nothing is drawn
-      }
-      else{
-        Circle2();
-        image(newLayer, 0, 0);
-      }
     }
   }
 }
 
 void mouseReleased() {
-  Next = get(0, 100, 1500, 800);
+  if (coor == null) {
+    Next = get(0, 100, 1500, 800);
+  }
 }
 
 void mouseClicked() {
+  if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) { 
+    Prev = Next;
+    switch (brushMode) {
+    case 3:
+      if (!Layer) {
+        Circle();
+      } else {
+        Circle();
+        image(newLayer, 0, 0);
+      }
+      break;
+    case 4:
+      if (!Layer) {
+        Rectangle();
+      } else {
+        Rectangle();
+        image(newLayer, 0, 0);
+      }
+      break;
+    }
+  }
   //black
   if (mouseX >= 950 && mouseX <= 968 && mouseY >= 15 && mouseY <= 33) {
     R = 0;
@@ -318,11 +328,11 @@ void keyPressed() {
     if (brushMode > 0) {
       brushMode --;
     } else {
-      brushMode = 3; //# will be increased as more Brush methods are coded
+      brushMode = 4; //# will be increased as more Brush methods are coded
     }
     break;
   case '2':
-    if (brushMode < 3) { 
+    if (brushMode < 4) { 
       //# will be increased as more Brush methods are coded
       brushMode ++;
     } else {
@@ -344,8 +354,7 @@ void keyPressed() {
       fill(255);
       rect(0, 100, 1500, 800);
       image(newLayer, 0, 0);
-    } 
-    else {
+    } else {
       clearLayer(newLayer); // perhaps move this to draw?? 
       image(newLayer, 0, 0);
     } 
