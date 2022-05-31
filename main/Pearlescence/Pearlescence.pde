@@ -331,6 +331,7 @@ void keyPressed() {
       image(newLayer, 0, 0);
     } 
     else {
+      
     } 
     break;
     //Kernel stuff
