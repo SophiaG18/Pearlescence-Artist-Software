@@ -1,7 +1,7 @@
 void Pen() {
   if(Layer == false){
     color penColor = color(R, G, B);
-      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) {
         //noStroke(); -> this causes issues 
         stroke(penColor); 
         strokeWeight(Size);
@@ -11,7 +11,7 @@ void Pen() {
   else{
     newLayer.beginDraw(); 
     color penColor = color(#FF0000);
-      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) {
         //noStroke(); -> this causes issues 
         newLayer.stroke(penColor); 
         newLayer.strokeWeight(Size);
@@ -23,7 +23,7 @@ void Pen() {
 
 void Eraser() {
   if(Layer == false){
-      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) {
         //noStroke(); -> this causes issues 
         stroke(#FFFFFF); 
         strokeWeight(Size);
@@ -32,7 +32,7 @@ void Eraser() {
     }
   else{
     newLayer.beginDraw(); 
-      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) {
         //noStroke(); -> this causes issues 
         newLayer.stroke(#FFFFFF); 
         newLayer.strokeWeight(Size);
@@ -78,11 +78,11 @@ void Bucket2(int X, int Y, color OG, color spill) {
     spandown = false;
     while (xcor < width && (get(xcor, ycor) == OG)) {
       set(xcor, ycor, spill);
-      if (!spanup && ycor > 100 && (get(xcor, ycor - 1) == OG)) {
+      if (!spanup && ycor > 155 && (get(xcor, ycor - 1) == OG)) {
         spread.add(xcor);
         spread.add(ycor-1);
         spanup = true;
-      } else if (spanup && ycor > 100 && (get(xcor, ycor - 1) != OG)) {
+      } else if (spanup && ycor > 155 && (get(xcor, ycor - 1) != OG)) {
         spanup = false;
       }
       if (!spandown && ycor < height && (get(xcor, ycor +1) == OG)) {
@@ -95,4 +95,23 @@ void Bucket2(int X, int Y, color OG, color spill) {
       xcor++;
     }
   }
+}
+
+void Marker(){
+}
+
+void Inkbrush(){
+}
+
+void Circle(){
+  /*
+  noFill();
+  color penColor = color(R, G, B);
+  float x1 = mouseX;
+  float y1 = mouseY;
+  if(mousePressed == true){ 
+    float dia = abs(dist(x1, y1, mouseX, mouseY));
+    circle((abs((x1 + mouseX)/2)), (abs((y1 + mouseY)/2)), dia);
+  }
+  */
 }
