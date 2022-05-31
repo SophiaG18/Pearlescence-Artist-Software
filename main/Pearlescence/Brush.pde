@@ -1,61 +1,46 @@
 void Pen() {
-  if(Layer == false){
+  if (Layer == false) {
     color penColor = color(R, G, B);
-      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) {
-        //noStroke(); -> this causes issues 
-        stroke(penColor); 
-        strokeWeight(Size);
-        line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
-      }
-    }
-  else{
+    stroke(penColor); 
+    strokeWeight(Size);
+    line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+  } else {
     newLayer.beginDraw(); 
     color penColor = color(#FF0000);
-      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) {
-        //noStroke(); -> this causes issues 
-        newLayer.stroke(penColor); 
-        newLayer.strokeWeight(Size);
-        newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
-      }
+    newLayer.stroke(penColor); 
+    newLayer.strokeWeight(Size);
+    newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
     newLayer.endDraw();
   }
 }
 
 void Eraser() {
-  if(Layer == false){
-      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) {
-        //noStroke(); -> this causes issues 
-        stroke(#FFFFFF); 
-        strokeWeight(Size);
-        line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
-      }
-    }
-  else{
+  if (Layer == false) {
+    stroke(#FFFFFF); 
+    strokeWeight(Size);
+    line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+  } else {
     newLayer.beginDraw(); 
-      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) {
-        //noStroke(); -> this causes issues 
-        newLayer.stroke(#FFFFFF); 
-        newLayer.strokeWeight(Size);
-        newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
-      }
+    newLayer.stroke(#FFFFFF); 
+    newLayer.strokeWeight(Size);
+    newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
     newLayer.endDraw();
   }
 }
 
 void Bucket() {
-  if(Layer == false){
+  if (Layer == false) {
     color og = get(mouseX, mouseY);
     color spill = color(R, G, B); 
     if (og != spill) {
       Bucket2(mouseX, mouseY, og, spill);
     }
-  }
-  else{
+  } else {
     color og = newLayer.get(mouseX, mouseY); // references the layer 
-    color spill = color(R,G,B); 
-    if(og != spill){
-      Bucket2(mouseX, mouseY, og,spill); 
-    } 
+    color spill = color(R, G, B); 
+    if (og != spill) {
+      Bucket2(mouseX, mouseY, og, spill);
+    }
   }
 } 
 
@@ -97,21 +82,62 @@ void Bucket2(int X, int Y, color OG, color spill) {
   }
 }
 
-void Marker(){
+void Marker() {
 }
 
-void Inkbrush(){
+void Inkbrush() {
 }
 
-void Circle(){
-  /*
-  noFill();
-  color penColor = color(R, G, B);
-  float x1 = mouseX;
-  float y1 = mouseY;
-  if(mousePressed == true){ 
-    float dia = abs(dist(x1, y1, mouseX, mouseY));
-    circle((abs((x1 + mouseX)/2)), (abs((y1 + mouseY)/2)), dia);
+void Circle() {
+  if (coor == null) { 
+    Integer[] in = {mouseX, mouseY};
+    coor = in;
+  } else {
+    if (Layer == false) {
+      noFill();
+      color penColor = color(R, G, B);
+      stroke(penColor); 
+      strokeWeight(Size);
+      float dia = abs(dist(coor[0], coor[1], mouseX, mouseY));
+      circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
+      coor = null;
+    } else {
+      newLayer.beginDraw(); 
+      color penColor = color(#FF0000);
+      newLayer.stroke(penColor); 
+      newLayer.strokeWeight(Size);
+      float dia = abs(dist(coor[0], coor[1], mouseX, mouseY));
+      circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
+      coor = null;
+      newLayer.endDraw();
+    }
   }
-  */
+}
+
+void Rectangle() {
+  if (coor == null) { 
+    Integer[] in = {mouseX, mouseY};
+    coor = in;
+  } else {
+    if (Layer == false) {
+      noFill();
+      color penColor = color(R, G, B);
+      stroke(penColor); 
+      strokeWeight(Size);
+      float w = coor[0] - mouseX;
+      float l = coor[1] - mouseY;
+      rect(mouseX, mouseY, w, l);
+      coor = null;
+    } else {
+      newLayer.beginDraw(); 
+      color penColor = color(#FF0000);
+      newLayer.stroke(penColor); 
+      newLayer.strokeWeight(Size);
+      float w = coor[0] - mouseX;
+      float l = coor[1] - mouseY;
+      rect(mouseX, mouseY, w, l);
+      coor = null;
+      newLayer.endDraw();
+    }
+  }
 }
