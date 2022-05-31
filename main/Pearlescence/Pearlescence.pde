@@ -9,7 +9,7 @@ PImage Next;
 Boolean Filter = false;
 int Index = 0;
 String [] Names = {"Identity", "Blur", "Sharpen", "Outline", "Left Sobel", "Right Sobel", "Top Sobel", "Emboss"};
-int Transparency;
+int Transparency = 100;
 boolean Layer = false; 
 boolean Weight = false; 
 PGraphics newLayer; // right, now testing only one later - will update to multiple layers when the code works...
@@ -30,16 +30,24 @@ void draw() {
   //toolbox section
   strokeWeight(1);
   fill(200);
-  rect(0, 0, 1500, 155);
+  rect(0, 0, 1500, 175);
   //text
   fill(0);
   textSize(15);
   text("R value: " + R + " (Press r to cycle up value)", 1205, 25);
   text("G value: " + G + " (Press g to cycle up value)", 1205, 40);
   text("B value: " + B + " (Press g to cycle up value)", 1205, 55);
+  text("Press DELETE to clear the screen", 1205, 70);
+  text("Press ENTER to take a screenshot", 1205, 85);
+  text("Press LEFT to undo a stroke", 1205, 100); 
+  text("Press RIGHT to redo a stroke", 1205, 115); 
   text("Size value: " + Size, 600, 25);
   text("Drawing Tool: " + tools[brushMode], 600, 40); 
-  text("Filter: " + Filter, 600, 55); 
+  text("Filter: " + Filter, 600, 55);
+  text("Filter mode: " + Names[Index], 600, 70); // either keep or combine with filter text
+  text("Transparency: " + Transparency, 600, 85);
+  text("Weight: " + Weight, 600, 115); 
+  text("Layer: " + Layer, 600, 130);
   //color square to be clicked on
   stroke(0);
   square(950, 15, 18); //fill(0) black
@@ -84,24 +92,20 @@ void draw() {
   // written instructions for keypress commands 
   fill(0);
   textSize(15);
-  text("Filter mode: " + Names[Index], 600, 70); // either keep or combine with filter text 
-  text("Press DELETE to clear the screen", 30, 25);
-  text("Press ENTER to take a screenshot", 30, 40);
-  text("Press LEFT to undo a stroke", 30, 55); 
-  text("Press RIGHT to redo a stroke", 30, 70); 
+   
+  
+  text("Press 1 or 2 to cycle through brushes", 30, 25); 
+  text("Press 3 to decrement Transparency", 30, 40); 
+  text("Press 4 to increment Transparency", 30, 55);
+  text("Press 5 or 6 to cycle through filters", 30, 70);
   text("Click on a color to select it", 964, 75);
-  text("Press 3 to decrement Transparency", 600, 85); 
-  text("Press 4 to increment Transparency", 600, 100);
-  text("Press w to turn brushWeight on and off", 30, 85); 
-  text("Press 1 to cycle through brushes", 30, 100); 
-  text("Weight: " + Weight, 600, 115); 
-  text("Layer: " + Layer, 600, 130); 
-  //text("Coordinates: " + coor, 600, 145); debugging
+  text("Press w to turn Weight on and off", 30, 85); 
+  text("Press l to turn layer on or off", 30, 100);
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
   text("Press DOWN to decrement size", 30, 145);  
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
-  if (mousePressed && (mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) { 
+  if (mousePressed && (mouseX >= 0 && mouseX <= 1500) && (mouseY > 175)) { 
     Prev = Next;
     switch (brushMode) {
     case 0: 
@@ -139,7 +143,7 @@ void mouseReleased() {
 }
 
 void mouseClicked() {
-  if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 155)) { 
+  if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 175)) { 
     Prev = Next;
     switch (brushMode) {
     case 3:
@@ -342,7 +346,7 @@ void keyPressed() {
     // SAVE AS DRAWING.PNG
   case ENTER:
     PImage screenshot; // could change this into an instance variable 
-    screenshot = get(0, 155, 1500, 800); 
+    screenshot = get(0, 175, 1500, 800); 
     // if no parameters are specified, the entire image is returned. -> have to establish the interface in order to set coordinates
     // with 4 parameters, get saves rect of pixels: x cor, y cor, width of rect, height of rect
     screenshot.save("drawing.png"); // saves the screen capture to the machine 
@@ -388,19 +392,23 @@ void keyPressed() {
     } else {
       Weight = false;
     } 
+    break;
   case '3': 
     if (Transparency > 0) {
       Transparency--;
-    } 
+    }
+    break;
   case '4': 
-    if (Transparency > 0 && Transparency < 100) {
+    if (Transparency < 100) {
       Transparency ++;
     } 
+    break;
   case 'l': 
     if (Layer == false) {
       Layer = true;
     } else {
       Layer = false;
     }
+    break;
   }
 } 
