@@ -331,7 +331,8 @@ void keyPressed() {
       image(newLayer, 0, 0);
     } 
     else {
-      
+      clearLayer(newLayer); // perhaps move this to draw?? 
+      image(newLayer, 0, 0);
     } 
     break;
     //Kernel stuff
