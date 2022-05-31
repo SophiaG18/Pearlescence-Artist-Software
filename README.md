@@ -10,6 +10,7 @@ Prototype: https://docs.google.com/document/d/1wQ_F--UWB9xtafvUVpv_5qi4pqOymIEEm
 Our project will be processing based and will emulate a digital art software. The product will be an interactive interface resembling programs like MSPaint, with the top of the screen being an interactive “toolbar” with the rest of the screen available for the user to draw in. It will contain various brushes that allow the user to create different size lines, special tools such as a “fill-bucket” and “shape creators”, a color selector, eraser, and a way for the user to save their drawing via screenshot. Building on from this, we would like our project to include aspects of more advanced programs like procreate such as brush weight (based on the user’s selection of transparency and brush), layers, and layer manipulation (ex: multiply, color dodge, etc).
 
 ### Compile/Run Instructions:
+First open up the Pearlescence processing file. Press the run button.
 
 To begin drawing, press, hold, and drag your mouse. The characteristics of the line drawn can be changed using pressed keys and clicking on specific areas in the menu, all listed below.
 
@@ -20,7 +21,7 @@ To begin drawing, press, hold, and drag your mouse. The characteristics of the l
 - DELETE acts as a clear button; resets the bottom rectangle to default white by drawing a white rectangle above the drawing
 - UP will increment Size (of the brush) unless Size = [max size]
 - DOWN will decrement Size (of the brush) unless Size = 1
-- 1 will decrement brushMode (which type of drawing utensil used) or cycle back to the highest value if brushMode = 1
+- 1 will decrement brushMode (which type of drawing utensil used) or cycle back to the highest value if brushMode = 0
 - 2 will increment brushMode or cycle back to lowest value if brushMode = [max mode]
 - LEFT acts as a undo button; displays the stored image of Prev
 - RIGHT acts as a redo button; displays the stored image of Next
@@ -62,7 +63,7 @@ Anna Fang: Reformatted interface (moved around text controls and color selector)
 ##### 5/26:
 Sophia Gao: Coded a non-recursive Bucket2 that is decently fast.
 
-Anna Fang: Added all variables and coded cases for calling them. Researched how to apply PGraphics and attempted to implent some code using it. Currently added in code creating the layer and edited brush methods to draw on the layer. 
+Anna Fang: Added all variables and coded cases for calling them. Researched how to apply PGraphics and attempted to implent some code using it. Currently added in code creating the layer and edited brush methods to draw on the layer.
 
 ##### 5/27-5/30:
 Sophia Gao: Coded the ability for the user to make circles and rectangles in the drawing area. Created method headers for future brush methods to be coded.
