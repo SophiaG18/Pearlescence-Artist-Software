@@ -96,7 +96,7 @@ void draw() {
   text("Press 1 to cycle through brushes", 30, 100); 
   text("Weight: " + Weight, 600, 115); 
   text("Layer: " + Layer, 600, 130); 
-  text("Coordinates: " + coor, 600, 145);
+  //text("Coordinates: " + coor, 600, 145); debugging
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
   text("Press DOWN to decrement size", 30, 145);  
