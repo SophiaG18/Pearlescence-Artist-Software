@@ -20,12 +20,12 @@ void setup() {
   size(1500, 900);
   //drawing section
   fill(255);
-  rect(0, 100, 1500, 800);
-  Prev = get(0, 100, 1500, 800);
-  Next = get(0, 100, 1500, 800);
+  rect(0, 175, 1500, 800);
+  Prev = get(0, 175, 1500, 800);
+  Next = get(0, 175, 1500, 800);
   // LAYER section -> instantiate 
   newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited)
-  currentCanvas = get(0,100,1500,800); 
+  currentCanvas = get(0,175,1500,800); 
 }
 
 void draw() {
@@ -132,17 +132,17 @@ void draw() {
       background(#FFFFFF);
       clearLayer(newLayer); 
     }
-    image(currentCanvas, 0, 100); 
+    image(currentCanvas, 0, 175); 
   }
    image(newLayer, 0,0);    
 }
 
 void mouseReleased() {
   if (coor == null) {
-    Next = get(0, 100, 1500, 800);
+    Next = get(0, 175, 1500, 800);
   }
   if(Layer == false){ // update the canvas save
-    currentCanvas = get(0,100,1500,800);
+    currentCanvas = get(0,175,1500,800);
   }
 }
 
@@ -331,10 +331,10 @@ void keyPressed() {
       }
     } 
     if (keyCode == LEFT) {
-      image(Prev, 0, 100);
+      image(Prev, 0, 175);
     }
     if (keyCode == RIGHT) {
-      image(Next, 0, 100);
+      image(Next, 0, 175);
     }
     break;
     // brushMODE
@@ -366,7 +366,7 @@ void keyPressed() {
     if (Layer == false) {
       noStroke();
       fill(255);
-      rect(0, 100, 1500, 800);
+      rect(0, 175, 1500, 800);
       image(newLayer, 0, 0);
     }
     break;
@@ -376,7 +376,7 @@ void keyPressed() {
     if (Filter) {
       Prev = Next;
       Next = apply();
-      image(Next, 0, 100);
+      image(Next, 0, 175);
     }
     break;
   case '5':
