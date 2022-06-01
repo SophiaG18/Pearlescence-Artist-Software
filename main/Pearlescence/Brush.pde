@@ -1,12 +1,11 @@
 void Pen() {
-  if (Layer == false) {
     color penColor = color(R, G, B);
+  if (Layer == false) {
     stroke(penColor, Transparency); 
     strokeWeight(Size);
     line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
   } else {
     newLayer.beginDraw(); 
-    color penColor = color(#FF0000);
     newLayer.stroke(penColor, Transparency); 
     newLayer.strokeWeight(Size);
     newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
