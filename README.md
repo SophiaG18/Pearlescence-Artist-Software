@@ -69,3 +69,8 @@ Anna Fang: Added all variables and coded cases for calling them. Researched how 
 Sophia Gao: Coded the ability for the user to make circles and rectangles in the drawing area. Created method headers for future brush methods to be coded.
 
 Anna Fang: Researched how to apply removal of PGraphic Layer (still not working) and changed around formatting for menu bar.
+
+##### 5/31: 
+Sophia Gao: 
+
+Anna Fang: Finished KeyPressed and logic for clearing the layer: had to experiment on a separate Processing sketch and moved working code over to main file. Shifted some interface elements and started updating UML. 
