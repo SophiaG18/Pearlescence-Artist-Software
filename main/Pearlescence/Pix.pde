@@ -3,5 +3,7 @@ public class Pix{
   PImage still;
   
   public Pix(){
+    still = get(0, 175, 1500, 800);
   }
+  
 }
