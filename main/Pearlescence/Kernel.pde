@@ -26,16 +26,16 @@ color calcNewColor(int x, int y) {
       if (corx < 0){
         corx = 0;
       }
-      if (corx > Next.width - 1){
+      if (corx > reundo.current.still.width - 1){
         corx = corx - 1;
       }
       if (cory < 0){
         cory = 0;
       }
-      if (cory > Next.height - 1){
+      if (cory > reundo.current.still.height - 1){
         cory = cory - 1;
       }
-      color og = Next.get(corx, cory);
+      color og = reundo.current.still.get(corx, cory);
       r += (red(og) * kernels[Index][w+1][h+1]);
       g += (green(og) * kernels[Index][w+1][h+1]);
       b += (blue(og) * kernels[Index][w+1][h+1]);
@@ -52,9 +52,9 @@ color calcNewColor(int x, int y) {
 
 //returns a PImage that will be set to Next
 PImage apply() {
-  PImage img = Next.copy();
-  for (int r = 0; r < Next.width; r++){
-    for (int c = 0; c < Next.height; c++){
+  PImage img = reundo.current.still.copy();
+  for (int r = 0; r < img.width; r++){
+    for (int c = 0; c < img.height; c++){
       img.set(r, c, calcNewColor(r, c));
     }
   }
