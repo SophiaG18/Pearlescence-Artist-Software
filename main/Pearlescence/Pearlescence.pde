@@ -146,6 +146,12 @@ void mouseReleased() {
   }
 }
 
+void clearLayer(PGraphics layer){
+  layer.beginDraw(); 
+  layer.clear(); 
+  layer.endDraw(); 
+} 
+
 void mouseClicked() {
   if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 175)) { 
     Prev = Next;
