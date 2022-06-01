@@ -355,8 +355,8 @@ void keyPressed() {
       rect(0, 100, 1500, 800);
       image(newLayer, 0, 0);
     } else {
-      clearLayer(newLayer); // perhaps move this to draw?? 
-      image(newLayer, 0, 0);
+      //clearLayer(newLayer); // perhaps move this to draw?? 
+      //image(newLayer, 0, 0);
     } 
     break;
     //Kernel stuff
