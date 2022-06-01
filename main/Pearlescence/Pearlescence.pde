@@ -6,13 +6,14 @@ int brushMode = 0;
 String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle"};
 PImage Prev;
 PImage Next;
+PImage currentCanvas; // saving the screen as a means to prevent constant updating with layer clear 
 Boolean Filter = false;
 int Index = 0;
 String [] Names = {"Identity", "Blur", "Sharpen", "Outline", "Left Sobel", "Right Sobel", "Top Sobel", "Emboss"};
 int Transparency = 255;
 boolean Layer = false; 
 boolean Weight = false; 
-PGraphics newLayer; // right, now testing only one later - will update to multiple layers when the code works...
+PGraphics newLayer; // right now testing only one later - will update to multiple layers when the code works...
 Integer[] coor;
 
 void setup() {
@@ -24,6 +25,7 @@ void setup() {
   Next = get(0, 100, 1500, 800);
   // LAYER section -> instantiate 
   newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited)
+  currentCanvas = get(0,100,1500,800); 
 }
 
 void draw() {
@@ -37,7 +39,7 @@ void draw() {
   text("R value: " + R + " (Press r to cycle up value)", 1205, 25);
   text("G value: " + G + " (Press g to cycle up value)", 1205, 40);
   text("B value: " + B + " (Press g to cycle up value)", 1205, 55);
-  text("Press DELETE to clear the screen", 1205, 70);
+  text("Press DELETE to clear the screen", 1205, 130);
   text("Press ENTER to take a screenshot", 1205, 85);
   text("Press LEFT to undo a stroke", 1205, 100); 
   text("Press RIGHT to redo a stroke", 1205, 115); 
@@ -109,22 +111,12 @@ void draw() {
     Prev = Next;
     switch (brushMode) {
     case 0: 
-      if (!Layer) {
-        Pen();
-      } else {
-        Pen(); 
-        image(newLayer, 0, 0);
-      }
+      Pen(); 
       break;
     case 1:
-      if (!Layer) {
-        Eraser();
-      } else {
-        Eraser(); 
-        image(newLayer, 0, 0);
-      }
+      Eraser(); 
       break;
-    case 2: 
+    case 2: // have to update these 
       if (!Layer) {
         Bucket();
       } else {
@@ -134,11 +126,23 @@ void draw() {
       break;
     }
   }
+  // code for clearing the layer (inputting into draw) 
+  if(keyPressed == true && Layer == true){
+    if(key == BACKSPACE){
+      background(#FFFFFF);
+      clearLayer(newLayer); 
+    }
+    image(currentCanvas, 0, 100); 
+  }
+   image(newLayer, 0,0);    
 }
 
 void mouseReleased() {
   if (coor == null) {
     Next = get(0, 100, 1500, 800);
+  }
+  if(Layer == false){ // update the canvas save
+    currentCanvas = get(0,100,1500,800);
   }
 }
 
@@ -358,10 +362,7 @@ void keyPressed() {
       fill(255);
       rect(0, 100, 1500, 800);
       image(newLayer, 0, 0);
-    } else {
-      clearLayer(newLayer); // perhaps move this to draw?? 
-      image(newLayer, 0, 0);
-    } 
+    }
     break;
     //Kernel stuff
   case 'f':

@@ -44,6 +44,7 @@ void Bucket() {
   }
 } 
 
+// have to update all of these to work on layer 
 void Bucket2(int X, int Y, color OG, color spill) {
   int xcor;
   boolean spanup;
