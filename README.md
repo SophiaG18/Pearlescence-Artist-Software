@@ -70,7 +70,12 @@ Sophia Gao: Coded the ability for the user to make circles and rectangles in the
 
 Anna Fang: Researched how to apply removal of PGraphic Layer (still not working) and changed around formatting for menu bar.
 
-##### 5/31: 
-Sophia Gao: 
+##### 5/31:
+Sophia Gao: Coded for the use of transparency in Brush methods. Miscellaneous changes to the text displayed.
 
-Anna Fang: Finished KeyPressed and logic for clearing the layer: had to experiment on a separate Processing sketch and moved working code over to main file. Shifted some interface elements and started updating UML. 
+Anna Fang: Finished KeyPressed and logic for clearing the layer: had to experiment on a separate Processing sketch and moved working code over to main file. Shifted some interface elements and started updating UML.
+
+##### 6/1:
+Sophia Gao: Created the classes Pix and PixList, which is similar to the orbChain lab's classes, to replace the use of the instance variables Prev and Next. Modified Pearlescence and Kernel code to accommodate for the change. 
+
+Anna Fang:
