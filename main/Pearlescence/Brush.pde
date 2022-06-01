@@ -1,12 +1,11 @@
 void Pen() {
-  if (Layer == false) {
     color penColor = color(R, G, B);
+  if (Layer == false) {
     stroke(penColor, Transparency); 
     strokeWeight(Size);
     line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
   } else {
     newLayer.beginDraw(); 
-    color penColor = color(#FF0000);
     newLayer.stroke(penColor, Transparency); 
     newLayer.strokeWeight(Size);
     newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
@@ -44,6 +43,7 @@ void Bucket() {
   }
 } 
 
+// have to update all of these to work on layer 
 void Bucket2(int X, int Y, color OG, color spill) {
   int xcor;
   boolean spanup;
