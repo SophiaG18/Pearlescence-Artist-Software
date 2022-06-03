@@ -160,13 +160,8 @@ void mouseClicked() {
       Circle(); // I think there's a frame issue happening with the circle making it fill in? 
       break;
     case 4:
-      if (!Layer) {
-        Rectangle();
-      } else {
-        Rectangle();
-        image(newLayer, 0, 0);
-      }
-      break;
+      Rectangle(); 
+     break;
     }
     image(newLayer, 0, 0);
   }
