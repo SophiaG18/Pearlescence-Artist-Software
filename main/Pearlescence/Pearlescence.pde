@@ -114,13 +114,8 @@ void draw() {
     case 1:
       Eraser(); 
       break;
-    case 2: // have to update these 
-      if (!Layer) {
-        Bucket();
-      } else {
-        Bucket(); 
-        image(newLayer, 0, 0);
-      }
+    case 2: 
+      Bucket(); // have to update to work on layers 
       break;
      case 5: 
        InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
@@ -159,12 +154,7 @@ void mouseClicked() {
   if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 175)) { 
     switch (brushMode) {
     case 3:
-      if (!Layer) {
-        Circle();
-      } else {
-        Circle();
-        image(newLayer, 0, 0);
-      }
+      Circle(); // I think there's a frame issue happening with the circle making it fill in? 
       break;
     case 4:
       if (!Layer) {
@@ -175,6 +165,7 @@ void mouseClicked() {
       }
       break;
     }
+    image(newLayer, 0, 0);
   }
   //black
   if (mouseX >= 950 && mouseX <= 968 && mouseY >= 15 && mouseY <= 33) {
