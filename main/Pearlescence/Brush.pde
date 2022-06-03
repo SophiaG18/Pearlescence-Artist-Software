@@ -85,7 +85,31 @@ void Bucket2(int X, int Y, color OG, color spill) {
 void Marker() {
 }
 
-void Inkbrush() {
+void InkBrush(int x,int y, int x2, int y2) {
+  if(Layer == false){
+    color penColor = color(000000);
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+        //noStroke(); -> this causes issues 
+        // speed = squareroot of (square of x-x2) + (square of y-y2) 
+        
+        float speed = (sqrt((sq(abs(x-x2)) + sq(abs(y-y2))))) / 10 ; 
+        
+        stroke(penColor); 
+        strokeWeight( 2 + speed);
+        line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+      }
+    }
+  else{
+    pg.beginDraw(); 
+    color penColor = color(#FF0000);
+      if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
+        //noStroke(); -> this causes issues 
+        pg.stroke(penColor); 
+        pg.strokeWeight(2);
+        pg.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
+      }
+    pg.endDraw();
+  }
 }
 
 void Circle() {
