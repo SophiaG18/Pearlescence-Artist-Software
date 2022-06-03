@@ -14,6 +14,7 @@ boolean Layer = false;
 boolean Weight = false; 
 PGraphics newLayer; // right now testing only one later - will update to multiple layers when the code works...
 Integer[] coor;
+boolean cleared; 
 
 void setup() {
   size(1500, 900);
@@ -368,6 +369,8 @@ void keyPressed() {
       rect(0, 175, 1500, 800);
       image(newLayer, 0, 0);
       reundo.drew(new Pix());
+      cleared = true; 
+      //currentCanvas = get(0,175,1500,800); 
     }
     break;
     //Kernel stuff
