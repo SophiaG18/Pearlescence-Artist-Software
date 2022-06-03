@@ -133,7 +133,9 @@ void draw() {
       background(#FFFFFF);
       clearLayer(newLayer); 
     }
-    image(currentCanvas, 0, 175); 
+    if(cleared == false){
+    image(currentCanvas, 0, 175);
+    } 
   }
    image(newLayer, 0,0);    
 }
