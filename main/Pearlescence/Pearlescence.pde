@@ -345,7 +345,7 @@ void keyPressed() {
     // brushMODE
   case '1':
     if (brushMode > 0) {
-      brushMode --;
+      brushMode--;
     } else {
       brushMode = 6; //# will be increased as more Brush methods are coded
     }
@@ -354,7 +354,8 @@ void keyPressed() {
     if (brushMode < 6) { 
       //# will be increased as more Brush methods are coded
       brushMode ++;
-    } else {
+    }
+    else{
       brushMode = 0;
     }
     break;
