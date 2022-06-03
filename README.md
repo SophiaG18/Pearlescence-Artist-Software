@@ -78,7 +78,7 @@ Anna Fang: Finished KeyPressed and logic for clearing the layer: had to experime
 ##### 6/1:
 Sophia Gao: Created the classes Pix and PixList, which is similar to the orbChain lab's classes, to replace the use of the instance variables Prev and Next. Modified Pearlescence and Kernel code to accommodate for the change. 
 
-Anna Fang: Updated UML (again) and researching how to implement brushweights and issues on layers. 
+Anna Fang: Updated UML (again) and researching how to implement brushweights and issues on layers. Wrote up instructions and added it to ReadMe. 
 
 ##### 6/2: 
 
