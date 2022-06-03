@@ -76,12 +76,18 @@ Sophia Gao: Coded for the use of transparency in Brush methods. Miscellaneous ch
 Anna Fang: Finished KeyPressed and logic for clearing the layer: had to experiment on a separate Processing sketch and moved working code over to main file. Shifted some interface elements and started updating UML.
 
 ##### 6/1:
-Sophia Gao: Created the classes Pix and PixList, which is similar to the orbChain lab's classes, to replace the use of the instance variables Prev and Next. Modified Pearlescence and Kernel code to accommodate for the change. 
+Sophia Gao: Created the classes Pix and PixList, which is similar to the orbChain lab's classes, to replace the use of the instance variables Prev and Next. Modified Pearlescence and Kernel code to accommodate for the change.
 
-Anna Fang: Updated UML (again) and researching how to implement brushweights and issues on layers. Wrote up instructions and added it to ReadMe. 
+Anna Fang: Updated UML (again) and researching how to implement brushweights and issues on layers. Wrote up instructions and added it to ReadMe.
 
-##### 6/2: 
+##### 6/2:
 
-Sophia Gao: 
+Sophia Gao: Attempted to code a method that would be similar to airbrush/spray. Very pixelated, WIP.
 
-Anna Fang: updated files with InkBrush() and implemented code in main file to apply brushweight to InkBrush(). Edited layers to fix issue with bottom canvas reappearing when layers are turned on and off. Researching how to transition code lines to curves. 
+Anna Fang: updated files with InkBrush() and implemented code in main file to apply brushweight to InkBrush(). Edited layers to fix issue with bottom canvas reappearing when layers are turned on and off. Researching how to transition code lines to curves.
+
+##### 6/3:
+
+Sophia Gao: Fixed the issue regarding layers with circle and rectangle.
+
+Anna Fang:

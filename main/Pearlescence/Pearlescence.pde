@@ -24,7 +24,7 @@ void setup() {
   reundo = new PixList();
   // LAYER section -> instantiate 
   newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited)
-  currentCanvas = get(0,175,1500,800); 
+  currentCanvas = get(0, 175, 1500, 800);
 }
 
 void draw() {
@@ -93,8 +93,8 @@ void draw() {
   // written instructions for keypress commands 
   fill(0);
   textSize(15);
-   
-  
+
+
   text("Press 1 or 2 to cycle through brushes", 30, 25); 
   text("Press 3 to decrement Transparency", 30, 40); 
   text("Press 4 to increment Transparency", 30, 55);
@@ -126,31 +126,32 @@ void draw() {
     }
   }
   // code for clearing the layer (inputting into draw) 
-  if(keyPressed == true && Layer == true){
-    if(key == BACKSPACE){
+  if (keyPressed == true && Layer == true) {
+    if (key == BACKSPACE) {
       background(#FFFFFF);
-      clearLayer(newLayer); 
+      clearLayer(newLayer);
     }
-    if(cleared == false){
-    image(currentCanvas, 0, 175);
-    } 
+    if (cleared == false) {
+      image(currentCanvas, 0, 175);
+    }
   }
-   image(newLayer, 0,0);    
+  image(newLayer, 0, 0);
 }
 
 void mouseReleased() {
   if (coor == null) {
     reundo.drew(new Pix());
-  }
-  if(Layer == false){ // update the canvas save
-    currentCanvas = get(0,175,1500,800);
-  }
+  }/*
+  if (Layer == false) { // update the canvas save
+    currentCanvas = get(0, 175, 1500, 800);
+    System.out.println(mouseX);
+  }*/
 }
 
-void clearLayer(PGraphics layer){
+void clearLayer(PGraphics layer) {
   layer.beginDraw(); 
   layer.clear(); 
-  layer.endDraw(); 
+  layer.endDraw();
 } 
 
 void mouseClicked() {
@@ -160,13 +161,8 @@ void mouseClicked() {
       Circle(); // I think there's a frame issue happening with the circle making it fill in? 
       break;
     case 4:
-      if (!Layer) {
-        Rectangle();
-      } else {
-        Rectangle();
-        image(newLayer, 0, 0);
-      }
-      break;
+      Rectangle(); 
+     break;
     }
     image(newLayer, 0, 0);
   }
@@ -366,7 +362,7 @@ void keyPressed() {
       image(newLayer, 0, 0);
       reundo.drew(new Pix());
       cleared = true; 
-      //currentCanvas = get(0,175,1500,800); 
+      //currentCanvas = get(0,175,1500,800);
     }
     break;
     //Kernel stuff
