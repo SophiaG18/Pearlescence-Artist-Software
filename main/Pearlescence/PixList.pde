@@ -25,16 +25,18 @@ public class PixList{
   void undo(){
     if (current != first){
       current = current.prev;
+      if (Layer == false) {
       image(current.still, 0, 175);
+      }
     }
   }
   
   void redo(){
     if (current != last){
-      System.out.println(current.next);
-      current = current.next;
-      
+      current = current.next;    
+      if (Layer == false) {
       image(current.still, 0, 175);
+      }
     }
   }
 }
