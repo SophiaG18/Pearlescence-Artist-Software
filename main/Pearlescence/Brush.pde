@@ -87,28 +87,27 @@ void Marker() {
 
 void InkBrush(int x,int y, int x2, int y2) {
   if(Layer == false){
-    color penColor = color(000000);
+    color penColor = color(R,G,B);
       if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
         //noStroke(); -> this causes issues 
         // speed = squareroot of (square of x-x2) + (square of y-y2) 
-        
         float speed = (sqrt((sq(abs(x-x2)) + sq(abs(y-y2))))) / 10 ; 
-        
         stroke(penColor); 
-        strokeWeight( 2 + speed);
+        strokeWeight(Size + speed);
         line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
       }
     }
   else{
-    pg.beginDraw(); 
-    color penColor = color(#FF0000);
+    newLayer.beginDraw(); 
+    color penColor = color(R,G,B);
       if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
         //noStroke(); -> this causes issues 
-        pg.stroke(penColor); 
-        pg.strokeWeight(2);
-        pg.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
+        float speed = (sqrt((sq(abs(x-x2)) + sq(abs(y-y2))))) / 10 ; 
+        newLayer.stroke(penColor); 
+        newLayer.strokeWeight(Size + speed);
+        newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
       }
-    pg.endDraw();
+    newLayer.endDraw();
   }
 }
 
