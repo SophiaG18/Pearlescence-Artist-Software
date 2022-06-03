@@ -3,7 +3,7 @@ int G = 0;
 int B = 0;
 int Size = 4;
 int brushMode = 0;
-String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle", "Airbrush"};
+String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle", "InkBrush", "Airbrush"};
 PixList reundo; 
 PImage currentCanvas; // saving the screen as a means to prevent constant updating with layer clear 
 Boolean Filter = false;
@@ -14,6 +14,7 @@ boolean Layer = false;
 boolean Weight = false; 
 PGraphics newLayer; // right now testing only one later - will update to multiple layers when the code works...
 Integer[] coor;
+boolean cleared; 
 
 void setup() {
   size(1500, 900);
@@ -23,7 +24,7 @@ void setup() {
   reundo = new PixList();
   // LAYER section -> instantiate 
   newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited)
-  currentCanvas = get(0,175,1500,800); 
+  currentCanvas = get(0, 175, 1500, 800);
 }
 
 void draw() {
@@ -92,8 +93,8 @@ void draw() {
   // written instructions for keypress commands 
   fill(0);
   textSize(15);
-   
-  
+
+
   text("Press 1 or 2 to cycle through brushes", 30, 25); 
   text("Press 3 to decrement Transparency", 30, 40); 
   text("Press 4 to increment Transparency", 30, 55);
@@ -113,54 +114,50 @@ void draw() {
     case 1:
       Eraser(); 
       break;
-    case 2: // have to update these 
-      if (!Layer) {
-        Bucket();
-      } else {
-        Bucket(); 
-        image(newLayer, 0, 0);
-      }
+    case 2: 
+      Bucket(); // have to update to work on layers 
       break;
-    case 5:
+    case 5: 
+      InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
+      break;
+    case 6:
       Airbrush();
+      break;
     }
   }
   // code for clearing the layer (inputting into draw) 
-  if(keyPressed == true && Layer == true){
-    if(key == BACKSPACE){
+  if (keyPressed == true && Layer == true) {
+    if (key == BACKSPACE) {
       background(#FFFFFF);
-      clearLayer(newLayer); 
+      clearLayer(newLayer);
     }
-    image(currentCanvas, 0, 175); 
+    if (cleared == false) {
+      image(currentCanvas, 0, 175);
+    }
   }
-   image(newLayer, 0,0);    
+  image(newLayer, 0, 0);
 }
 
 void mouseReleased() {
   if (coor == null) {
     reundo.drew(new Pix());
   }
-  if(Layer == false){ // update the canvas save
-    currentCanvas = get(0,175,1500,800);
+  if (Layer == false) { // update the canvas save
+    currentCanvas = get(0, 175, 1500, 800);
   }
 }
 
-void clearLayer(PGraphics layer){
+void clearLayer(PGraphics layer) {
   layer.beginDraw(); 
   layer.clear(); 
-  layer.endDraw(); 
+  layer.endDraw();
 } 
 
 void mouseClicked() {
   if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 175)) { 
     switch (brushMode) {
     case 3:
-      if (!Layer) {
-        Circle();
-      } else {
-        Circle();
-        image(newLayer, 0, 0);
-      }
+      Circle(); // I think there's a frame issue happening with the circle making it fill in? 
       break;
     case 4:
       if (!Layer) {
@@ -171,6 +168,7 @@ void mouseClicked() {
       }
       break;
     }
+    image(newLayer, 0, 0);
   }
   //black
   if (mouseX >= 950 && mouseX <= 968 && mouseY >= 15 && mouseY <= 33) {
@@ -340,11 +338,11 @@ void keyPressed() {
     if (brushMode > 0) {
       brushMode --;
     } else {
-      brushMode = 5; //# will be increased as more Brush methods are coded
+      brushMode = 6; //# will be increased as more Brush methods are coded
     }
     break;
   case '2':
-    if (brushMode < 5) { 
+    if (brushMode < 6) { 
       //# will be increased as more Brush methods are coded
       brushMode ++;
     } else {
@@ -367,6 +365,8 @@ void keyPressed() {
       rect(0, 175, 1500, 800);
       image(newLayer, 0, 0);
       reundo.drew(new Pix());
+      cleared = true; 
+      //currentCanvas = get(0,175,1500,800);
     }
     break;
     //Kernel stuff
