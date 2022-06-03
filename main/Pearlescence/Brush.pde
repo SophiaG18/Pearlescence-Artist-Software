@@ -101,7 +101,7 @@ void InkBrush(int x,int y, int x2, int y2) {
     color penColor = color(R,G,B);
       if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
         //noStroke(); -> this causes issues 
-        float speed = (sqrt((sq(abs(x-x2)) + sq(abs(y-y2))))) ; 
+        float speed = (sqrt((sq(abs(x-x2)) + sq(abs(y-y2))))) / 10 ; 
         newLayer.stroke(penColor); 
         newLayer.strokeWeight(Size + speed); // sets size as basis and factors in mouse speed
         newLayer.line(mouseX, mouseY, pmouseX, pmouseY); 
