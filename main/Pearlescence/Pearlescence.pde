@@ -141,11 +141,7 @@ void draw() {
 void mouseReleased() {
   if (coor == null) {
     reundo.drew(new Pix());
-  }/*
-  if (Layer == false) { // update the canvas save
-    currentCanvas = get(0, 175, 1500, 800);
-    System.out.println(mouseX);
-  }*/
+  }
 }
 
 void clearLayer(PGraphics layer) {
