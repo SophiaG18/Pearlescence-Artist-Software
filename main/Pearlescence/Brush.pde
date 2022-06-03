@@ -1,5 +1,5 @@
 void Pen() {
-    color penColor = color(R, G, B);
+  color penColor = color(R, G, B);
   if (Layer == false) {
     stroke(penColor, Transparency); 
     strokeWeight(Size);
@@ -81,8 +81,41 @@ void Bucket2(int X, int Y, color OG, color spill) {
   }
 }
 
-void Marker() {
+void Airbrush() {
+  color penColor = color(R, G, B);
+  if (Layer == false) {
+    stroke(penColor, Transparency);
+    int startx = -Size / 2;
+    int endx = Size - (Size/2); //to accomadate odd values for Size
+    if (mouseX >= pmouseX) {
+      startx += pmouseX;
+      endx += mouseX;
+    } else {
+      startx += mouseX;
+      endx += pmouseX;
+    }  
+    int starty, endy;
+    if (mouseY >= pmouseY) {
+      starty = pmouseY;
+      endy = mouseY;
+    } else {
+      starty = mouseY;
+      endy = pmouseY;
+    } 
+    float mm = abs(dist(startx, starty, endx, endy));
+    while (startx <= endx) {
+      for (int yy = starty; yy <= endy; yy++) {
+        float chance = abs(dist(startx, starty, (mouseX + pmouseX)/2, (mouseY + pmouseY)/2)) / mm;
+        float p = random(1);
+        if (p > chance) {
+          point(startx, yy);
+        }
+      }
+      startx++;
+    }
+  }
 }
+
 
 void InkBrush(int x,int y, int x2, int y2) {
   if(Layer == false){
@@ -108,7 +141,6 @@ void InkBrush(int x,int y, int x2, int y2) {
       }
     newLayer.endDraw();
   }
-}
 
 // circle and rectangle are having issues with filling in on layer 
 void Circle() {
@@ -125,7 +157,8 @@ void Circle() {
       circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
       coor = null;
     } else {
-      newLayer.beginDraw(); 
+      newLayer.beginDraw();
+      noFill();
       color penColor = color(#FF0000);
       newLayer.stroke(penColor, Transparency); 
       newLayer.strokeWeight(Size);
@@ -153,6 +186,7 @@ void Rectangle() {
       coor = null;
     } else {
       newLayer.beginDraw(); 
+      noFill();
       color penColor = color(#FF0000);
       newLayer.stroke(penColor, Transparency); 
       newLayer.strokeWeight(Size);
