@@ -3,7 +3,7 @@ int G = 0;
 int B = 0;
 int Size = 4;
 int brushMode = 0;
-String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle"};
+String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle", "InkBrush"};
 PixList reundo; 
 PImage currentCanvas; // saving the screen as a means to prevent constant updating with layer clear 
 Boolean Filter = false;
@@ -121,6 +121,9 @@ void draw() {
         image(newLayer, 0, 0);
       }
       break;
+     case 5: 
+       InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
+       break;
     }
   }
   // code for clearing the layer (inputting into draw) 
@@ -338,11 +341,11 @@ void keyPressed() {
     if (brushMode > 0) {
       brushMode --;
     } else {
-      brushMode = 4; //# will be increased as more Brush methods are coded
+      brushMode = 5; //# will be increased as more Brush methods are coded
     }
     break;
   case '2':
-    if (brushMode < 4) { 
+    if (brushMode < 5) { 
       //# will be increased as more Brush methods are coded
       brushMode ++;
     } else {
