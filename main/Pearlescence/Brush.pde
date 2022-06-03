@@ -141,6 +141,7 @@ void InkBrush(int x,int y, int x2, int y2) {
       }
     newLayer.endDraw();
   }
+}
 
 // circle and rectangle are having issues with filling in on layer 
 void Circle() {
@@ -157,7 +158,7 @@ void Circle() {
       circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
       coor = null;
     } else {
-      newLayer.beginDraw();
+      newLayer.beginDraw(); 
       noFill();
       color penColor = color(#FF0000);
       newLayer.stroke(penColor, Transparency); 
