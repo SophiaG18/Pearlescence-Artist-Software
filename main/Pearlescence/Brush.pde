@@ -8,7 +8,7 @@ void Pen() {
     newLayer.beginDraw(); 
     newLayer.stroke(penColor, Transparency); 
     newLayer.strokeWeight(Size);
-    newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+    newLayer.line(mouseX, mouseY, pmouseX, pmouseY); 
     newLayer.endDraw();
   }
 }
@@ -17,12 +17,12 @@ void Eraser() {
   if (Layer == false) {
     stroke(#FFFFFF, Transparency); 
     strokeWeight(Size);
-    line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+    line(mouseX, mouseY, pmouseX, pmouseY); 
   } else {
     newLayer.beginDraw(); 
     newLayer.stroke(#FFFFFF, Transparency); 
     newLayer.strokeWeight(Size);
-    newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
+    newLayer.line(mouseX, mouseY, pmouseX, pmouseY); 
     newLayer.endDraw();
   }
 }
@@ -94,7 +94,7 @@ void InkBrush(int x,int y, int x2, int y2) {
         float speed = (sqrt((sq(abs(x-x2)) + sq(abs(y-y2))))) / 10 ; 
         stroke(penColor); 
         strokeWeight(Size + speed);
-        line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+        line(mouseX, mouseY, pmouseX, pmouseY); 
       }
     }
   else{
@@ -102,10 +102,10 @@ void InkBrush(int x,int y, int x2, int y2) {
     color penColor = color(R,G,B);
       if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
         //noStroke(); -> this causes issues 
-        float speed = (sqrt((sq(abs(x-x2)) + sq(abs(y-y2))))) / 10 ; 
+        float speed = (sqrt((sq(abs(x-x2)) + sq(abs(y-y2))))) ; 
         newLayer.stroke(penColor); 
-        newLayer.strokeWeight(Size + speed);
-        newLayer.line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this 
+        newLayer.strokeWeight(Size + speed); // sets size as basis and factors in mouse speed
+        newLayer.line(mouseX, mouseY, pmouseX, pmouseY); 
       }
     newLayer.endDraw();
   }
