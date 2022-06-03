@@ -4,6 +4,7 @@ void Pen() {
     stroke(penColor, Transparency); 
     strokeWeight(Size);
     line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
+    currentCanvas = get(0, 175, 1500, 800);
   } else {
     newLayer.beginDraw(); 
     newLayer.stroke(penColor, Transparency); 
@@ -18,6 +19,7 @@ void Eraser() {
     stroke(#FFFFFF, Transparency); 
     strokeWeight(Size);
     line(mouseX, mouseY, pmouseX, pmouseY); 
+    currentCanvas = get(0, 175, 1500, 800);
   } else {
     newLayer.beginDraw(); 
     newLayer.stroke(#FFFFFF, Transparency); 
@@ -39,6 +41,7 @@ void Bucket() {
     color spill = color(R, G, B); 
     if (og != spill) {
       Bucket2(mouseX, mouseY, og, spill);
+      currentCanvas = get(0, 175, 1500, 800);
     }
   }
 } 
@@ -126,6 +129,7 @@ void InkBrush(int x,int y, int x2, int y2) {
         stroke(penColor); 
         strokeWeight(Size + speed);
         line(mouseX, mouseY, pmouseX, pmouseY); 
+        currentCanvas = get(0, 175, 1500, 800);
       }
     }
   else{
@@ -156,6 +160,7 @@ void Circle() {
       float dia = abs(dist(coor[0], coor[1], mouseX, mouseY));
       circle((abs((coor[0] + mouseX)/2)), (abs((coor[1] + mouseY)/2)), dia);
       coor = null;
+      currentCanvas = get(0, 175, 1500, 800);
     } else {
       newLayer.beginDraw();
       newLayer.noFill();
@@ -184,6 +189,7 @@ void Rectangle() {
       float l = coor[1] - mouseY;
       rect(mouseX, mouseY, w, l);
       coor = null;
+      currentCanvas = get(0, 175, 1500, 800);
     } else {
       newLayer.beginDraw(); 
       newLayer.noFill();
