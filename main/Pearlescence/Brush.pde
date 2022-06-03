@@ -43,7 +43,6 @@ void Bucket() {
   }
 } 
 
-// have to update all of these to work on layer 
 void Bucket2(int X, int Y, color OG, color spill) {
   int xcor;
   boolean spanup;
@@ -111,6 +110,7 @@ void InkBrush(int x,int y, int x2, int y2) {
   }
 }
 
+// circle and rectangle are having issues with filling in on layer 
 void Circle() {
   if (coor == null) { 
     Integer[] in = {mouseX, mouseY};
