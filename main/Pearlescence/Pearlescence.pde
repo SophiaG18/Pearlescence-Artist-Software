@@ -3,7 +3,7 @@ int G = 0;
 int B = 0;
 int Size = 4;
 int brushMode = 0;
-String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle", "InkBrush"};
+String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle", "InkBrush", "Airbrush"};
 PixList reundo; 
 PImage currentCanvas; // saving the screen as a means to prevent constant updating with layer clear 
 Boolean Filter = false;
@@ -125,6 +125,9 @@ void draw() {
      case 5: 
        InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
        break;
+    case 6:
+      Airbrush();
+      break;
     }
   }
   // code for clearing the layer (inputting into draw) 
@@ -341,18 +344,17 @@ void keyPressed() {
     break;
     // brushMODE
   case '1':
-    if (brushMode > 0) {
-      brushMode --;
+    if (Index == 0) {
+      Index = 7;
     } else {
-      brushMode = 5; //# will be increased as more Brush methods are coded
+      Index --;
     }
     break;
-  case '2':
-    if (brushMode < 5) { 
-      //# will be increased as more Brush methods are coded
-      brushMode ++;
+  case '6': 
+    if (Index == 7) {
+      Index = 0;
     } else {
-      brushMode = 0;
+      Index ++;
     }
     break;
     // SAVE AS DRAWING.PNG
