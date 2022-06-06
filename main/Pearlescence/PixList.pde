@@ -28,6 +28,8 @@ public class PixList{
       if (Layer == false) {
       image(current.still, 0, 175);
       }
+      else{
+        
     }
   }
   
