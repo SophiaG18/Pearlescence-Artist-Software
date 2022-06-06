@@ -404,6 +404,7 @@ void keyPressed() {
   case 'l': 
     if (!Layer) {
       Layer = true;
+      reundo.drew(new Pix());
     } else {
       Layer = false;
     }
