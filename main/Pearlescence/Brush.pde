@@ -1,6 +1,6 @@
 void Pen() {
   color penColor = color(R, G, B);
-  if (Layer == false) {
+  if (!Layer) {
     stroke(penColor, Transparency); 
     strokeWeight(Size);
     line(mouseX, mouseY, pmouseX, pmouseY); // experimenting with this
@@ -15,7 +15,7 @@ void Pen() {
 }
 
 void Eraser() {
-  if (Layer == false) {
+  if (!Layer) {
     stroke(#FFFFFF, Transparency); 
     strokeWeight(Size);
     line(mouseX, mouseY, pmouseX, pmouseY); 
@@ -30,7 +30,7 @@ void Eraser() {
 }
 
 void Bucket() {
-  if (Layer == false) {
+  if (!Layer) {
     color og = get(mouseX, mouseY);
     color spill = color(R, G, B); 
     if (og != spill) {
@@ -130,7 +130,7 @@ void Bucket2(int X, int Y, color OG, color spill) {
 
 void Airbrush() {
   color penColor = color(R, G, B);
-  if (Layer == false) {
+  if (!Layer) {
     stroke(penColor, Transparency);
     int startx = -Size / 2;
     int endx = Size - (Size/2); //to accomadate odd values for Size
@@ -164,7 +164,7 @@ void Airbrush() {
 }
 
 void InkBrush(int x, int y, int x2, int y2) {
-  if (Layer == false) {
+  if (!Layer) {
     color penColor = color(R, G, B);
     if ((mouseX >= 0 && mouseX <= 1500) && (mouseY > 100)) {
       //noStroke(); -> this causes issues 
@@ -195,7 +195,7 @@ void Circle() {
     Integer[] in = {mouseX, mouseY};
     coor = in;
   } else {
-    if (Layer == false) {
+    if (!Layer) {
       noFill();
       color penColor = color(R, G, B);
       stroke(penColor, Transparency); 
@@ -223,7 +223,7 @@ void Rectangle() {
     Integer[] in = {mouseX, mouseY};
     coor = in;
   } else {
-    if (Layer == false) {
+    if (!Layer) {
       noFill();
       color penColor = color(R, G, B);
       stroke(penColor, Transparency); 
