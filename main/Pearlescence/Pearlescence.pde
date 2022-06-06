@@ -126,12 +126,13 @@ void draw() {
     }
   }
   // code for clearing the layer (inputting into draw) 
-  if (keyPressed == true && Layer == true) {
+  if (keyPressed && Layer) {
     if (key == BACKSPACE) {
       background(#FFFFFF);
       clearLayer(newLayer);
+      cleared = true;
     }
-    if (cleared == false) {
+    if (cleared) {
       image(currentCanvas, 0, 175);
     }
   }
@@ -141,11 +142,7 @@ void draw() {
 void mouseReleased() {
   if (coor == null) {
     reundo.drew(new Pix());
-  }/*
-  if (Layer == false) { // update the canvas save
-    currentCanvas = get(0, 175, 1500, 800);
-    System.out.println(mouseX);
-  }*/
+  }
 }
 
 void clearLayer(PGraphics layer) {
@@ -355,14 +352,14 @@ void keyPressed() {
     break;
     // Clear drawing area
   case BACKSPACE:
-    if (Layer == false) {
+    if (!Layer) {
       noStroke();
       fill(255);
       rect(0, 175, 1500, 800);
       image(newLayer, 0, 0);
       reundo.drew(new Pix());
       cleared = true; 
-      //currentCanvas = get(0,175,1500,800);
+      currentCanvas = reundo.current.still;
     }
     break;
     //Kernel stuff
@@ -388,7 +385,7 @@ void keyPressed() {
     }
     break;
   case 'w': 
-    if (Weight == false) {
+    if (!Weight) {
       Weight = true;
     } else {
       Weight = false;
@@ -405,7 +402,7 @@ void keyPressed() {
     } 
     break;
   case 'l': 
-    if (Layer == false) {
+    if (!Layer) {
       Layer = true;
     } else {
       Layer = false;
