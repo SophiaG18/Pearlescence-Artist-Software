@@ -88,6 +88,6 @@ Anna Fang: updated files with InkBrush() and implemented code in main file to ap
 
 ##### 6/3:
 
-Sophia Gao: Fixed the issue regarding layers with circle and rectangle.
+Sophia Gao: Fixed the issue regarding layers with circle and rectangle. Added additional method to allow bucket to be used when layer is on. 
 
 Anna Fang:
