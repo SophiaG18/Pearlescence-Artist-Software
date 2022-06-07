@@ -407,6 +407,7 @@ void keyPressed() {
       reundo.drew(new Pix());
     } else {
       Layer = false;
+      reundo.drew(new Pix());
     }
     break;
   }
