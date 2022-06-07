@@ -13,6 +13,7 @@ int Transparency = 255;
 boolean Layer = false; 
 boolean Weight = false; 
 PGraphics newLayer; // considering changing this to an array of pgraphics in order to have multiple layers.
+PGraphics [] layers = new PGraphics [10]; // array of 10 possible layers
 PGraphics savedCanvas; 
 Integer[] coor;
 boolean cleared; 
@@ -106,7 +107,8 @@ void draw() {
   text("Press l to turn layer on or off", 30, 100);
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
-  text("Press DOWN to decrement size", 30, 145);  
+  text("Press DOWN to decrement size", 30, 145);
+  text("Press m to merge your layer onto the main canvas", 30, 160); 
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if (mousePressed && (mouseX >= 0 && mouseX <= 1500) && (mouseY > 175)) { 
     switch (brushMode) {
