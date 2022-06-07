@@ -14,10 +14,8 @@ boolean Layer = false;
 boolean Weight = false; 
 PGraphics newLayer; // considering changing this to an array of pgraphics in order to have multiple layers.
 PGraphics [] layers = new PGraphics [10]; // array of 10 possible layers
-PGraphics savedCanvas; 
 Integer[] coor;
 boolean cleared; 
-boolean merged; 
 
 void setup() {
   size(1500, 900);
@@ -112,19 +110,24 @@ void draw() {
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if (mousePressed && (mouseX >= 0 && mouseX <= 1500) && (mouseY > 175)) { 
     switch (brushMode) {
-    case 0: 
+    case 0:
+      noStroke();
       Pen(); 
       break;
     case 1:
+      noStroke();
       Eraser(); 
       break;
     case 2: 
+      noStroke();
       Bucket(); // have to update to work on layers 
       break;
      case 5: 
+       noStroke();
        InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
        break;
      case 6:
+       noStroke();
        Airbrush();
        break;
     }
@@ -136,25 +139,25 @@ void draw() {
       clearLayer(newLayer);
       cleared = true;
     }
-    if (cleared & !merged) {
+    if (cleared) {
       image(currentCanvas, 0, 175);
-      image(newLayer, 0, 0); // testing here -> may have to move this 
     }
-    else if(cleared & merged){
-      currentCanvas = (PImage) savedCanvas; // convert back and display 
-      image(currentCanvas, 0, 175);
-    } 
   }
-  // image(newLayer, 0, 0); // displays the canvas(?) -> might have to move this 
+   image(newLayer, 0, 0); 
+   
   // code for merging the layer with the canvas
   if(keyPressed){
     if(key == 'm'){
-      savedCanvas = (PGraphics) currentCanvas.get(); // -> consider turning the main canvas into a PGraphic in a work around when merging 
-      merge(savedCanvas, newLayer); 
-      clearLayer(newLayer); 
-      cleared = true; 
-      merged = true; 
-    } 
+      image(currentCanvas, 0, 175);
+      image(newLayer, 0, 0);
+      currentCanvas = get(0, 175, 1500, 800);
+      if(Layer){ 
+        clearLayer(newLayer); 
+        //cleared = true; -> removed this(?)  
+        Layer = false; 
+      } 
+    }
+    image(currentCanvas, 0, 175); // display the main canvas
   } 
 }
 
@@ -168,12 +171,6 @@ void clearLayer(PGraphics layer) {
   layer.beginDraw(); 
   layer.clear(); 
   layer.endDraw();
-} 
-
-void merge(PGraphics canvas, PGraphics layer){
-  canvas.beginDraw(); 
-  canvas.image(layer, 0, 0); 
-  canvas.endDraw(); 
 } 
 
 void mouseClicked() {
