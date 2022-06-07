@@ -91,3 +91,9 @@ Anna Fang: updated files with InkBrush() and implemented code in main file to ap
 Sophia Gao: Fixed the issue regarding layers with circle and rectangle.
 
 Anna Fang: Worked with Sophia on fixing issue with layers ^^. 
+
+##### 6/3:
+
+Sophia Gao: 
+
+Anna Fang: Researched how to best implent layer merging between PImages and PLayers; implemented a new "merge method", added new case for layer merge, and edited the interface to include new instructions. 
