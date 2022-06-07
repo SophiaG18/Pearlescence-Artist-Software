@@ -34,6 +34,7 @@ public class PixList {
           image(currentCanvas, 0, 175);
           newLayer.beginDraw();
           newLayer.image(current.still, 0, 0);
+          image(newLayer, 0, 0); // still runs into issues 
           newLayer.endDraw();
         }
       } else {
