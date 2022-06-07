@@ -90,4 +90,4 @@ Anna Fang: updated files with InkBrush() and implemented code in main file to ap
 
 Sophia Gao: Fixed the issue regarding layers with circle and rectangle.
 
-Anna Fang:
+Anna Fang: Worked with Sophia on fixing issue with layers ^^. 
