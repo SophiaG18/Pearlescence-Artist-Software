@@ -138,11 +138,11 @@ void draw() {
       image(currentCanvas, 0, 175);
     }
     else if(cleared & merged){
-      currentCanvas = (PImage) savedCanvas;  
+      currentCanvas = (PImage) savedCanvas; // convert back and display 
       image(currentCanvas, 0, 175);
     } 
   }
-  image(newLayer, 0, 0);
+  image(newLayer, 0, 0); // displays the canvas(?) -> might have to move this 
   
   // code for merging the layer with the canvas
   if(keyPressed){
