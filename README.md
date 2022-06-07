@@ -98,8 +98,8 @@ Sophia Gao: Working on redo and undo methods to include layers. Miscellaneous ch
 
 Anna Fang: Researched how to best implement layer merging between PImages and PLayers; implemented a new "merge method", added new case for layer merge, and edited the interface to include new instructions.
 
-##### 6/6:
+##### 6/7:
 
 Sophia Gao: Continuing to work with redo and undo methods to consider when layers was turned off or on between strokes.
 
-Anna Fang:
+Anna Fang: Deleted methods for layer merging and fixed issue with PImage/PGraphic type conflict. Added noStroke() for brush cases. 
