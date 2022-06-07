@@ -88,12 +88,18 @@ Anna Fang: updated files with InkBrush() and implemented code in main file to ap
 
 ##### 6/3:
 
-Sophia Gao: Fixed the issue regarding layers with circle and rectangle. Added additional method to allow bucket to be used when layer is on. 
+Sophia Gao: Fixed the issue regarding layers with circle and rectangle. Added additional method to allow bucket to be used when layer is on.
 
-Anna Fang: Worked with Sophia on fixing issue with layers ^^. 
+Anna Fang: Worked with Sophia on fixing issue with layers ^^.
 
-##### 6/3:
+##### 6/6:
 
-Sophia Gao: 
+Sophia Gao: Working on redo and undo methods to include layers. Miscellaneous changes to Pearlescence regarding layers.
 
-Anna Fang: Researched how to best implent layer merging between PImages and PLayers; implemented a new "merge method", added new case for layer merge, and edited the interface to include new instructions. 
+Anna Fang: Researched how to best implement layer merging between PImages and PLayers; implemented a new "merge method", added new case for layer merge, and edited the interface to include new instructions.
+
+##### 6/6:
+
+Sophia Gao: Continuing to work with redo and undo methods to consider when layers was turned off or on between strokes.
+
+Anna Fang:
