@@ -12,7 +12,8 @@ String [] Names = {"Identity", "Blur", "Sharpen", "Outline", "Left Sobel", "Righ
 int Transparency = 255;
 boolean Layer = false; 
 boolean Weight = false; 
-PGraphics newLayer; // right now testing only one later - will update to multiple layers when the code works...
+PGraphics newLayer; // considering changing this to an array of pgraphics in order to have multiple layers.
+PGraphics savedCanvas; 
 Integer[] coor;
 boolean cleared; 
 
@@ -137,6 +138,14 @@ void draw() {
     }
   }
   image(newLayer, 0, 0);
+  
+  // code for merging the layer with the canvas
+  if(keyPressed){
+    if(key == 'm'){
+      savedCanvas = (PGraphics) currentCanvas.get(); // -> consider turning the main canvas into a PGraphic in a work around when merging 
+      merge(savedCanvas, newLayer); 
+    } 
+  } 
 }
 
 void mouseReleased() {
@@ -149,6 +158,12 @@ void clearLayer(PGraphics layer) {
   layer.beginDraw(); 
   layer.clear(); 
   layer.endDraw();
+} 
+
+void merge(PGraphics canvas, PGraphics layer){
+  canvas.beginDraw(); 
+  canvas.image(layer, 0, 0); 
+  canvas.endDraw(); 
 } 
 
 void mouseClicked() {
