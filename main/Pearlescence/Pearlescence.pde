@@ -16,6 +16,7 @@ PGraphics newLayer; // considering changing this to an array of pgraphics in ord
 PGraphics savedCanvas; 
 Integer[] coor;
 boolean cleared; 
+boolean merged; 
 
 void setup() {
   size(1500, 900);
@@ -133,9 +134,13 @@ void draw() {
       clearLayer(newLayer);
       cleared = true;
     }
-    if (cleared) {
+    if (cleared & !merged) {
       image(currentCanvas, 0, 175);
     }
+    else if(cleared & merged){
+      currentCanvas = (PImage) savedCanvas;  
+      image(currentCanvas, 0, 175);
+    } 
   }
   image(newLayer, 0, 0);
   
@@ -144,6 +149,9 @@ void draw() {
     if(key == 'm'){
       savedCanvas = (PGraphics) currentCanvas.get(); // -> consider turning the main canvas into a PGraphic in a work around when merging 
       merge(savedCanvas, newLayer); 
+      clearLayer(newLayer); 
+      cleared = true; 
+      merged = true; 
     } 
   } 
 }
