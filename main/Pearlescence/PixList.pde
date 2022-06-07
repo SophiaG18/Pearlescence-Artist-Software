@@ -24,16 +24,29 @@ public class PixList {
   void undo() {
     if (current != first) {
       current = current.prev;
+      background(#FFFFFF);
       if (!Layer) {
-        image(current.still, 0, 175);
+        if (!current.l) {
+          image(current.still, 0, 175);
+          currentCanvas = get(0, 175, 1500, 800);
+        } else {
+          Layer = true;
+          image(currentCanvas, 0, 175);
+          newLayer.beginDraw();
+          newLayer.image(current.still, 0, 0);
+          newLayer.endDraw();
+        }
       } else {
         if (current.l) {
-          background(#FFFFFF);
           clearLayer(newLayer);
           image(currentCanvas, 0, 175);
           newLayer.beginDraw();
           newLayer.image(current.still, 0, 0);
           newLayer.endDraw();
+        } else {
+          Layer = false;
+          image(current.still, 0, 175);
+          currentCanvas = get(0, 175, 1500, 800);
         }
       }
     }
@@ -41,17 +54,28 @@ public class PixList {
 
   void redo() {
     if (current != last) {
-      current = current.next;    
+      current = current.next; 
+      background(#FFFFFF);
       if (!Layer) {
-        image(current.still, 0, 175);
+        if (!current.l) {
+          image(current.still, 0, 175);
+        } else {
+          Layer = true;
+          image(currentCanvas, 0, 175);
+          newLayer.beginDraw();
+          newLayer.image(current.still, 0, 0);
+          newLayer.endDraw();
+        }
       } else {
         if (current.l) {
-          background(#FFFFFF);
           clearLayer(newLayer);
           image(currentCanvas, 0, 175);
           newLayer.beginDraw();
           newLayer.image(current.still, 0, 0);
           newLayer.endDraw();
+        } else {
+          Layer = false;
+          image(current.still, 0, 175);
         }
       }
     }
