@@ -145,6 +145,7 @@ void draw() {
   }
    image(newLayer, 0, 0); 
    
+   /*
   // code for merging the layer with the canvas
   if(keyPressed){
     if(key == 'm'){
@@ -158,12 +159,16 @@ void draw() {
       } 
     }
     image(currentCanvas, 0, 175); // display the main canvas
-  } 
+  }
+  */
 }
 
 void mouseReleased() {
   if (coor == null) {
     reundo.drew(new Pix());
+    if (!Layer){
+      currentCanvas = get(0, 175, 1500, 800);
+    }
   }
 }
 
@@ -426,8 +431,11 @@ void keyPressed() {
   case 'l': 
     if (!Layer) {
       Layer = true;
+      reundo.drew(new Pix());
     } else {
       Layer = false;
+      currentCanvas = get(0, 175, 1500, 800);
+      reundo.drew(new Pix());
     }
     break;
   }
