@@ -27,6 +27,7 @@ void setup() {
   // LAYER section -> instantiate 
   newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited)
   currentCanvas = get(0, 175, 1500, 800);
+  currentCanvas.save("cc" + fr + ".png");
 }
 
 void draw() {
@@ -430,9 +431,13 @@ void keyPressed() {
   case 'l': 
     if (!Layer) {
       Layer = true;
+      currentCanvas = get(0, 175, 1500, 800);
+      //currentCanvas.save("cc" + reundo.current.change + ".png");
     } else {
       Layer = false;
       currentCanvas = get(0, 175, 1500, 800);
+      clearLayer(newLayer);
+      //currentCanvas.save("cc" + reundo.current.change + ".png");
     }
     break;
   }
