@@ -28,13 +28,13 @@ public class PixList {
       if (!Layer) {
         if (!current.l) {
           image(current.still, 0, 175);
-          currentCanvas = get(0, 175, 1500, 800);
+          //currentCanvas = get(0, 175, 1500, 800);
         } else {
           Layer = true;
-          image(currentCanvas, 0, 175);
+          image(currentCanvas, 0, 175); //this is where we run into issues i think
           newLayer.beginDraw();
           newLayer.image(current.still, 0, 0);
-          image(newLayer, 0, 0); // still runs into issues 
+          image(newLayer, 0, 0); 
           newLayer.endDraw();
         }
       } else {
@@ -44,11 +44,12 @@ public class PixList {
           newLayer.beginDraw();
           newLayer.image(current.still, 0, 0);
           newLayer.endDraw();
+          image(newLayer, 0, 0);
         } else {
           Layer = false;
-          image(currentCanvas, 0, 175);
-          image(current.still, 0, 175);
+          //image(currentCanvas, 0, 175);
           currentCanvas = get(0, 175, 1500, 800);
+          image(current.still, 0, 175);
         }
       }
     }
@@ -61,13 +62,13 @@ public class PixList {
       if (!Layer) {
         if (!current.l) {
           image(current.still, 0, 175);
-          currentCanvas = get(0, 175, 1500, 800);
+          //currentCanvas = get(0, 175, 1500, 800);
         } else {
           Layer = true;
-          image(currentCanvas, 0, 175);
+          image(currentCanvas, 0, 175); //this is where we run into issues i think
           newLayer.beginDraw();
           newLayer.image(current.still, 0, 0);
-          image(newLayer, 0, 0); // still runs into issues 
+          image(newLayer, 0, 0); 
           newLayer.endDraw();
         }
       } else {
@@ -77,9 +78,12 @@ public class PixList {
           newLayer.beginDraw();
           newLayer.image(current.still, 0, 0);
           newLayer.endDraw();
+          image(newLayer, 0, 0);
         } else {
           Layer = false;
-          image(currentCanvas, 0, 175);
+          clearLayer(newLayer);
+          //image(currentCanvas, 0, 175);
+
           image(current.still, 0, 175);
           currentCanvas = get(0, 175, 1500, 800);
         }
