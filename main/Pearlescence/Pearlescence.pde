@@ -16,6 +16,7 @@ PGraphics newLayer; // considering changing this to an array of pgraphics in ord
 PGraphics [] layers = new PGraphics [10]; // array of 10 possible layers
 Integer[] coor;
 boolean cleared; 
+int fr = 0;
 
 void setup() {
   size(1500, 900);
@@ -122,14 +123,14 @@ void draw() {
       noStroke();
       Bucket(); // have to update to work on layers 
       break;
-     case 5: 
-       noStroke();
-       InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
-       break;
-     case 6:
-       noStroke();
-       Airbrush();
-       break;
+    case 5: 
+      noStroke();
+      InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
+      break;
+    case 6:
+      noStroke();
+      Airbrush();
+      break;
     }
   }
   // code for clearing the layer (inputting into draw) 
@@ -138,37 +139,35 @@ void draw() {
       background(#FFFFFF);
       clearLayer(newLayer);
       cleared = true;
-    }
-    if (cleared) {
       image(currentCanvas, 0, 175);
     }
   }
-   image(newLayer, 0, 0); 
-   
-   /*
+  image(newLayer, 0, 0); 
+
+  /*
   // code for merging the layer with the canvas
-  if(keyPressed){
-    if(key == 'm'){
-      image(currentCanvas, 0, 175);
-      image(newLayer, 0, 0);
-      currentCanvas = get(0, 175, 1500, 800);
-      if(Layer){ 
-        clearLayer(newLayer); 
-        //cleared = true; -> removed this(?)  
-        Layer = false; 
-      } 
-    }
-    image(currentCanvas, 0, 175); // display the main canvas
-  }
-  */
+   if(keyPressed){
+   if(key == 'm'){
+   image(currentCanvas, 0, 175);
+   image(newLayer, 0, 0);
+   currentCanvas = get(0, 175, 1500, 800);
+   if(Layer){ 
+   clearLayer(newLayer); 
+   //cleared = true; -> removed this(?)  
+   Layer = false; 
+   } 
+   }
+   image(currentCanvas, 0, 175); // display the main canvas
+   }
+   */
 }
 
 void mouseReleased() {
-  if (coor == null) {
+  if (coor == null && (pmouseX >= 0 && pmouseX <= 1500) && (pmouseY > 175)) {
     reundo.drew(new Pix());
-    if (!Layer){
+    /*if (!Layer) {
       currentCanvas = get(0, 175, 1500, 800);
-    }
+    }*/
   }
 }
 
@@ -186,7 +185,7 @@ void mouseClicked() {
       break;
     case 4:
       Rectangle(); 
-     break;
+      break;
     }
     image(newLayer, 0, 0);
   }
@@ -383,10 +382,10 @@ void keyPressed() {
       noStroke();
       fill(255);
       rect(0, 175, 1500, 800);
-      image(newLayer, 0, 0);
+      clearLayer(newLayer); //clear everything
+      //image(newLayer, 0, 0);
       reundo.drew(new Pix());
       cleared = true; 
-      currentCanvas = reundo.current.still;
     }
     break;
     //Kernel stuff
@@ -431,11 +430,9 @@ void keyPressed() {
   case 'l': 
     if (!Layer) {
       Layer = true;
-      reundo.drew(new Pix());
     } else {
       Layer = false;
       currentCanvas = get(0, 175, 1500, 800);
-      reundo.drew(new Pix());
     }
     break;
   }
