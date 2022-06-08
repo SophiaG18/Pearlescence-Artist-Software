@@ -46,6 +46,7 @@ public class PixList {
           newLayer.endDraw();
         } else {
           Layer = false;
+          image(currentCanvas, 0, 175);
           image(current.still, 0, 175);
           currentCanvas = get(0, 175, 1500, 800);
         }
@@ -60,11 +61,13 @@ public class PixList {
       if (!Layer) {
         if (!current.l) {
           image(current.still, 0, 175);
+          currentCanvas = get(0, 175, 1500, 800);
         } else {
           Layer = true;
           image(currentCanvas, 0, 175);
           newLayer.beginDraw();
           newLayer.image(current.still, 0, 0);
+          image(newLayer, 0, 0); // still runs into issues 
           newLayer.endDraw();
         }
       } else {
@@ -76,7 +79,9 @@ public class PixList {
           newLayer.endDraw();
         } else {
           Layer = false;
+          image(currentCanvas, 0, 175);
           image(current.still, 0, 175);
+          currentCanvas = get(0, 175, 1500, 800);
         }
       }
     }
