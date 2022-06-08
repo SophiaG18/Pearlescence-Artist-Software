@@ -4,6 +4,7 @@ public class Pix {
   boolean l;
 
   public Pix() {
+    fr ++;
     if (!Layer) {
       still = get(0, 175, 1500, 800);
       l = false;
@@ -14,5 +15,6 @@ public class Pix {
       still = copy;
       newLayer.endDraw();
     }
+    still.save("frame" + fr + ".png");
   }
 }
