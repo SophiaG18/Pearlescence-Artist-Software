@@ -32,6 +32,18 @@ void setup() {
 }
 
 void draw() {
+  // code for clearing the layer (inputting into draw) 
+  if (keyPressed && Layer) {
+    if (key == BACKSPACE) {
+      background(#FFFFFF);
+      clearLayer(newLayer);
+      cleared = true;
+      everything.drew(Layer);
+      image(currentCanvas, 0, 175);
+    }
+  }
+  image(newLayer, 0, 0);
+  
   //toolbox section
   strokeWeight(1);
   fill(200);
@@ -135,17 +147,7 @@ void draw() {
       break;
     }
   }
-  // code for clearing the layer (inputting into draw) 
-  if (keyPressed && Layer) {
-    if (key == BACKSPACE) {
-      background(#FFFFFF);
-      clearLayer(newLayer);
-      cleared = true;
-      everything.drew(Layer);
-      image(currentCanvas, 0, 175);
-    }
-  }
-  image(newLayer, 0, 0);
+  
 }
 
 void mouseReleased() {
@@ -430,7 +432,7 @@ void keyPressed() {
         image(newLayer, 0, 0); 
         newLayer.endDraw();
       } else {
-        image(applied, 0, 0);
+        image(applied, 0, 175);
       }
       everything.drew(Layer);
     }
