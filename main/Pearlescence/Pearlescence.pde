@@ -29,7 +29,6 @@ void setup() {
   // LAYER section -> instantiate 
   newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited)
   currentCanvas = get(0, 175, 1500, 800);
-  currentCanvas.save("cc" + fr + ".png");
 }
 
 void draw() {
@@ -333,7 +332,7 @@ void keyPressed() {
       background(#FFFFFF);
       clearLayer(newLayer);
       PImage back = everything.undo();
-      back.save("fr" + everything.current + ".png");
+      //back.save("fr" + everything.current + ".png");
       boolean lay = everything.PP.get(everything.current);
       if (!lay) {
         if (Layer) {
@@ -358,6 +357,26 @@ void keyPressed() {
       //fix later
       background(#FFFFFF);
       clearLayer(newLayer);
+      PImage forward = everything.redo();
+      boolean lay = everything.PP.get(everything.current);
+      if (!lay) {
+        if (Layer) {
+          Layer = false;
+          behind.redo();
+        }
+        image(forward, 0, 175);
+      } else {
+        if (!Layer) {
+          Layer = true;
+          image(behind.redo(), 0, 175);
+        } else {
+          image(behind.take(), 0, 175);
+        }
+        newLayer.beginDraw();
+        newLayer.image(forward, 0, 0);
+        image(newLayer, 0, 0); 
+        newLayer.endDraw();
+      }
     }
     break;
     // brushMODE
@@ -401,7 +420,18 @@ void keyPressed() {
   case 'f':
     Filter = !(Filter);
     if (Filter) {
-      image(apply(), 0, 175);
+      PImage applied = apply();
+      background(#FFFFFF);
+      if (Layer) {
+        clearLayer(newLayer);
+        image(behind.take(), 0, 175);
+        newLayer.beginDraw();
+        newLayer.image(applied, 0, 0);
+        image(newLayer, 0, 0); 
+        newLayer.endDraw();
+      } else {
+        image(applied, 0, 0);
+      }
       everything.drew(Layer);
     }
     break;
@@ -441,13 +471,11 @@ void keyPressed() {
       Layer = true;
       currentCanvas = get(0, 175, 1500, 800);
       behind.drew(false);
-      //currentCanvas.save("cc" + reundo.current.change + ".png");
     } else {
       Layer = false;
       currentCanvas = get(0, 175, 1500, 800);
       clearLayer(newLayer);
       behind.drew(false);
-      //currentCanvas.save("cc" + reundo.current.change + ".png");
     }
     break;
   }
