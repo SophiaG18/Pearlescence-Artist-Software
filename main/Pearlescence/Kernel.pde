@@ -16,6 +16,7 @@ float[][][]kernels = {
 *0-255, then clamp it to that range (< 0 becomes 0, >255 becomes 255)
 */
 color calcNewColor(int x, int y) {
+  PImage img = everything.Prev.get(everything.current).copy();
   int r = 0;
   int g = 0;
   int b = 0;
@@ -26,16 +27,16 @@ color calcNewColor(int x, int y) {
       if (corx < 0){
         corx = 0;
       }
-      if (corx > reundo.current.still.width - 1){
+      if (corx > img.width - 1){
         corx = corx - 1;
       }
       if (cory < 0){
         cory = 0;
       }
-      if (cory > reundo.current.still.height - 1){
+      if (cory > img.height - 1){
         cory = cory - 1;
       }
-      color og = reundo.current.still.get(corx, cory);
+      color og = img.get(corx, cory);
       r += (red(og) * kernels[Index][w+1][h+1]);
       g += (green(og) * kernels[Index][w+1][h+1]);
       b += (blue(og) * kernels[Index][w+1][h+1]);
@@ -52,7 +53,7 @@ color calcNewColor(int x, int y) {
 
 //returns a PImage that will be set to Next
 PImage apply() {
-  PImage img = reundo.current.still.copy();
+  PImage img = everything.Prev.get(everything.current).copy();
   for (int r = 0; r < img.width; r++){
     for (int c = 0; c < img.height; c++){
       img.set(r, c, calcNewColor(r, c));
