@@ -4,7 +4,8 @@ int B = 0;
 int Size = 4;
 int brushMode = 0;
 String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle", "InkBrush", "Airbrush"};
-PixList reundo; 
+PixList everything; //includes layers strokes
+PixList behind; //currentCanvas
 PImage currentCanvas; // saving the screen as a means to prevent constant updating with layer clear 
 Boolean Filter = false;
 int Index = 0;
@@ -23,7 +24,8 @@ void setup() {
   //drawing section
   fill(255);
   rect(0, 175, 1500, 800);
-  reundo = new PixList();
+  everything = new PixList();
+  behind = new PixList();
   // LAYER section -> instantiate 
   newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited)
   currentCanvas = get(0, 175, 1500, 800);
@@ -140,35 +142,17 @@ void draw() {
       background(#FFFFFF);
       clearLayer(newLayer);
       cleared = true;
+      everything.drew(Layer);
       image(currentCanvas, 0, 175);
     }
   }
   image(newLayer, 0, 0); 
 
-  /*
-  // code for merging the layer with the canvas
-   if(keyPressed){
-   if(key == 'm'){
-   image(currentCanvas, 0, 175);
-   image(newLayer, 0, 0);
-   currentCanvas = get(0, 175, 1500, 800);
-   if(Layer){ 
-   clearLayer(newLayer); 
-   //cleared = true; -> removed this(?)  
-   Layer = false; 
-   } 
-   }
-   image(currentCanvas, 0, 175); // display the main canvas
-   }
-   */
 }
 
 void mouseReleased() {
   if (coor == null && (pmouseX >= 0 && pmouseX <= 1500) && (pmouseY > 175)) {
-    reundo.drew(new Pix());
-    /*if (!Layer) {
-      currentCanvas = get(0, 175, 1500, 800);
-    }*/
+    everything.drew(Layer);
   }
 }
 
@@ -347,10 +331,10 @@ void keyPressed() {
       }
     } 
     if (keyCode == LEFT) {
-      reundo.undo();
+      //fix later
     }
     if (keyCode == RIGHT) {
-      reundo.redo();
+      //fix later
     }
     break;
     // brushMODE
@@ -385,7 +369,8 @@ void keyPressed() {
       rect(0, 175, 1500, 800);
       clearLayer(newLayer); //clear everything
       //image(newLayer, 0, 0);
-      reundo.drew(new Pix());
+      everything.drew(Layer);
+      behind.drew(Layer);
       cleared = true; 
     }
     break;
@@ -394,7 +379,7 @@ void keyPressed() {
     Filter = !(Filter);
     if (Filter) {
       image(apply(), 0, 175);
-      reundo.drew(new Pix());
+      everything.drew(Layer);
     }
     break;
   case '5':
@@ -432,11 +417,13 @@ void keyPressed() {
     if (!Layer) {
       Layer = true;
       currentCanvas = get(0, 175, 1500, 800);
+      behind.drew(false);
       //currentCanvas.save("cc" + reundo.current.change + ".png");
     } else {
       Layer = false;
       currentCanvas = get(0, 175, 1500, 800);
       clearLayer(newLayer);
+      behind.drew(false);
       //currentCanvas.save("cc" + reundo.current.change + ".png");
     }
     break;
