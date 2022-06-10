@@ -146,8 +146,7 @@ void draw() {
       image(currentCanvas, 0, 175);
     }
   }
-  image(newLayer, 0, 0); 
-
+  image(newLayer, 0, 0);
 }
 
 void mouseReleased() {
@@ -330,11 +329,35 @@ void keyPressed() {
         Size--;
       }
     } 
-    if (keyCode == LEFT) {
-      //fix later
+    if (keyCode == LEFT && everything.current > 0) {
+      background(#FFFFFF);
+      clearLayer(newLayer);
+      PImage back = everything.undo();
+      back.save("fr" + everything.current + ".png");
+      boolean lay = everything.PP.get(everything.current);
+      if (!lay) {
+        if (Layer) {
+          Layer = false;
+          behind.undo();
+        }
+        image(back, 0, 175);
+      } else {
+        if (!Layer) {
+          Layer = true;
+          image(behind.undo(), 0, 175);
+        } else {
+          image(behind.take(), 0, 175);
+        }
+        newLayer.beginDraw();
+        newLayer.image(back, 0, 0);
+        image(newLayer, 0, 0); 
+        newLayer.endDraw();
+      }
     }
-    if (keyCode == RIGHT) {
+    if (keyCode == RIGHT && everything.Next.size() > 0) {
       //fix later
+      background(#FFFFFF);
+      clearLayer(newLayer);
     }
     break;
     // brushMODE
@@ -371,7 +394,7 @@ void keyPressed() {
       //image(newLayer, 0, 0);
       everything.drew(Layer);
       behind.drew(Layer);
-      cleared = true; 
+      cleared = true;
     }
     break;
     //Kernel stuff
