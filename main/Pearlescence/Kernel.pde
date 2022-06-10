@@ -15,8 +15,7 @@ float[][][]kernels = {
 *if the calculation for any of the r,g,b values is outside the range
 *0-255, then clamp it to that range (< 0 becomes 0, >255 becomes 255)
 */
-color calcNewColor(int x, int y) {
-  PImage img = everything.Prev.get(everything.current).copy();
+color calcNewColor(int x, int y, PImage dup) {
   int r = 0;
   int g = 0;
   int b = 0;
@@ -27,16 +26,16 @@ color calcNewColor(int x, int y) {
       if (corx < 0){
         corx = 0;
       }
-      if (corx > img.width - 1){
+      if (corx > dup.width - 1){
         corx = corx - 1;
       }
       if (cory < 0){
         cory = 0;
       }
-      if (cory > img.height - 1){
+      if (cory > dup.height - 1){
         cory = cory - 1;
       }
-      color og = img.get(corx, cory);
+      color og = dup.get(corx, cory);
       r += (red(og) * kernels[Index][w+1][h+1]);
       g += (green(og) * kernels[Index][w+1][h+1]);
       b += (blue(og) * kernels[Index][w+1][h+1]);
@@ -53,10 +52,11 @@ color calcNewColor(int x, int y) {
 
 //returns a PImage that will be set to Next
 PImage apply() {
-  PImage img = everything.Prev.get(everything.current).copy();
+  PImage img = everything.take().copy();
+  PImage dup = everything.take().copy();
   for (int r = 0; r < img.width; r++){
     for (int c = 0; c < img.height; c++){
-      img.set(r, c, calcNewColor(r, c));
+      img.set(r, c, calcNewColor(r, c, dup));
     }
   }
   return img;
