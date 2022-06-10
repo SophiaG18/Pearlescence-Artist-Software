@@ -33,7 +33,7 @@ public class PixList {
     Next.add(Prev.remove(current));
     NN.add(PP.remove(current));
     current --;
-    return Prev.get(current); 
+    return take(); 
     //in Pearlescence, use PP.get(current) after getting the image
   }
   
@@ -42,43 +42,16 @@ public class PixList {
     Prev.add(Next.remove(Next.size() - 1)); //first image in arraylist
     PP.add(NN.remove(NN.size() - 1));
     current ++;
-    return Prev.get(current); 
+    return take(); 
     //in Pearlescence, use PP.get(current) after getting the image
   }
+  
+  PImage take(){
+    return Prev.get(current);
+  }
 }
-  /* add to undo & redo  in Pearlescence 
-   background(#FFFFFF);
-   clearLayer(newLayer);
-   if (!Layer) {
-   if (!current.l) {
-   image(current.still, 0, 175);
-   //currentCanvas = get(0, 175, 1500, 800);
-   } else {
-   Layer = true;
-   currentCanvas.save("cc" + current.change + ".png");
-   image(currentCanvas, 0, 175); //this is where we run into issues i think
-   newLayer.beginDraw();
-   newLayer.image(current.still, 0, 0);
-   image(newLayer, 0, 0); 
-   newLayer.endDraw();
-   }
-   } else {
-   if (current.l) {
-   image(currentCanvas, 0, 175);
-   newLayer.beginDraw();
-   newLayer.image(current.still, 0, 0);
-   newLayer.endDraw();
-   image(newLayer, 0, 0);
-   } else {
-   Layer = false;
-   image(current.still, 0, 175);
-   currentCanvas = get(0, 175, 1500, 800);
-   currentCanvas.save("cc" + current.change + ".png");
-   }
-   }
-   }
-   }
-   
+  
+  /* 
    void redo() {
    if (current != last) {
    current = current.next; 
