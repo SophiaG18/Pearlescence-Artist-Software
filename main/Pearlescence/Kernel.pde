@@ -15,38 +15,31 @@ float[][][]kernels = {
  *if the calculation for any of the r,g,b values is outside the range
  *0-255, then clamp it to that range (< 0 becomes 0, >255 becomes 255)
  */
-color calcNewColor(int x, int y, PImage dup) {
+color calcNewColor(int x, int y) {
+  PImage img = everything.Prev.get(everything.current).copy();
   int r = 0;
   int g = 0;
   int b = 0;
-  float alp = 0;
-  float scale = 0;
-  float max = 0;
-  for (int w = -1; w <= 1; w++) { //x
-    for (int h = -1; h <= 1; h++) { //y
+  for (int w = -1; w <= 1; w++){ //x
+    for (int h = -1; h <= 1; h++){ //y
       int corx = x + w;
       int cory = y + h;
-      if (corx < 0) {
+      if (corx < 0){
         corx = 0;
       }
-      if (corx > dup.width - 1) {
+      if (corx > img.width - 1){
         corx = corx - 1;
       }
-      if (cory < 0) {
+      if (cory < 0){
         cory = 0;
       }
-      if (cory > dup.height - 1) {
+      if (cory > img.height - 1){
         cory = cory - 1;
       }
-      color og = dup.get(corx, cory);
-      max += kernels[Index][w+1][h+1];
-      if (alpha(og) > 0) {
-        scale += kernels[Index][w+1][h+1];
-        r += (red(og) * kernels[Index][w+1][h+1]);
-        g += (green(og) * kernels[Index][w+1][h+1]);
-        b += (blue(og) * kernels[Index][w+1][h+1]);
-        alp += (alpha(og));
-      }
+      color og = img.get(corx, cory);
+      r += (red(og) * kernels[Index][w+1][h+1]);
+      g += (green(og) * kernels[Index][w+1][h+1]);
+      b += (blue(og) * kernels[Index][w+1][h+1]);
     }
   }
   if (r < 0) r = 0;
@@ -55,17 +48,15 @@ color calcNewColor(int x, int y, PImage dup) {
   if (g > 255) g = 255;
   if (b < 0) b = 0;
   if (b > 255) b = 255;
-  float change = (max/scale);
-  return color(r * change, g * change, b * change , alp * change);
+  return color(r, g, b);
 }
 
 //returns a PImage that will be set to Next
 PImage apply() {
-  PImage img = everything.take().copy();
-  PImage dup = everything.take().copy();
+  PImage img = get(0, 175, 1500, 800);
   for (int r = 0; r < img.width; r++) {
     for (int c = 0; c < img.height; c++) {
-      img.set(r, c, calcNewColor(r, c, dup));
+      img.set(r, c, calcNewColor(r, c));
     }
   }
   return img;
