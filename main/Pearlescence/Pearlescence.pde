@@ -426,15 +426,10 @@ void keyPressed() {
       background(#FFFFFF);
       if (Layer) {
         clearLayer(newLayer);
-        image(behind.take(), 0, 175);
-        newLayer.beginDraw();
-        newLayer.image(applied, 0, 0);
-        image(newLayer, 0, 0); 
-        newLayer.endDraw();
-      } else {
-        image(applied, 0, 175);
-      }
-      everything.drew(Layer);
+        Layer = false;
+      } 
+      image(applied, 0, 175);
+      everything.drew(false);
     }
     break;
   case '5':
