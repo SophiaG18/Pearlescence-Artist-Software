@@ -128,41 +128,6 @@ void Bucket2(int X, int Y, color OG, color spill) {
   }
 }
 
-void Airbrush() {
-  color penColor = color(R, G, B);
-  if (!Layer) {
-    stroke(penColor, Transparency);
-    int startx = -Size / 2;
-    int endx = Size - (Size/2); //to accomadate odd values for Size
-    if (mouseX >= pmouseX) {
-      startx += pmouseX;
-      endx += mouseX;
-    } else {
-      startx += mouseX;
-      endx += pmouseX;
-    }  
-    int starty, endy;
-    if (mouseY >= pmouseY) {
-      starty = pmouseY;
-      endy = mouseY;
-    } else {
-      starty = mouseY;
-      endy = pmouseY;
-    } 
-    float mm = abs(dist(startx, starty, endx, endy));
-    while (startx <= endx) {
-      for (int yy = starty; yy <= endy; yy++) {
-        float chance = abs(dist(startx, starty, (mouseX + pmouseX)/2, (mouseY + pmouseY)/2)) / mm;
-        float p = random(1);
-        if (p > chance) {
-          point(startx, yy);
-        }
-      }
-      startx++;
-    }
-  }
-}
-
 void InkBrush(int x, int y, int x2, int y2) {
   if (!Layer) {
     color penColor = color(R, G, B);
