@@ -102,4 +102,16 @@ Anna Fang: Researched how to best implement layer merging between PImages and PL
 
 Sophia Gao: Continuing to work with redo and undo methods to consider when layers was turned off or on between strokes.
 
-Anna Fang: Deleted methods for layer merging and fixed issue with PImage/PGraphic type conflict. Added noStroke() for brush cases. 
+Anna Fang: Deleted methods for layer merging and fixed issue with PImage/PGraphic type conflict. Added noStroke() for brush cases.
+
+##### 6/8:
+
+Sophia Gao: Continuing to work with redo and undo methods to consider layers.
+
+##### 6/10:
+
+Sophia Gao: Completely reworked PixList for undo and redo. Miscellaneous changes to Pearlescence as well.
+
+##### 6/12:
+
+Sophia Gao: Attempted to have image processing for newLayer... decided to just modify code so Layer will become false if Layer was true when filter becomes true.
