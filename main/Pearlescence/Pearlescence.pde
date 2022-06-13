@@ -116,7 +116,6 @@ void draw() {
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
   text("Press DOWN to decrement size", 30, 145);
-  text("Press m to merge your layer onto the main canvas", 30, 160); 
   // moving "mousepressed" into draw in order to change coordinates via pmouseX and pmouseY 
   if (mousePressed && (mouseX >= 0 && mouseX <= 1500) && (mouseY > 175)) { 
     switch (brushMode) {
