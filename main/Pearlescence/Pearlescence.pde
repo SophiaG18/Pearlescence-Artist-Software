@@ -17,7 +17,6 @@ PGraphics newLayer; // considering changing this to an array of pgraphics in ord
 PGraphics [] layers = new PGraphics [10]; // array of 10 possible layers
 Integer[] coor;
 boolean cleared; 
-int fr = 0;
 
 void setup() {
   size(1500, 900);
