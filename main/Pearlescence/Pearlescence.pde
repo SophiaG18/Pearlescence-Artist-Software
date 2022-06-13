@@ -12,9 +12,7 @@ int Index = 0;
 String [] Names = {"Identity", "Blur", "Sharpen", "Outline", "Left Sobel", "Right Sobel", "Top Sobel", "Emboss"};
 int Transparency = 255;
 boolean Layer = false; 
-boolean Weight = false; 
 PGraphics newLayer; // considering changing this to an array of pgraphics in order to have multiple layers.
-PGraphics [] layers = new PGraphics [10]; // array of 10 possible layers
 Integer[] coor;
 boolean cleared; 
 
@@ -62,7 +60,6 @@ void draw() {
   text("Filter: " + Filter, 600, 55);
   text("Filter mode: " + Names[Index], 600, 70); // either keep or combine with filter text
   text("Transparency: " + Transparency, 600, 85);
-  text("Weight: " + Weight, 600, 115); 
   text("Layer: " + Layer, 600, 130);
   //color square to be clicked on
   stroke(0);
@@ -115,7 +112,6 @@ void draw() {
   text("Press 4 to increment Transparency", 30, 55);
   text("Press 5 or 6 to cycle through filters", 30, 70);
   text("Click on a color to select it", 964, 75);
-  text("Press w to turn Weight on and off", 30, 85); 
   text("Press l to turn layer on or off", 30, 100);
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
@@ -444,13 +440,6 @@ void keyPressed() {
     } else {
       Index ++;
     }
-    break;
-  case 'w': 
-    if (!Weight) {
-      Weight = true;
-    } else {
-      Weight = false;
-    } 
     break;
   case '3': 
     if (Transparency > 0) {
