@@ -22,7 +22,7 @@ To begin drawing, press, hold, and drag your mouse. The characteristics of the l
 - UP will increment Size (of the brush)
 - DOWN will decrement Size (of the brush) unless Size = 1
 - 1 will decrement brushMode (which type of drawing utensil used) or cycle back to the highest value if brushMode = 0
-- 2 will increment brushMode or cycle back to lowest value if brushMode = 7
+- 2 will increment brushMode or cycle back to lowest value if brushMode = 5
 - LEFT acts as a undo button; displays the stored image of Prev from an ArrayList of PImages
 - RIGHT acts as a redo button; displays the stored image of Next from an ArrayList of PImages
 - ENTER acts as a save button; saves a png file of the screen
