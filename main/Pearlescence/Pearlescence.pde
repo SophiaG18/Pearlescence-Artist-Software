@@ -4,16 +4,15 @@ int B = 0;
 int Size = 4;
 int brushMode = 0;
 String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle", "InkBrush", "Airbrush"};
-PixList reundo; 
+PixList everything; //includes layers strokes
+PixList behind; //currentCanvas
 PImage currentCanvas; // saving the screen as a means to prevent constant updating with layer clear 
 Boolean Filter = false;
 int Index = 0;
 String [] Names = {"Identity", "Blur", "Sharpen", "Outline", "Left Sobel", "Right Sobel", "Top Sobel", "Emboss"};
 int Transparency = 255;
 boolean Layer = false; 
-boolean Weight = false; 
 PGraphics newLayer; // considering changing this to an array of pgraphics in order to have multiple layers.
-PGraphics [] layers = new PGraphics [10]; // array of 10 possible layers
 Integer[] coor;
 boolean cleared; 
 
@@ -22,13 +21,26 @@ void setup() {
   //drawing section
   fill(255);
   rect(0, 175, 1500, 800);
-  reundo = new PixList();
+  everything = new PixList();
+  behind = new PixList();
   // LAYER section -> instantiate 
   newLayer = createGraphics(1500, 900); // just creating the layer with the size of the entire program (will update when coordinates are edited)
   currentCanvas = get(0, 175, 1500, 800);
 }
 
 void draw() {
+  // code for clearing the layer (inputting into draw) 
+  if (keyPressed && Layer) {
+    if (key == BACKSPACE) {
+      background(#FFFFFF);
+      clearLayer(newLayer);
+      cleared = true;
+      everything.drew(Layer);
+      image(currentCanvas, 0, 175);
+    }
+  }
+  image(newLayer, 0, 0);
+  
   //toolbox section
   strokeWeight(1);
   fill(200);
@@ -48,7 +60,6 @@ void draw() {
   text("Filter: " + Filter, 600, 55);
   text("Filter mode: " + Names[Index], 600, 70); // either keep or combine with filter text
   text("Transparency: " + Transparency, 600, 85);
-  text("Weight: " + Weight, 600, 115); 
   text("Layer: " + Layer, 600, 130);
   //color square to be clicked on
   stroke(0);
@@ -101,7 +112,6 @@ void draw() {
   text("Press 4 to increment Transparency", 30, 55);
   text("Press 5 or 6 to cycle through filters", 30, 70);
   text("Click on a color to select it", 964, 75);
-  text("Press w to turn Weight on and off", 30, 85); 
   text("Press l to turn layer on or off", 30, 100);
   text("Press f to turn filter on or off", 30, 115); 
   text("Press UP to increment size", 30, 130); 
@@ -122,48 +132,22 @@ void draw() {
       noStroke();
       Bucket(); // have to update to work on layers 
       break;
-     case 5: 
-       noStroke();
-       InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
-       break;
-     case 6:
-       noStroke();
-       Airbrush();
-       break;
+    case 5: 
+      noStroke();
+      InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
+      break;
+    case 6:
+      noStroke();
+      Airbrush();
+      break;
     }
   }
-  // code for clearing the layer (inputting into draw) 
-  if (keyPressed && Layer) {
-    if (key == BACKSPACE) {
-      background(#FFFFFF);
-      clearLayer(newLayer);
-      cleared = true;
-    }
-    if (cleared) {
-      image(currentCanvas, 0, 175);
-    }
-  }
-   image(newLayer, 0, 0); 
-   
-  // code for merging the layer with the canvas
-  if(keyPressed){
-    if(key == 'm'){
-      image(currentCanvas, 0, 175);
-      image(newLayer, 0, 0);
-      currentCanvas = get(0, 175, 1500, 800);
-      if(Layer){ 
-        clearLayer(newLayer); 
-        //cleared = true; -> removed this(?)  
-        Layer = false; 
-      } 
-    }
-    image(currentCanvas, 0, 175); // display the main canvas
-  } 
+  
 }
 
 void mouseReleased() {
-  if (coor == null) {
-    reundo.drew(new Pix());
+  if (coor == null && (pmouseX >= 0 && pmouseX <= 1500) && (pmouseY > 175)) {
+    everything.drew(Layer);
   }
 }
 
@@ -181,7 +165,7 @@ void mouseClicked() {
       break;
     case 4:
       Rectangle(); 
-     break;
+      break;
     }
     image(newLayer, 0, 0);
   }
@@ -341,11 +325,55 @@ void keyPressed() {
         Size--;
       }
     } 
-    if (keyCode == LEFT) {
-      reundo.undo();
+    if (keyCode == LEFT && everything.current > 0) {
+      background(#FFFFFF);
+      clearLayer(newLayer);
+      PImage back = everything.undo();
+      //back.save("fr" + everything.current + ".png");
+      boolean lay = everything.PP.get(everything.current);
+      if (!lay) {
+        if (Layer) {
+          Layer = false;
+          behind.undo();
+        }
+        image(back, 0, 175);
+      } else {
+        if (!Layer) {
+          Layer = true;
+          image(behind.undo(), 0, 175);
+        } else {
+          image(behind.take(), 0, 175);
+        }
+        newLayer.beginDraw();
+        newLayer.image(back, 0, 0);
+        image(newLayer, 0, 0); 
+        newLayer.endDraw();
+      }
     }
-    if (keyCode == RIGHT) {
-      reundo.redo();
+    if (keyCode == RIGHT && everything.Next.size() > 0) {
+      //fix later
+      background(#FFFFFF);
+      clearLayer(newLayer);
+      PImage forward = everything.redo();
+      boolean lay = everything.PP.get(everything.current);
+      if (!lay) {
+        if (Layer) {
+          Layer = false;
+          behind.redo();
+        }
+        image(forward, 0, 175);
+      } else {
+        if (!Layer) {
+          Layer = true;
+          image(behind.redo(), 0, 175);
+        } else {
+          image(behind.take(), 0, 175);
+        }
+        newLayer.beginDraw();
+        newLayer.image(forward, 0, 0);
+        image(newLayer, 0, 0); 
+        newLayer.endDraw();
+      }
     }
     break;
     // brushMODE
@@ -378,18 +406,25 @@ void keyPressed() {
       noStroke();
       fill(255);
       rect(0, 175, 1500, 800);
-      image(newLayer, 0, 0);
-      reundo.drew(new Pix());
-      cleared = true; 
-      currentCanvas = reundo.current.still;
+      clearLayer(newLayer); //clear everything
+      //image(newLayer, 0, 0);
+      everything.drew(Layer);
+      behind.drew(Layer);
+      cleared = true;
     }
     break;
     //Kernel stuff
   case 'f':
     Filter = !(Filter);
     if (Filter) {
-      image(apply(), 0, 175);
-      reundo.drew(new Pix());
+      PImage applied = apply();
+      background(#FFFFFF);
+      if (Layer) {
+        clearLayer(newLayer);
+        Layer = false;
+      } 
+      image(applied, 0, 175);
+      everything.drew(false);
     }
     break;
   case '5':
@@ -406,13 +441,6 @@ void keyPressed() {
       Index ++;
     }
     break;
-  case 'w': 
-    if (!Weight) {
-      Weight = true;
-    } else {
-      Weight = false;
-    } 
-    break;
   case '3': 
     if (Transparency > 0) {
       Transparency -= 5;
@@ -426,8 +454,13 @@ void keyPressed() {
   case 'l': 
     if (!Layer) {
       Layer = true;
+      currentCanvas = get(0, 175, 1500, 800);
+      behind.drew(false);
     } else {
       Layer = false;
+      currentCanvas = get(0, 175, 1500, 800);
+      clearLayer(newLayer);
+      behind.drew(false);
     }
     break;
   }
