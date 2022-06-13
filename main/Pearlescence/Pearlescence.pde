@@ -3,7 +3,7 @@ int G = 0;
 int B = 0;
 int Size = 4;
 int brushMode = 0;
-String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle", "InkBrush", "Airbrush"};
+String[] tools = {"Pen", "Eraser", "Bucket", "Circle", "Rectangle", "InkBrush"};
 PixList everything; //includes layers strokes
 PixList behind; //currentCanvas
 PImage currentCanvas; // saving the screen as a means to prevent constant updating with layer clear 
