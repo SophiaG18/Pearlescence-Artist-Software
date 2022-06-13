@@ -135,10 +135,6 @@ void draw() {
       noStroke();
       InkBrush(mouseX, mouseY, pmouseX, pmouseY); 
       break;
-    case 6:
-      noStroke();
-      Airbrush();
-      break;
     }
   }
   
@@ -380,11 +376,11 @@ void keyPressed() {
     if (brushMode > 0) {
       brushMode --;
     } else {
-      brushMode = 6; //# will be increased as more Brush methods are coded
+      brushMode = 5; //# will be increased as more Brush methods are coded
     }
     break;
   case '2':
-    if (brushMode < 6) { 
+    if (brushMode < 5) { 
       //# will be increased as more Brush methods are coded
       brushMode ++;
     } else {
