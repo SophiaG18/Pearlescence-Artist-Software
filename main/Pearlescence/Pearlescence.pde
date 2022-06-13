@@ -40,7 +40,7 @@ void draw() {
     }
   }
   image(newLayer, 0, 0);
-  
+
   //toolbox section
   strokeWeight(1);
   fill(200);
@@ -137,7 +137,6 @@ void draw() {
       break;
     }
   }
-  
 }
 
 void mouseReleased() {
