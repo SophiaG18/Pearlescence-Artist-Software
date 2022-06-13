@@ -19,15 +19,15 @@ To begin drawing, press, hold, and drag your mouse. The characteristics of the l
 - g will cycle up G value (unless G = 255, in which case it will stop cycling up)
 - b will cycle up B value (unless B = 255, in which case it will stop cycling up)
 - DELETE acts as a clear button; resets the bottom rectangle to default white by drawing a white rectangle above the drawing
-- UP will increment Size (of the brush) unless Size = [max size]
+- UP will increment Size (of the brush)
 - DOWN will decrement Size (of the brush) unless Size = 1
 - 1 will decrement brushMode (which type of drawing utensil used) or cycle back to the highest value if brushMode = 0
-- 2 will increment brushMode or cycle back to lowest value if brushMode = [max mode]
-- LEFT acts as a undo button; displays the stored image of Prev
-- RIGHT acts as a redo button; displays the stored image of Next
+- 2 will increment brushMode or cycle back to lowest value if brushMode = 7
+- LEFT acts as a undo button; displays the stored image of Prev from an ArrayList of PImages
+- RIGHT acts as a redo button; displays the stored image of Next from an ArrayList of PImages
 - ENTER acts as a save button; saves a png file of the screen
 - f will change Filter boolean
-  - If Filter is turned on, saves current drawing as Prev then calls for Kernel method Apply using the kernel respective to Index value (then saves new drawing as Next)
+  - If Filter is turned on, saves current main canvas (excludes the layer) as a PImage and then calls for Kernel method Apply using the kernel respective to Index value chosen (then adds new PImage to the Array List Next)
 - w will turn the Weight boolean on and off (pressure/velocity based weight or static line when drawing)
 - 3 will decrement Transparency (of the stroke) or cycle back to highest value if Transparency = 0
 - 4 will increment Transparency (of the stroke) or cycle back to the lowest value if Transparency = 100
@@ -38,6 +38,7 @@ To begin drawing, press, hold, and drag your mouse. The characteristics of the l
 
 ##### Mouse actions
 - Clicking on the color palette will change R,G,B values to appropriate values and changes the color of the lines the user draws to the color selected.
+- Clicking on the screen after selecting the circle or rectangle brush will create the respective shape on the main canvas/layer
 
 
 ### Document Log:
@@ -115,3 +116,5 @@ Sophia Gao: Completely reworked PixList for undo and redo. Miscellaneous changes
 ##### 6/12:
 
 Sophia Gao: Attempted to have image processing for newLayer... decided to just modify code so Layer will become false if Layer was true when filter becomes true.
+
+Anna Fang: Did research + had meeting with Sophia to figure out filtering on Layer, updated instructions, remade UML, updated prototype document. 
